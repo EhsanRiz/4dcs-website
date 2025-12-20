@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Analytics - Replace GA_MEASUREMENT_ID with your actual ID -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+    <title>Our Apps & Digital Solutions | 4D Climate Solutions</title>
+    <meta name="description" content="Custom digital solutions built by 4D Climate Solutions - mobile apps, web platforms, and data management systems for development projects.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" aria-label="Main navigation">
+        <a href="index.html" class="logo">
+            <img src="images/logo.jpg" alt="4D Climate Solutions">
+        </a>
+                <ul class="nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="apps.html" class="active">Apps</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+        </ul>
+        <div class="mobile-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Page Header -->
+        <header class="page-header page-header-apps">
+            <h1>Our Digital Solutions</h1>
+            <p>Custom apps and platforms built for impact</p>
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                Apps
+            </div>
+        </header>
+
+        <!-- Apps Intro -->
+        <section class="section section-light">
+            <div class="container">
+                <div class="section-header fade-up">
+                    <span class="section-tag">Technology for Development</span>
+                    <h2>Built for the Field, Designed for Impact</h2>
+                    <p>We develop custom digital solutions that solve real challenges in development projects — from community mobilization to agricultural monitoring, financial inclusion to administrative efficiency.</p>
+                </div>
+                
+                <!-- Stats -->
+                <div class="apps-stats fade-up">
+                    <div class="app-stat">
+                        <span class="stat-number">8+</span>
+                        <span class="stat-label">Apps Built</span>
+                    </div>
+                    <div class="app-stat">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Active Users</span>
+                    </div>
+                    <div class="app-stat">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Offline Capable</span>
+                    </div>
+                    <div class="app-stat">
+                        <span class="stat-number">3</span>
+                        <span class="stat-label">Countries</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Apps -->
+        <section class="section section-gray">
+            <div class="container">
+                <div class="section-header fade-up">
+                    <span class="section-tag">Featured Solutions</span>
+                    <h2>Our App Portfolio</h2>
+                </div>
+                
+                <!-- App 1: LLWDP II Monitoring -->
+                <div class="app-showcase fade-up">
+                    <div class="app-images">
+                        <div class="app-screenshot main">
+                            <img src="images/app-llwdp-dashboard.jpg" alt="LLWDP II Monitoring Dashboard">
+                        </div>
+                        <div class="app-screenshot secondary">
+                            <img src="images/app-llwdp-login.jpg" alt="LLWDP II Login Screen">
+                        </div>
+                    </div>
+                    <div class="app-details">
+                        <span class="app-category">Field Data Collection</span>
+                        <h3>LLWDP II Community Mobilization Monitoring App</h3>
+                        <p>A comprehensive web-based monitoring system for tracking community engagement activities across four zones in Lesotho. Supports field workers with both online and offline data collection capabilities.</p>
+                        <div class="app-features">
+                            <span class="feature-tag">Offline Sync</span>
+                            <span class="feature-tag">Real-time Dashboard</span>
+                            <span class="feature-tag">Progress Tracking</span>
+                            <span class="feature-tag">PIN Authentication</span>
+                            <span class="feature-tag">Bilingual (EN/Sesotho)</span>
+                        </div>
+                        <div class="app-meta">
+                            <div class="app-meta-item">
+                                <strong>Client:</strong> Ministry of Natural Resources
+                            </div>
+                            <div class="app-meta-item">
+                                <strong>Users:</strong> 20+ Field Workers
+                            </div>
+                        </div>
+                        <a href="contact.html" class="btn btn-primary">Request Demo</a>
+                    </div>
+                </div>
+                
+                <!-- App 2: FarmIntel -->
+                <div class="app-showcase app-showcase-reverse fade-up">
+                    <div class="app-images">
+                        <div class="app-screenshot main">
+                            <img src="images/app-farmintel.jpg" alt="FarmIntel Dashboard">
+                        </div>
+                    </div>
+                    <div class="app-details">
+                        <span class="app-category">Agricultural Tech</span>
+                        <h3>FarmIntel by 4D</h3>
+                        <p>Market agent dashboard connecting smallholder farmers to markets. Enables field agents to register farmers, track harvest readiness, submit market prices, and receive real-time alerts when farmers are ready to sell.</p>
+                        <div class="app-features">
+                            <span class="feature-tag">Farmer Registration</span>
+                            <span class="feature-tag">Harvest Tracking</span>
+                            <span class="feature-tag">Market Prices</span>
+                            <span class="feature-tag">Readiness Alerts</span>
+                            <span class="feature-tag">District Analytics</span>
+                        </div>
+                        <div class="app-meta">
+                            <div class="app-meta-item">
+                                <strong>Type:</strong> Market Linkage Platform
+                            </div>
+                            <div class="app-meta-item">
+                                <strong>Coverage:</strong> Multiple Districts
+                            </div>
+                        </div>
+                        <a href="contact.html" class="btn btn-primary">Request Demo</a>
+                    </div>
+                </div>
+                
+                <!-- App 3: GROWTH -->
+                <div class="app-showcase fade-up">
+                    <div class="app-images">
+                        <div class="app-screenshot main growth-screenshot">
+                            <img src="images/app-growth.jpg" alt="GROWTH NDVI Satellite Imagery">
+                        </div>
+                    </div>
+                    <div class="app-details">
+                        <span class="app-category">Remote Sensing & IoT</span>
+                        <h3>GROWTH</h3>
+                        <p class="app-acronym"><em>Geospatial Remote Observation for Wellness, Technology, and Harvest</em></p>
+                        <p>A pioneering collaboration with RMSI India, delivering accurate crop health insights through satellite imagery and IoT sensors. Uses NDVI vegetation indexing for early stress detection and yield estimation.</p>
+                        <div class="app-features">
+                            <span class="feature-tag">Satellite Imagery</span>
+                            <span class="feature-tag">NDVI Analysis</span>
+                            <span class="feature-tag">Crop Health Monitoring</span>
+                            <span class="feature-tag">Yield Estimation</span>
+                            <span class="feature-tag">Ground Truthing</span>
+                        </div>
+                        <div class="app-meta">
+                            <div class="app-meta-item">
+                                <strong>Partner:</strong> RMSI India
+                            </div>
+                            <div class="app-meta-item">
+                                <strong>Coverage:</strong> Lesotho & South Africa
+                            </div>
+                        </div>
+                        <a href="contact.html" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+                
+                <!-- App 4: Gooi Gooi -->
+                <div class="app-showcase app-showcase-reverse fade-up">
+                    <div class="app-images">
+                        <div class="app-screenshot main gooi-logo-container">
+                            <img src="images/gooi-gooi-logo.png" alt="Gooi Gooi Savings Platform Logo">
+                        </div>
+                    </div>
+                    <div class="app-details">
+                        <span class="app-category">Financial Inclusion</span>
+                        <h3>Gooi Gooi Savings Platform</h3>
+                        <p>Digital bookkeeping and financial management app for savings groups (VSLAs) and MSMEs. Helps groups track contributions, loans, and dividends while building financial literacy and inclusion.</p>
+                        <div class="app-features">
+                            <span class="feature-tag">Digital Bookkeeping</span>
+                            <span class="feature-tag">Group Management</span>
+                            <span class="feature-tag">Loan Tracking</span>
+                            <span class="feature-tag">Dividend Calculator</span>
+                            <span class="feature-tag">Financial Reports</span>
+                        </div>
+                        <div class="app-meta">
+                            <div class="app-meta-item">
+                                <strong>Website:</strong> <a href="https://gooigooi.com" target="_blank">gooigooi.com</a>
+                            </div>
+                            <div class="app-meta-item">
+                                <strong>Users:</strong> 95+ Savings Groups
+                            </div>
+                        </div>
+                        <a href="https://gooigooi.com" target="_blank" class="btn btn-primary">Visit Website</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- More Apps Grid -->
+        <section class="section section-light">
+            <div class="container">
+                <div class="section-header fade-up">
+                    <span class="section-tag">More Solutions</span>
+                    <h2>Additional Platforms</h2>
+                </div>
+                
+                <div class="apps-grid fade-up">
+                    <!-- Grievance Redressal -->
+                    <div class="app-card">
+                        <div class="app-card-icon forest">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                        </div>
+                        <h4>Digital Grievance Redressal System</h4>
+                        <p>Streamlined complaint management for development projects. Track, assign, and resolve community grievances with full audit trails.</p>
+                        <div class="app-card-tags">
+                            <span>Complaint Tracking</span>
+                            <span>Case Management</span>
+                            <span>Reporting</span>
+                        </div>
+                    </div>
+                    
+                    <!-- CIMS -->
+                    <div class="app-card">
+                        <div class="app-card-icon cyan">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                        </div>
+                        <h4>Compensation Information Management System (CIMS)</h4>
+                        <p>Digital platform for managing resettlement and compensation data for infrastructure projects. Secure, auditable records management.</p>
+                        <div class="app-card-tags">
+                            <span>PAP Database</span>
+                            <span>Asset Valuation</span>
+                            <span>Payment Tracking</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Farmer & Market Info -->
+                    <div class="app-card">
+                        <div class="app-card-icon lime">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        </div>
+                        <h4>Farmer & Market Information System</h4>
+                        <p>Comprehensive database linking farmers to market opportunities. Track production, connect buyers, and enable data-driven agricultural decisions.</p>
+                        <div class="app-card-tags">
+                            <span>Farmer Registry</span>
+                            <span>Market Linkages</span>
+                            <span>Production Data</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Timesheet -->
+                    <div class="app-card">
+                        <div class="app-card-icon brown">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        </div>
+                        <h4>Timesheet Management System</h4>
+                        <p>Internal HR platform for project time tracking, leave management, and resource allocation. Streamlines administrative workflows.</p>
+                        <div class="app-card-tags">
+                            <span>Time Tracking</span>
+                            <span>Project Allocation</span>
+                            <span>HR Reports</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technology Stack -->
+        <section class="section section-gray">
+            <div class="container">
+                <div class="section-header fade-up">
+                    <span class="section-tag">Our Approach</span>
+                    <h2>Built for Real-World Conditions</h2>
+                </div>
+                
+                <div class="tech-features fade-up">
+                    <div class="tech-feature">
+                        <div class="tech-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+                        </div>
+                        <h4>Offline-First Design</h4>
+                        <p>All our field apps work without internet connectivity and sync automatically when connection is available.</p>
+                    </div>
+                    <div class="tech-feature">
+                        <div class="tech-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                        </div>
+                        <h4>Mobile Responsive</h4>
+                        <p>Designed for smartphones and tablets used by field workers in remote areas.</p>
+                    </div>
+                    <div class="tech-feature">
+                        <div class="tech-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        </div>
+                        <h4>Secure & Compliant</h4>
+                        <p>Bank-grade security with PIN authentication, encrypted data, and full audit trails.</p>
+                    </div>
+                    <div class="tech-feature">
+                        <div class="tech-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                        </div>
+                        <h4>Easy Deployment</h4>
+                        <p>Cloud-hosted solutions with quick setup and minimal training required.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="cta-section">
+            <div class="cta-content fade-up">
+                <h2>Need a Custom Solution?</h2>
+                <p>Let's discuss how we can build the right digital tools for your project.</p>
+                <a href="contact.html" class="btn btn-white">Get In Touch</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <span class="footer-logo-icon">4D</span>
+                    <span class="footer-logo-text">Climate Solutions</span>
+                </div>
+                <p>Empowering communities to build climate resilience and create sustainable futures across Southern Africa.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="apps.html">Apps</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="services.html">AI & Smart Data</a></li>
+                    <li><a href="services.html">Capacity Building</a></li>
+                    <li><a href="services.html">Climate Solutions</a></li>
+                    <li><a href="services.html">Partnerships</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:info@4dcs.co.za">info@4dcs.co.za</a></li>
+                    <li><a href="tel:+27761080024">+27 (0) 76 108 0024</a></li>
+                    <li><a href="tel:+26622323442">+266 2232 3442</a></li>
+                    <li>Maseru Roller Mills</li>
+                    <li>Maseru, Lesotho</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2025 4D Climate Solutions (Pty) Ltd. All rights reserved.</span>
+            <a href="privacy.html">Privacy Policy</a>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" aria-label="Back to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+    </button>    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/27761080024?text=Hello%204D%20Climate%20Solutions%2C%20I%27d%20like%20to%20inquire%20about%20your%20services." 
+       class="whatsapp-float" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       aria-label="Chat on WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        <span class="whatsapp-tooltip">Chat with us!</span>
+    </a>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
