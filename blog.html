@@ -3,7 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Google Analytics - Replace GA_MEASUREMENT_ID with your actual ID -->
+    <title>Blog | 4D Climate Solutions</title>
+    <meta name="description" content="Insights, updates, and stories from 4D Climate Solutions on climate resilience, community development, and innovation in Lesotho.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="images/logo.jpg">
+    
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -11,8 +18,17 @@
         gtag('js', new Date());
         gtag('config', 'GA_MEASUREMENT_ID');
     </script>
-    <title>Blog | 4D Climate Solutions</title>
-    <meta name="description" content="Insights, updates, and stories from 4D Climate Solutions on climate resilience, community development, and innovation in Lesotho.">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://4dcs.co.za/blog.html">
+    <meta property="og:title" content="Blog | 4D Climate Solutions">
+    <meta property="og:description" content="Insights, updates, and stories on climate resilience, community development, and innovation in Lesotho.">
+    <meta property="og:image" content="https://4dcs.co.za/images/og-image.jpg">
+    <meta property="og:site_name" content="4D Climate Solutions">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#006838">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -139,7 +155,7 @@
             <div class="footer-links">
                 <h4>Contact</h4>
                 <ul>
-                    <li><a href="mailto:info@4dcs.co.za">info@4dcs.co.za</a></li>
+                    <li><a href="/cdn-cgi/l/email-protection#0a63646c654a3e6e697924696524706b"><span class="__cf_email__" data-cfemail="f29b9c949db2c6969181dc919ddc8893">[email&#160;protected]</span></a></li>
                     <li><a href="tel:+27761080024">+27 (0) 76 108 0024</a></li>
                     <li><a href="tel:+26622323442">+266 2232 3442</a></li>
                     <li>Maseru Roller Mills</li>
@@ -158,7 +174,7 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
     </button>
 
-    <script src="scripts.js"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="scripts.js"></script>
     
     <!-- Medium Blog Integration -->
     <script>
@@ -274,13 +290,4 @@
             gridEl.style.display = 'grid';
         } else {
             // Error or no posts - show fallback
-            loadingEl.style.display = 'none';
-            errorEl.style.display = 'block';
-        }
-    }
-    
-    // Load blog posts when page is ready
-    document.addEventListener('DOMContentLoaded', loadBlog);
-    </script>
-</body>
-</html>
+          

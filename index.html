@@ -6,6 +6,10 @@
     <title>4D Climate Solutions | Shaping Sustainable Futures</title>
     <meta name="description" content="4D Climate Solutions empowers communities in Lesotho and Southern Africa to combat climate change through innovative solutions, capacity building, and strategic partnerships.">
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="images/logo.jpg">
+    
     <!-- Google Analytics - Replace GA_MEASUREMENT_ID with your actual ID -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
     <script>
@@ -15,11 +19,26 @@
         gtag('config', 'GA_MEASUREMENT_ID');
     </script>
     
-    <!-- Open Graph -->
-    <meta property="og:title" content="4D Climate Solutions | Shaping Sustainable Futures">
-    <meta property="og:description" content="Climate & development consultancy empowering communities in Lesotho and Southern Africa.">
-    <meta property="og:image" content="images/community-meeting.jpg">
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://4dcs.co.za/">
+    <meta property="og:title" content="4D Climate Solutions | Shaping Sustainable Futures">
+    <meta property="og:description" content="Empowering communities in Lesotho and Southern Africa to combat climate change through innovative solutions, capacity building, and strategic partnerships.">
+    <meta property="og:image" content="https://4dcs.co.za/images/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="4D Climate Solutions">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://4dcs.co.za/">
+    <meta name="twitter:title" content="4D Climate Solutions | Shaping Sustainable Futures">
+    <meta name="twitter:description" content="Empowering communities in Lesotho and Southern Africa to combat climate change through innovative solutions.">
+    <meta name="twitter:image" content="https://4dcs.co.za/images/og-image.jpg">
+    
+    <!-- Additional Meta -->
+    <meta name="theme-color" content="#006838">
+    <meta name="author" content="4D Climate Solutions">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -608,7 +627,7 @@
             <div class="footer-links">
                 <h4>Contact</h4>
                 <ul>
-                    <li><a href="mailto:info@4dcs.co.za">info@4dcs.co.za</a></li>
+                    <li><a href="/cdn-cgi/l/email-protection#c7aea9a1a887f3a3a4b4e9a4a8e9bda6"><span class="__cf_email__" data-cfemail="3d54535b527d09595e4e135e5213475c">[email&#160;protected]</span></a></li>
                     <li><a href="tel:+27761080024">+27 (0) 76 108 0024</a></li>
                     <li><a href="tel:+26622323442">+266 2232 3442</a></li>
                     <li>Maseru Roller Mills</li>
@@ -639,7 +658,7 @@
         <span class="whatsapp-tooltip">Chat with us!</span>
     </a>
 
-    <script src="scripts.js"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="scripts.js"></script>
     
     <!-- Leaflet JS for Interactive Map -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -737,14 +756,4 @@
                 offset: [0, -10]
             });
         });
-        
-        // Fit bounds to Lesotho
-        const lesothoBounds = [
-            [-28.5, 27.0], // Northwest
-            [-30.7, 29.5]  // Southeast
-        ];
-        map.fitBounds(lesothoBounds);
-    });
-    </script>
-</body>
-</html>
+      

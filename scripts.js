@@ -301,3 +301,34 @@ document.addEventListener('keydown', (e) => {
         closeModal();
     }
 });
+
+// ================================================
+// PAGE TRANSITIONS
+// ================================================
+document.addEventListener('DOMContentLoaded', () => {
+    // Add smooth page transitions for internal links
+    const internalLinks = document.querySelectorAll('a[href$=".html"]');
+    
+    internalLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            
+            // Only apply to internal links (not external)
+            if (href && !href.startsWith('http') && !href.startsWith('mailto')) {
+                e.preventDefault();
+                
+                // Close mobile menu if open
+                document.querySelector('.nav-menu')?.classList.remove('active');
+                document.querySelector('.mobile-toggle')?.classList.remove('active');
+                
+                // Add exit animation
+                document.body.classList.add('page-exit');
+                
+                // Navigate after animation
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 300);
+            }
+        });
+    });
+});
