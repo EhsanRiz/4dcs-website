@@ -154,7 +154,7 @@
             <div class="footer-links">
                 <h4>Contact</h4>
                 <ul>
-                    <li><a href="/cdn-cgi/l/email-protection#afc6c1c9c0ef9bcbccdc81ccc081d5ce"><span class="__cf_email__" data-cfemail="5d34333b321d69393e2e733e3273273c">[email&#160;protected]</span></a></li>
+                    <li><a href="/cdn-cgi/l/email-protection#83eaede5ecc3b7e7e0f0ade0ecadf9e2"><span class="__cf_email__" data-cfemail="2c45424a436c18484f5f024f4302564d">[email&#160;protected]</span></a></li>
                     <li><a href="tel:+27761080024">+27 (0) 76 108 0024</a></li>
                     <li><a href="tel:+26622323442">+266 2232 3442</a></li>
                     <li>Maseru Roller Mills</li>
@@ -187,7 +187,13 @@
     
     async function fetchMediumPosts() {
         try {
-            const response = await fetch(RSS_API);
+            // Add timeout to prevent infinite loading
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 8000); // 8 second timeout
+            
+            const response = await fetch(RSS_API, { signal: controller.signal });
+            clearTimeout(timeoutId);
+            
             const data = await response.json();
             
             if (data.status === 'ok' && data.items && data.items.length > 0) {
@@ -289,4 +295,13 @@
             gridEl.style.display = 'grid';
         } else {
             // Error or no posts - show fallback
-          
+            loadingEl.style.display = 'none';
+            errorEl.style.display = 'block';
+        }
+    }
+    
+    // Load blog when page is ready
+    document.addEventListener('DOMContentLoaded', loadBlog);
+    </script>
+</body>
+</html>  
