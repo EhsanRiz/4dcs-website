@@ -2957,20 +2957,50 @@ a.partner-name:hover {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 2rem;
+        gap: 1.5rem;
         z-index: 9999;
+        padding: 80px 20px 40px;
     }
     
     .nav-menu.active {
         display: flex;
     }
     
+    .nav-menu li {
+        width: 100%;
+        text-align: center;
+        list-style: none;
+    }
+    
     .nav-menu a {
-        font-size: 1.2rem;
+        font-size: 1.25rem;
+        color: var(--dark);
+        display: block;
+        padding: 12px 20px;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
+    
+    .nav-menu a:hover,
+    .nav-menu a.active {
+        background: var(--light-gray);
+        color: var(--forest);
+    }
+    
+    .nav-menu a::after {
+        display: none;
     }
     
     .nav-menu .nav-cta {
         margin-top: 1rem;
+        display: inline-block;
+        width: auto;
+        padding: 14px 32px !important;
+    }
+    
+    .nav-menu .nav-cta:hover {
+        background: linear-gradient(135deg, var(--forest), var(--lime));
+        transform: none;
     }
     
     .mobile-toggle {
@@ -2980,8 +3010,12 @@ a.partner-name:hover {
     
     .mobile-toggle.active {
         position: fixed;
-        top: 20px;
-        right: 20px;
+        top: 22px;
+        right: 5%;
+    }
+    
+    .mobile-toggle.active span {
+        background: var(--forest);
     }
     
     .hero {
