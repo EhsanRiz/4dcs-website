@@ -2906,12 +2906,19 @@ a.partner-name:hover {
 }
 
 .fade-up {
-    opacity: 0;
-    transform: translateY(30px);
+    opacity: 1;
+    transform: translateY(0);
     transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.fade-up.visible {
+/* Animation enhancement when JS is available */
+.js-enabled .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.fade-up.visible,
+.js-enabled .fade-up.visible {
     opacity: 1;
     transform: translateY(0);
 }
