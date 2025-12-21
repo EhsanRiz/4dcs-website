@@ -2953,13 +2953,16 @@ a.partner-name:hover {
         left: 0;
         right: 0;
         bottom: 0;
-        background: var(--white);
+        width: 100%;
+        height: 100vh;
+        background-color: #ffffff !important;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 1.5rem;
+        gap: 0.5rem;
         z-index: 9999;
-        padding: 80px 20px 40px;
+        padding: 100px 30px 60px;
+        overflow-y: auto;
     }
     
     .nav-menu.active {
@@ -2968,39 +2971,42 @@ a.partner-name:hover {
     
     .nav-menu li {
         width: 100%;
+        max-width: 300px;
         text-align: center;
         list-style: none;
     }
     
     .nav-menu a {
-        font-size: 1.25rem;
-        color: var(--dark);
+        font-size: 1.1rem;
+        color: #2d3436 !important;
         display: block;
-        padding: 12px 20px;
-        border-radius: 10px;
+        padding: 15px 20px;
+        border-radius: 12px;
+        background-color: #f1f2f6;
+        margin-bottom: 8px;
         transition: all 0.3s ease;
     }
     
     .nav-menu a:hover,
     .nav-menu a.active {
-        background: var(--light-gray);
-        color: var(--forest);
+        background-color: #006838;
+        color: #ffffff !important;
     }
     
     .nav-menu a::after {
-        display: none;
+        display: none !important;
     }
     
     .nav-menu .nav-cta {
         margin-top: 1rem;
-        display: inline-block;
-        width: auto;
-        padding: 14px 32px !important;
+        background: linear-gradient(135deg, #8dc63f, #006838) !important;
+        color: #ffffff !important;
+        padding: 15px 32px !important;
     }
     
     .nav-menu .nav-cta:hover {
-        background: linear-gradient(135deg, var(--forest), var(--lime));
-        transform: none;
+        background: linear-gradient(135deg, #006838, #8dc63f) !important;
+        color: #ffffff !important;
     }
     
     .mobile-toggle {
@@ -3015,7 +3021,7 @@ a.partner-name:hover {
     }
     
     .mobile-toggle.active span {
-        background: var(--forest);
+        background: #006838;
     }
     
     .hero {
