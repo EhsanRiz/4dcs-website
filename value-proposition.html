@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4D Climate Solutions | AI & Digital Transformation Partner</title>
+    <meta name="description" content="Custom AI systems, mobile applications, and intelligent automation solutions by 4D Climate Solutions.">
+    <meta property="og:title" content="4D Climate Solutions - AI & Digital Transformation Partner">
+    <meta property="og:description" content="Custom AI systems, mobile apps, and intelligent automation solutions designed to streamline operations and drive business growth.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2E7D32;
+            --primary-light: #4CAF50;
+            --primary-dark: #1B5E20;
+            --accent: #8BC34A;
+            --blue: #00ACC1;
+            --brown: #8D6E63;
+            --dark: #1A1A2E;
+            --gray: #6B7280;
+            --light: #F8FAFC;
+            --white: #FFFFFF;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--dark); line-height: 1.6; overflow-x: hidden; }
+
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+        .animate-on-scroll { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+        .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
+
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1rem 2rem; transition: all 0.3s ease; }
+        .nav.scrolled { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1); }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .nav-logo img { height: 45px; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--white); font-weight: 500; font-size: 0.95rem; transition: all 0.3s ease; }
+        .nav.scrolled .nav-links a { color: var(--dark); }
+        .nav-links a:hover { color: var(--accent); }
+        .nav-cta { background: var(--accent); color: var(--dark) !important; padding: 0.6rem 1.5rem; border-radius: 50px; font-weight: 600; }
+        .nav-cta:hover { background: var(--white) !important; }
+        .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+        .mobile-menu-btn span { display: block; width: 25px; height: 3px; background: var(--white); margin: 5px 0; transition: all 0.3s ease; }
+        .nav.scrolled .mobile-menu-btn span { background: var(--dark); }
+
+        .hero { min-height: 100vh; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 50%, #0D3B1F 100%); display: flex; align-items: center; position: relative; overflow: hidden; }
+        .hero-bg-pattern { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.1) 0%, transparent 40%), radial-gradient(circle at 80% 70%, rgba(255,255,255,0.08) 0%, transparent 35%); animation: pulse 8s ease-in-out infinite; }
+        .hero-shapes { position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow: hidden; }
+        .hero-shape { position: absolute; border: 2px solid rgba(255,255,255,0.1); border-radius: 50%; }
+        .hero-shape-1 { width: 400px; height: 400px; top: -100px; right: -100px; animation: float 6s ease-in-out infinite; }
+        .hero-shape-2 { width: 300px; height: 300px; bottom: -50px; left: -50px; animation: float 8s ease-in-out infinite reverse; }
+        .hero-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; position: relative; z-index: 1; }
+        .hero-content { color: var(--white); }
+        .hero-eyebrow { display: inline-block; background: rgba(255,255,255,0.15); padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1.5rem; animation: fadeInUp 0.8s ease forwards; }
+        .hero-title { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 600; line-height: 1.15; margin-bottom: 1.5rem; animation: fadeInUp 0.8s ease 0.2s forwards; opacity: 0; }
+        .hero-title span { color: var(--accent); }
+        .hero-description { font-size: 1.2rem; opacity: 0.9; margin-bottom: 2rem; line-height: 1.8; animation: fadeInUp 0.8s ease 0.4s forwards; opacity: 0; }
+        .hero-buttons { display: flex; gap: 1rem; animation: fadeInUp 0.8s ease 0.6s forwards; opacity: 0; }
+        .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; border-radius: 50px; font-weight: 600; text-decoration: none; transition: all 0.3s ease; cursor: pointer; border: none; font-size: 1rem; }
+        .btn-primary { background: var(--accent); color: var(--dark); }
+        .btn-primary:hover { background: var(--white); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .btn-outline { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.5); }
+        .btn-outline:hover { background: var(--white); color: var(--primary); border-color: var(--white); }
+        .hero-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; animation: fadeInUp 1s ease 0.8s forwards; opacity: 0; }
+        .hero-stat { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 20px; padding: 1.5rem; text-align: center; border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s ease; }
+        .hero-stat:hover { transform: translateY(-5px); background: rgba(255,255,255,0.15); }
+        .hero-stat-number { font-size: 2.5rem; font-weight: 800; color: var(--accent); line-height: 1; }
+        .hero-stat-label { font-size: 0.9rem; color: rgba(255,255,255,0.8); margin-top: 0.5rem; }
+
+        .section { padding: 6rem 2rem; }
+        .section-light { background: var(--light); }
+        .section-dark { background: var(--dark); color: var(--white); }
+        .section-green { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: var(--white); }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-tag { display: inline-block; background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); color: var(--white); padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.8rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1rem; }
+        .section-dark .section-tag { background: linear-gradient(135deg, var(--accent) 0%, var(--primary-light) 100%); color: var(--dark); }
+        .section-title { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 600; margin-bottom: 1rem; line-height: 1.2; }
+        .section-subtitle { font-size: 1.15rem; color: var(--gray); max-width: 700px; margin: 0 auto; }
+        .section-dark .section-subtitle { color: rgba(255,255,255,0.7); }
+
+        .problem-solution-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .problem-box, .solution-box { padding: 2.5rem; border-radius: 20px; }
+        .problem-box { background: linear-gradient(135deg, #FEE2E2 0%, #FECACA 100%); border-left: 5px solid #EF4444; }
+        .solution-box { background: linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%); border-left: 5px solid var(--primary); }
+        .problem-box h3, .solution-box h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 1.5rem; }
+        .problem-box h3 { color: #DC2626; }
+        .solution-box h3 { color: var(--primary); }
+        .problem-box ul, .solution-box ul { list-style: none; }
+        .problem-box li, .solution-box li { padding: 0.7rem 0; padding-left: 2rem; position: relative; font-size: 1rem; }
+        .problem-box li::before { content: '✕'; position: absolute; left: 0; color: #EF4444; font-weight: bold; }
+        .solution-box li::before { content: '✓'; position: absolute; left: 0; color: var(--primary); font-weight: bold; }
+
+        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        .service-card { background: var(--white); border-radius: 20px; padding: 2rem; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid #E5E7EB; position: relative; overflow: hidden; }
+        .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--primary), var(--accent)); transform: scaleX(0); transition: transform 0.4s ease; }
+        .service-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .service-card:hover::before { transform: scaleX(1); }
+        .service-icon { width: 60px; height: 60px; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 1.5rem; }
+        .service-icon.green { background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); }
+        .service-icon.blue { background: linear-gradient(135deg, var(--blue) 0%, #4DD0E1 100%); }
+        .service-icon.brown { background: linear-gradient(135deg, var(--brown) 0%, #A1887F 100%); }
+        .service-icon.purple { background: linear-gradient(135deg, #7B1FA2 0%, #BA68C8 100%); }
+        .service-icon.orange { background: linear-gradient(135deg, #E65100 0%, #FF9800 100%); }
+        .service-icon.teal { background: linear-gradient(135deg, #00796B 0%, #4DB6AC 100%); }
+        .service-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--dark); }
+        .service-card p { color: var(--gray); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.7; }
+        .service-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .service-tag { background: var(--light); color: var(--primary); padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.8rem; font-weight: 500; }
+
+        .industries-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .industry-card { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 1.5rem; text-align: center; transition: all 0.3s ease; }
+        .industry-card:hover { background: rgba(255,255,255,0.15); transform: translateY(-5px); }
+        .industry-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+        .industry-card h4 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .industry-card p { font-size: 0.85rem; opacity: 0.8; }
+
+        .cycle-section { text-align: center; }
+        .cycle-image { max-width: 500px; margin: 0 auto 3rem; animation: float 4s ease-in-out infinite; }
+        .cycle-image img { width: 100%; height: auto; }
+
+        .engagement-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 3rem; }
+        .engagement-card { background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); border-radius: 15px; padding: 1.5rem; text-align: center; color: var(--white); transition: all 0.3s ease; }
+        .engagement-card:nth-child(2) { background: linear-gradient(135deg, var(--blue) 0%, #4DD0E1 100%); }
+        .engagement-card:nth-child(3) { background: linear-gradient(135deg, #7B1FA2 0%, #BA68C8 100%); }
+        .engagement-card:nth-child(4) { background: linear-gradient(135deg, #E65100 0%, #FF9800 100%); }
+        .engagement-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
+        .engagement-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+        .engagement-card h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .engagement-card p { font-size: 0.85rem; opacity: 0.9; }
+
+        .timeline-container { background: var(--light); border-radius: 20px; padding: 2rem; }
+        .timeline { display: flex; align-items: center; justify-content: space-between; position: relative; }
+        .timeline::before { content: ''; position: absolute; top: 30px; left: 60px; right: 60px; height: 4px; background: linear-gradient(90deg, var(--primary), var(--accent), #E57373, #FFB74D, #7986CB); border-radius: 2px; }
+        .timeline-item { text-align: center; position: relative; z-index: 1; flex: 1; }
+        .timeline-dot { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 1.5rem; color: var(--white); transition: all 0.3s ease; }
+        .timeline-item:hover .timeline-dot { transform: scale(1.15); }
+        .timeline-item:nth-child(1) .timeline-dot { background: var(--primary); }
+        .timeline-item:nth-child(2) .timeline-dot { background: #E57373; }
+        .timeline-item:nth-child(3) .timeline-dot { background: var(--brown); }
+        .timeline-item:nth-child(4) .timeline-dot { background: #FFB74D; }
+        .timeline-item:nth-child(5) .timeline-dot { background: #7986CB; }
+        .timeline-label { font-weight: 700; color: var(--dark); margin-bottom: 0.3rem; }
+        .timeline-duration { font-size: 1.1rem; font-weight: 700; color: var(--primary); }
+        .timeline-note { text-align: center; margin-top: 1.5rem; color: var(--gray); font-size: 0.9rem; }
+
+        .diff-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .diff-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 2rem; transition: all 0.3s ease; }
+        .diff-card:hover { background: rgba(255,255,255,0.1); transform: translateY(-5px); }
+        .diff-number { width: 40px; height: 40px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--dark); margin-bottom: 1rem; }
+        .diff-card h4 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.75rem; }
+        .diff-card p { font-size: 0.95rem; opacity: 0.8; line-height: 1.6; }
+
+        .partners-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
+        .partner-badge { background: var(--white); color: var(--gray); padding: 0.75rem 1.25rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; transition: all 0.3s ease; }
+        .partner-badge:hover { background: var(--accent); color: var(--dark); transform: translateY(-3px); }
+
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+        .contact-info { background: var(--white); border-radius: 20px; padding: 2.5rem; box-shadow: 0 10px 40px rgba(0,0,0,0.05); }
+        .contact-info h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 2rem; color: var(--dark); }
+        .contact-item { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem; }
+        .contact-icon { width: 50px; height: 50px; background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+        .contact-text h4 { font-weight: 600; color: var(--dark); margin-bottom: 0.3rem; }
+        .contact-text p { color: var(--gray); }
+        .contact-text a { color: var(--primary); text-decoration: none; }
+        .contact-text a:hover { text-decoration: underline; }
+        .oman-box { background: linear-gradient(135deg, #FFF8E1 0%, #FFECB3 100%); border-left: 5px solid #F9A825; border-radius: 20px; padding: 2.5rem; }
+        .oman-box h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--dark); }
+        .oman-item { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1rem; }
+        .oman-bullet { width: 24px; height: 24px; background: #F9A825; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 0.8rem; flex-shrink: 0; }
+        .oman-item p { color: var(--dark); line-height: 1.6; }
+
+        .cta-section { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); text-align: center; padding: 5rem 2rem; position: relative; overflow: hidden; }
+        .cta-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.1) 0%, transparent 50%); }
+        .cta-content { position: relative; z-index: 1; }
+        .cta-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--white); margin-bottom: 1rem; }
+        .cta-subtitle { font-size: 1.15rem; color: rgba(255,255,255,0.9); margin-bottom: 2rem; }
+        .cta-buttons { display: flex; justify-content: center; gap: 1rem; }
+
+        .footer { background: var(--dark); color: var(--white); padding: 3rem 2rem; text-align: center; }
+        .footer-logo { margin-bottom: 1.5rem; }
+        .footer-logo img { height: 50px; }
+        .footer-tagline { color: var(--accent); font-weight: 500; margin-bottom: 1rem; }
+        .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; }
+        .footer-links a { color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.3s ease; }
+        .footer-links a:hover { color: var(--accent); }
+        .footer-copy { color: rgba(255,255,255,0.5); font-size: 0.9rem; }
+
+        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4); z-index: 999; transition: all 0.3s ease; text-decoration: none; }
+        .whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5); }
+        .whatsapp-float svg { width: 35px; height: 35px; fill: white; }
+
+        @media (max-width: 1024px) {
+            .hero-container { grid-template-columns: 1fr; text-align: center; }
+            .hero-stats { max-width: 400px; margin: 0 auto; }
+            .hero-buttons { justify-content: center; }
+            .services-grid, .industries-grid, .diff-grid { grid-template-columns: repeat(2, 1fr); }
+            .engagement-grid { grid-template-columns: repeat(2, 1fr); }
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--white); flex-direction: column; padding: 1rem; gap: 1rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+            .nav-links.active { display: flex; }
+            .nav-links a { color: var(--dark) !important; }
+            .mobile-menu-btn { display: block; }
+            .hero-title { font-size: 2.5rem; }
+            .section-title { font-size: 2rem; }
+            .problem-solution-grid, .services-grid, .industries-grid, .diff-grid, .engagement-grid { grid-template-columns: 1fr; }
+            .timeline { flex-direction: column; gap: 1.5rem; }
+            .timeline::before { display: none; }
+            .cta-buttons { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav" id="nav">
+        <div class="nav-container">
+            <a href="https://4dcs.co.za" class="nav-logo"><img src="images/logo.jpg" alt="4D Climate Solutions"></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#solutions">Solutions</a></li>
+                <li><a href="#industries">Industries</a></li>
+                <li><a href="#approach">Our Approach</a></li>
+                <li><a href="#why-us">Why Us</a></li>
+                <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-bg-pattern"></div>
+        <div class="hero-shapes"><div class="hero-shape hero-shape-1"></div><div class="hero-shape hero-shape-2"></div></div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-eyebrow">Value Proposition</div>
+                <h1 class="hero-title">Your Partner for <span>AI & Digital</span> Transformation</h1>
+                <p class="hero-description">Custom AI systems, mobile applications, and intelligent automation solutions designed to streamline operations, enhance decision-making, and drive business growth.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">Request Consultation</a>
+                    <a href="#solutions" class="btn btn-outline">Explore Solutions</a>
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat"><div class="hero-stat-number">7+</div><div class="hero-stat-label">Years Experience</div></div>
+                <div class="hero-stat"><div class="hero-stat-number">15+</div><div class="hero-stat-label">Apps Deployed</div></div>
+                <div class="hero-stat"><div class="hero-stat-number">10K+</div><div class="hero-stat-label">Active Users</div></div>
+                <div class="hero-stat"><div class="hero-stat-number">8</div><div class="hero-stat-label">Countries</div></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-light">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <div class="section-tag">💡 The Opportunity</div>
+                <h2 class="section-title">Transform Operations with Intelligent Technology</h2>
+                <p class="section-subtitle">Organizations across every sector face the same challenges. We build solutions that change this.</p>
+            </div>
+            <div class="problem-solution-grid">
+                <div class="problem-box animate-on-scroll">
+                    <h3>❌ Common Challenges</h3>
+                    <ul>
+                        <li>Data scattered across spreadsheets and systems</li>
+                        <li>Manual processes that waste time and create errors</li>
+                        <li>No real-time visibility into operations</li>
+                        <li>Teams working in silos without coordination</li>
+                        <li>Decisions made on gut feel, not data</li>
+                        <li>Expensive, inflexible off-the-shelf software</li>
+                    </ul>
+                </div>
+                <div class="solution-box animate-on-scroll">
+                    <h3>✅ What We Deliver</h3>
+                    <ul>
+                        <li>Unified data platforms with single source of truth</li>
+                        <li>Automated workflows that save hours daily</li>
+                        <li>Real-time dashboards and instant alerts</li>
+                        <li>Connected systems that share information</li>
+                        <li>AI-powered insights for smarter decisions</li>
+                        <li>Custom solutions built for your exact needs</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="solutions">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <div class="section-tag">🎯 Solutions</div>
+                <h2 class="section-title">AI & App Solutions for Every Function</h2>
+                <p class="section-subtitle">Whether you need to optimize your supply chain, manage your workforce, or automate processes — we build solutions tailored to your challenges.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon green">📦</div>
+                    <h3>Supply Chain Management</h3>
+                    <p>End-to-end visibility into your supply chain with real-time tracking, inventory optimization, and predictive analytics.</p>
+                    <div class="service-tags"><span class="service-tag">Inventory Tracking</span><span class="service-tag">Demand Forecasting</span><span class="service-tag">Logistics</span></div>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon blue">👥</div>
+                    <h3>Staff & HR Management</h3>
+                    <p>Digital workforce management from attendance to performance tracking, with mobile-first tools for distributed teams.</p>
+                    <div class="service-tags"><span class="service-tag">Time & Attendance</span><span class="service-tag">Performance</span><span class="service-tag">Payroll</span></div>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon orange">⚡</div>
+                    <h3>Process Automation</h3>
+                    <p>Transform manual workflows into automated systems. From approvals to reporting, eliminate repetitive tasks.</p>
+                    <div class="service-tags"><span class="service-tag">Workflow Automation</span><span class="service-tag">Document Processing</span></div>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon brown">📋</div>
+                    <h3>Field Operations</h3>
+                    <p>Mobile apps for field teams with offline capability, GPS tracking, and real-time sync to headquarters.</p>
+                    <div class="service-tags"><span class="service-tag">Offline-First</span><span class="service-tag">GPS Tracking</span><span class="service-tag">Real-time Sync</span></div>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon teal">🛒</div>
+                    <h3>Customer & Sales</h3>
+                    <p>CRM systems, customer portals, and sales tools that help you understand and serve customers better.</p>
+                    <div class="service-tags"><span class="service-tag">Customer Portal</span><span class="service-tag">Sales Tracking</span><span class="service-tag">Analytics</span></div>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon purple">💬</div>
+                    <h3>AI Assistants & Chatbots</h3>
+                    <p>Intelligent chatbots and AI assistants that answer questions, process requests, and support your teams 24/7.</p>
+                    <div class="service-tags"><span class="service-tag">Natural Language</span><span class="service-tag">Knowledge Base</span><span class="service-tag">Multi-channel</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-green" id="industries">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <div class="section-tag" style="background: rgba(255,255,255,0.2); color: white;">🏢 Industries</div>
+                <h2 class="section-title">Solutions Across Industries</h2>
+                <p class="section-subtitle" style="color: rgba(255,255,255,0.8);">Our technology capabilities translate across sectors.</p>
+            </div>
+            <div class="industries-grid">
+                <div class="industry-card animate-on-scroll"><div class="industry-icon">🏭</div><h4>Manufacturing</h4><p>Production tracking, quality control, maintenance</p></div>
+                <div class="industry-card animate-on-scroll"><div class="industry-icon">🚚</div><h4>Logistics</h4><p>Fleet tracking, route optimization, delivery</p></div>
+                <div class="industry-card animate-on-scroll"><div class="industry-icon">🏗️</div><h4>Construction</h4><p>Project management, inspections, safety</p></div>
+                <div class="industry-card animate-on-scroll"><div class="industry-icon">🛍️</div><h4>Retail</h4><p>Inventory, POS integration, loyalty</p></div>
+                <div class="industry-card animate-on-scroll"><div class="industry-icon">🏥</div><h4>Healthcare</h4><p>Patient management, scheduling, telemedicine</p></div>
+                <div class="industry-card animate-on-scroll"><div class="industry-icon">🌾</div><h4>Agriculture</h4><p>Farm management, IoT sensors, markets</p></div>
+                <div class="industry-card animate-on-scroll"><div class="industry-icon">🏛️</div><h4>Government</h4><p>Citizen services, permits, M&E systems</p></div>
+                <div class="industry-card animate-on-scroll"><div class="industry-icon">🎓</div><h4>Education</h4><p>Student management, learning platforms</p></div>
+                <div class="industry-card animate-on-scroll"><div class="industry-icon">💰</div><h4>Financial Services</h4><p>Loan management, savings groups, agents</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="approach">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <div class="section-tag">🔄 Our Approach</div>
+                <h2 class="section-title">How We Work Together</h2>
+                <p class="section-subtitle">A proven, continuous methodology that delivers lasting results.</p>
+            </div>
+            <div class="cycle-section animate-on-scroll">
+                <div class="cycle-image"><img src="images/4d-management-cycle.png" alt="4D Management Cycle"></div>
+            </div>
+            <h3 style="text-align: center; font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--dark);">Flexible Engagement Models</h3>
+            <div class="engagement-grid animate-on-scroll">
+                <div class="engagement-card"><div class="engagement-icon">📋</div><h4>Project-Based</h4><p>Fixed scope, timeline & budget</p></div>
+                <div class="engagement-card"><div class="engagement-icon">🔄</div><h4>Retainer</h4><p>Ongoing support & improvement</p></div>
+                <div class="engagement-card"><div class="engagement-icon">🚀</div><h4>Build-Operate-Transfer</h4><p>We build, run, then transfer</p></div>
+                <div class="engagement-card"><div class="engagement-icon">💡</div><h4>Pilot / PoC</h4><p>Start small, prove value, scale</p></div>
+            </div>
+            <h3 style="text-align: center; font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--dark);">Typical Project Timeline</h3>
+            <div class="timeline-container animate-on-scroll">
+                <div class="timeline">
+                    <div class="timeline-item"><div class="timeline-dot">🎯</div><div class="timeline-label">Discover</div><div class="timeline-duration">1-2 weeks</div></div>
+                    <div class="timeline-item"><div class="timeline-dot">✏️</div><div class="timeline-label">Design</div><div class="timeline-duration">2-3 weeks</div></div>
+                    <div class="timeline-item"><div class="timeline-dot">🔨</div><div class="timeline-label">Build</div><div class="timeline-duration">4-12 weeks</div></div>
+                    <div class="timeline-item"><div class="timeline-dot">🚀</div><div class="timeline-label">Deploy</div><div class="timeline-duration">1-2 weeks</div></div>
+                    <div class="timeline-item"><div class="timeline-dot">📊</div><div class="timeline-label">Monitor</div><div class="timeline-duration">Ongoing</div></div>
+                </div>
+                <p class="timeline-note">* Simple apps: 6-8 weeks | Complex platforms: 3-6 months</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-dark" id="why-us">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <div class="section-tag">✨ Why 4D Climate Solutions</div>
+                <h2 class="section-title">Built Different. Built Better.</h2>
+                <p class="section-subtitle">We're not a generic software vendor. We're technologists who understand real-world challenges.</p>
+            </div>
+            <div class="diff-grid">
+                <div class="diff-card animate-on-scroll"><div class="diff-number">1</div><h4>Field-Tested Solutions</h4><p>Every solution is tested in real-world conditions — rural areas, low connectivity, challenging environments.</p></div>
+                <div class="diff-card animate-on-scroll"><div class="diff-number">2</div><h4>Offline-First Architecture</h4><p>Our apps work without internet and sync when connected. No more lost data.</p></div>
+                <div class="diff-card animate-on-scroll"><div class="diff-number">3</div><h4>Rapid Delivery</h4><p>Agile methodology means you see working software in weeks, not months.</p></div>
+                <div class="diff-card animate-on-scroll"><div class="diff-number">4</div><h4>Full Knowledge Transfer</h4><p>We train your teams, document everything, and ensure you can maintain it.</p></div>
+                <div class="diff-card animate-on-scroll"><div class="diff-number">5</div><h4>Local Language Support</h4><p>Multilingual interfaces in English, Sesotho, and Arabic for Oman.</p></div>
+                <div class="diff-card animate-on-scroll"><div class="diff-number">6</div><h4>Cost-Effective Innovation</h4><p>Southern Africa pricing with global quality. Enterprise-grade without enterprise budgets.</p></div>
+            </div>
+            <div style="margin-top: 4rem;" class="animate-on-scroll">
+                <h3 style="text-align: center; font-size: 1.2rem; margin-bottom: 1.5rem; opacity: 0.8;">Trusted by Leading Organizations</h3>
+                <div class="partners-grid">
+                    <span class="partner-badge">World Bank / IFC</span>
+                    <span class="partner-badge">Millennium Challenge Corporation</span>
+                    <span class="partner-badge">Catholic Relief Services</span>
+                    <span class="partner-badge">World Vision</span>
+                    <span class="partner-badge">LHDA</span>
+                    <span class="partner-badge">African Development Bank</span>
+                    <span class="partner-badge">University of Virginia</span>
+                    <span class="partner-badge">National University of Lesotho</span>
+                    <span class="partner-badge">Government of Lesotho</span>
+                    <span class="partner-badge">Maseru City Council</span>
+                    <span class="partner-badge">Dunamus Agri Advisory</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-light" id="contact">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <div class="section-tag">📞 Let's Connect</div>
+                <h2 class="section-title">Ready to Transform Your Operations?</h2>
+                <p class="section-subtitle">Whether you have a specific project in mind or want to explore possibilities, we'd love to hear from you.</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info animate-on-scroll">
+                    <h3>Contact Information</h3>
+                    <div class="contact-item"><div class="contact-icon">🌐</div><div class="contact-text"><h4>Website</h4><p><a href="https://4dcs.co.za">4dcs.co.za</a></p></div></div>
+                    <div class="contact-item"><div class="contact-icon">✉️</div><div class="contact-text"><h4>Email</h4><p><a href="mailto:info@4dcs.co.za">info@4dcs.co.za</a></p></div></div>
+                    <div class="contact-item"><div class="contact-icon">📞</div><div class="contact-text"><h4>Phone / WhatsApp</h4><p><a href="tel:+27761080024">+27 76 108 0024</a></p></div></div>
+                    <div class="contact-item"><div class="contact-icon">📍</div><div class="contact-text"><h4>Headquarters</h4><p>Bloemfontein, South Africa<br>Maseru, Lesotho</p></div></div>
+                </div>
+                <div class="oman-box animate-on-scroll">
+                    <h3>🇴🇲 Why We're Right for Oman</h3>
+                    <div class="oman-item"><div class="oman-bullet">✓</div><p><strong>Vision 2040 Aligned:</strong> Digital transformation supporting Oman's goals</p></div>
+                    <div class="oman-item"><div class="oman-bullet">✓</div><p><strong>Arid Climate Experience:</strong> Solutions tested in water-scarce environments</p></div>
+                    <div class="oman-item"><div class="oman-bullet">✓</div><p><strong>Arabic-Ready:</strong> Multilingual apps with Arabic interfaces available</p></div>
+                    <div class="oman-item"><div class="oman-bullet">✓</div><p><strong>Remote Collaboration:</strong> Proven track record delivering projects remotely</p></div>
+                    <div class="oman-item"><div class="oman-bullet">✓</div><p><strong>Competitive Pricing:</strong> High-quality delivery at cost-effective rates</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2 class="cta-title">Let's Build Something Great Together</h2>
+            <p class="cta-subtitle">Schedule a free consultation to discuss your challenges and explore how we can help.</p>
+            <div class="cta-buttons">
+                <a href="mailto:info@4dcs.co.za" class="btn btn-primary">Request Consultation</a>
+                <a href="https://4dcs.co.za" class="btn btn-outline">Visit Our Website</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-logo"><img src="images/logo.jpg" alt="4D Climate Solutions"></div>
+        <p class="footer-tagline">creative • innovative • green • sustainable</p>
+        <div class="footer-links">
+            <a href="https://4dcs.co.za">Home</a>
+            <a href="https://4dcs.co.za/about.html">About</a>
+            <a href="https://4dcs.co.za/services.html">Services</a>
+            <a href="https://4dcs.co.za/contact.html">Contact</a>
+        </div>
+        <p class="footer-copy">© 2025 4D Climate Solutions (Pty) Ltd. All rights reserved.</p>
+    </footer>
+
+    <a href="https://wa.me/27761080024?text=Hello%204D%20Climate%20Solutions%2C%20I%27d%20like%20to%20discuss%20a%20potential%20project." class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+
+    <script>
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 50); });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+            document.getElementById('navLinks').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
