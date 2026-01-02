@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>4D AI Labs | Intelligence for Development</title>
   <meta name="description" content="AI-powered solutions for Africa's development challenges. From statistics to traffic monitoring, 4D AI Labs builds intelligent tools for real-world impact.">
-  <link rel="icon" href="https://4dcs.co.za/images/Four_bars.JPG" type="image/jpeg">
+  <link rel="icon" href="https://4dcs.co.za/images/logo.jpg" type="image/jpeg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -22,6 +22,7 @@
       --gray-100: #f1f5f9;
       --gray-200: #e2e8f0;
       --gray-300: #cbd5e1;
+      --gray-400: #94a3b8;
       --gray-600: #475569;
       --gray-800: #1e293b;
       --gray-900: #0f172a;
@@ -105,39 +106,8 @@
     }
     
     .logo-icon {
-      width: 45px;
       height: 45px;
-      background: linear-gradient(135deg, var(--green-primary) 0%, var(--blue-primary) 100%);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .logo-icon::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
-      animation: shimmer 3s infinite;
-    }
-    
-    @keyframes shimmer {
-      0% { transform: translateX(-100%) rotate(45deg); }
-      100% { transform: translateX(100%) rotate(45deg); }
-    }
-    
-    .logo-icon img {
-      width: 30px;
-      height: 30px;
-      border-radius: 6px;
-      position: relative;
-      z-index: 1;
+      border-radius: 8px;
     }
     
     .logo-text {
@@ -147,7 +117,7 @@
     
     .logo-main {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       font-weight: 700;
       letter-spacing: -0.5px;
       background: linear-gradient(135deg, var(--white) 0%, var(--gray-300) 100%);
@@ -157,7 +127,7 @@
     }
     
     .logo-sub {
-      font-size: 0.65rem;
+      font-size: 0.6rem;
       color: var(--green-light);
       letter-spacing: 2px;
       text-transform: uppercase;
@@ -331,6 +301,16 @@
       border-color: rgba(255,255,255,0.2);
     }
     
+    .btn-white {
+      background: var(--white);
+      color: var(--gray-900);
+    }
+    
+    .btn-white:hover {
+      background: var(--gray-100);
+      transform: translateY(-2px);
+    }
+    
     @keyframes fadeInUp {
       from {
         opacity: 0;
@@ -344,21 +324,23 @@
     
     /* Stats Section */
     .stats {
-      padding: 2rem;
-      margin-top: -2rem;
+      padding: 4rem 2rem;
+      background: rgba(0, 104, 56, 0.05);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
     }
     
     .stats-grid {
-      max-width: 800px;
+      max-width: 1200px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1.5rem;
     }
     
     .stat {
       text-align: center;
-      padding: 1.5rem;
+      padding: 1.5rem 1rem;
       background: rgba(255,255,255,0.02);
       border: 1px solid rgba(255,255,255,0.05);
       border-radius: 16px;
@@ -368,25 +350,30 @@
     .stat:hover {
       background: rgba(255,255,255,0.05);
       transform: translateY(-5px);
+      border-color: rgba(0, 168, 89, 0.3);
     }
     
     .stat-number {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 2.5rem;
+      font-size: 2rem;
       font-weight: 700;
       color: var(--green-light);
       margin-bottom: 0.25rem;
     }
     
     .stat-label {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: var(--gray-300);
     }
     
-    /* Products Section */
-    .products {
+    /* Section Styles */
+    .section {
       padding: 6rem 2rem;
       position: relative;
+    }
+    
+    .section-dark {
+      background: rgba(0,0,0,0.2);
     }
     
     .section-header {
@@ -418,6 +405,235 @@
       margin: 0 auto;
     }
     
+    /* Live Demo Section */
+    .demo-section {
+      background: linear-gradient(180deg, rgba(0, 104, 56, 0.1) 0%, transparent 100%);
+    }
+    
+    .demo-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .demo-widget {
+      background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    
+    .demo-header {
+      background: linear-gradient(135deg, var(--green-primary) 0%, var(--green-light) 100%);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .demo-header-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+    }
+    
+    .demo-header-text h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+    
+    .demo-header-text span {
+      font-size: 0.75rem;
+      opacity: 0.8;
+    }
+    
+    .demo-chat {
+      padding: 1.5rem;
+      min-height: 300px;
+      max-height: 400px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .demo-message {
+      max-width: 85%;
+      padding: 1rem 1.25rem;
+      border-radius: 16px;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    
+    .demo-message.assistant {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+    }
+    
+    .demo-message.user {
+      background: linear-gradient(135deg, var(--blue-primary) 0%, var(--blue-light) 100%);
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+    }
+    
+    .demo-typing {
+      display: flex;
+      gap: 4px;
+      padding: 1rem;
+      align-self: flex-start;
+    }
+    
+    .demo-typing span {
+      width: 8px;
+      height: 8px;
+      background: var(--green-light);
+      border-radius: 50%;
+      animation: typing 1.4s infinite;
+    }
+    
+    .demo-typing span:nth-child(2) { animation-delay: 0.2s; }
+    .demo-typing span:nth-child(3) { animation-delay: 0.4s; }
+    
+    @keyframes typing {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+      30% { transform: translateY(-10px); opacity: 1; }
+    }
+    
+    .demo-input {
+      display: flex;
+      gap: 0.75rem;
+      padding: 1rem 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      background: rgba(0,0,0,0.2);
+    }
+    
+    .demo-input select {
+      flex: 1;
+      padding: 0.875rem 1rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.05);
+      color: var(--white);
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+    
+    .demo-input select option {
+      background: var(--gray-800);
+      color: var(--white);
+    }
+    
+    .demo-input button {
+      padding: 0.875rem 1.5rem;
+      background: linear-gradient(135deg, var(--green-primary) 0%, var(--green-light) 100%);
+      border: none;
+      border-radius: 12px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .demo-input button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0, 104, 56, 0.4);
+    }
+    
+    .demo-input button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+    
+    .demo-footer {
+      text-align: center;
+      padding: 1rem;
+      background: rgba(0,0,0,0.2);
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .demo-footer a {
+      color: var(--green-light);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+    
+    .demo-footer a:hover {
+      text-decoration: underline;
+    }
+    
+    /* How It Works */
+    .how-it-works {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    .step {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 20px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    
+    .step:hover {
+      background: rgba(255,255,255,0.05);
+      transform: translateY(-5px);
+    }
+    
+    .step-number {
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 30px;
+      height: 30px;
+      background: linear-gradient(135deg, var(--green-primary), var(--green-light));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+    
+    .step-icon {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 1rem;
+      background: rgba(0, 168, 89, 0.1);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+    }
+    
+    .step h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .step p {
+      font-size: 0.9rem;
+      color: var(--gray-400);
+    }
+    
+    /* Products Section */
     .products-grid {
       max-width: 1200px;
       margin: 0 auto;
@@ -561,62 +777,235 @@
       transform: translateX(4px);
     }
     
-    /* About Section */
-    .about {
-      padding: 6rem 2rem;
-      background: linear-gradient(180deg, transparent 0%, rgba(0, 104, 56, 0.05) 50%, transparent 100%);
-    }
-    
-    .about-content {
+    /* Use Cases */
+    .use-cases-grid {
       max-width: 1000px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+    
+    .use-case {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 16px;
+      transition: all 0.3s ease;
+    }
+    
+    .use-case:hover {
+      background: rgba(255,255,255,0.05);
+      transform: translateY(-5px);
+      border-color: rgba(0, 168, 89, 0.3);
+    }
+    
+    .use-case-icon {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 1rem;
+      background: rgba(0, 168, 89, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+    
+    .use-case h4 {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .use-case p {
+      font-size: 0.8rem;
+      color: var(--gray-400);
+    }
+    
+    /* Data Sources */
+    .data-sources {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    .data-source {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1.5rem 2rem;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+    
+    .data-source:hover {
+      background: rgba(255,255,255,0.05);
+      transform: translateY(-3px);
+    }
+    
+    .data-source-logo {
+      height: 40px;
+      width: auto;
+      filter: grayscale(100%) brightness(2);
+      opacity: 0.7;
+      transition: all 0.3s ease;
+    }
+    
+    .data-source:hover .data-source-logo {
+      filter: grayscale(0%) brightness(1);
+      opacity: 1;
+    }
+    
+    .data-source span {
+      font-size: 0.8rem;
+      color: var(--gray-400);
+    }
+    
+    /* Partners */
+    .partners-grid {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 3rem;
+      max-width: 1000px;
+      margin: 0 auto;
       align-items: center;
     }
     
-    .about-text h2 {
+    .partner-logo {
+      height: 50px;
+      width: auto;
+      filter: grayscale(100%) brightness(2);
+      opacity: 0.5;
+      transition: all 0.3s ease;
+    }
+    
+    .partner-logo:hover {
+      filter: grayscale(0%) brightness(1);
+      opacity: 1;
+    }
+    
+    /* Case Study */
+    .case-study {
+      max-width: 900px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, rgba(0, 104, 56, 0.1) 0%, rgba(26, 54, 93, 0.1) 100%);
+      border: 1px solid rgba(0, 168, 89, 0.2);
+      border-radius: 24px;
+      padding: 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    
+    .case-study-content h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+    }
+    
+    .case-study-content p {
+      color: var(--gray-300);
+      margin-bottom: 1.5rem;
+    }
+    
+    .case-study-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+    
+    .case-stat {
+      text-align: center;
+      padding: 1.5rem;
+      background: rgba(255,255,255,0.05);
+      border-radius: 16px;
+    }
+    
+    .case-stat-number {
       font-family: 'Space Grotesk', sans-serif;
       font-size: 2.5rem;
       font-weight: 700;
-      margin-bottom: 1.5rem;
-      letter-spacing: -1px;
+      color: var(--green-light);
     }
     
-    .about-text p {
-      color: var(--gray-300);
-      margin-bottom: 1rem;
-      font-size: 1.05rem;
+    .case-stat-label {
+      font-size: 0.85rem;
+      color: var(--gray-400);
     }
     
-    .about-visual {
+    /* FAQ */
+    .faq-grid {
+      max-width: 800px;
+      margin: 0 auto;
       display: flex;
       flex-direction: column;
       gap: 1rem;
     }
     
-    .tech-stack {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
+    .faq-item {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.3s ease;
     }
     
-    .tech-badge {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      font-size: 0.85rem;
-      color: var(--gray-300);
+    .faq-item:hover {
+      border-color: rgba(0, 168, 89, 0.3);
+    }
+    
+    .faq-question {
+      padding: 1.25rem 1.5rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 500;
+    }
+    
+    .faq-question:hover {
+      background: rgba(255,255,255,0.02);
+    }
+    
+    .faq-toggle {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(0, 168, 89, 0.1);
       display: flex;
       align-items: center;
-      gap: 8px;
+      justify-content: center;
+      color: var(--green-light);
+      transition: transform 0.3s ease;
     }
     
-    .tech-badge img {
-      width: 20px;
-      height: 20px;
+    .faq-item.active .faq-toggle {
+      transform: rotate(180deg);
+    }
+    
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+    }
+    
+    .faq-answer p {
+      padding: 0 1.5rem 1.25rem;
+      color: var(--gray-400);
+      font-size: 0.95rem;
     }
     
     /* CTA Section */
@@ -669,11 +1058,6 @@
       gap: 1rem;
     }
     
-    .footer-brand img {
-      height: 35px;
-      border-radius: 8px;
-    }
-    
     .footer-brand span {
       color: var(--gray-300);
       font-size: 0.9rem;
@@ -719,10 +1103,17 @@
     }
     
     /* Responsive */
-    @media (max-width: 900px) {
-      .about-content {
+    @media (max-width: 1024px) {
+      .stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      
+      .use-cases-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .case-study {
         grid-template-columns: 1fr;
-        gap: 2rem;
       }
     }
     
@@ -753,7 +1144,7 @@
       }
       
       .stats-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
       }
       
@@ -762,7 +1153,11 @@
       }
       
       .stat-number {
-        font-size: 2rem;
+        font-size: 1.5rem;
+      }
+      
+      .how-it-works {
+        grid-template-columns: 1fr;
       }
       
       .products-grid {
@@ -771,6 +1166,15 @@
       
       .product-card {
         padding: 2rem;
+      }
+      
+      .use-cases-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+      
+      .use-case {
+        padding: 1.5rem 1rem;
       }
       
       .cta-box {
@@ -786,6 +1190,24 @@
         flex-wrap: wrap;
         justify-content: center;
       }
+      
+      .case-study {
+        padding: 2rem;
+      }
+      
+      .case-study-stats {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .use-cases-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -796,9 +1218,7 @@
   <header>
     <div class="header-content">
       <a href="/" class="logo">
-        <div class="logo-icon">
-          <img src="https://4dcs.co.za/images/Four_bars.JPG" alt="4D">
-        </div>
+        <img src="https://4dcs.co.za/images/logo.jpg" alt="4D Climate Solutions" class="logo-icon">
         <div class="logo-text">
           <span class="logo-main">4D AI Labs</span>
           <span class="logo-sub">Intelligence for Development</span>
@@ -806,6 +1226,7 @@
       </a>
       
       <nav>
+        <a href="#demo">Try Demo</a>
         <a href="#products">Products</a>
         <a href="#about">About</a>
         <a href="https://4dcs.co.za" target="_blank">4D Climate Solutions</a>
@@ -837,8 +1258,8 @@
           From national statistics to real-time monitoring, we build tools that create impact.
         </p>
         <div class="hero-buttons">
-          <a href="https://lipalo.4dcs.co.za" class="btn btn-primary">
-            <span>🇱🇸</span> Try Lipalo
+          <a href="#demo" class="btn btn-primary">
+            <span>🤖</span> Try Live Demo
           </a>
           <a href="#products" class="btn btn-secondary">
             <span>↓</span> Explore Products
@@ -855,18 +1276,103 @@
           <div class="stat-label">Reports Indexed</div>
         </div>
         <div class="stat">
+          <div class="stat-number">1250+</div>
+          <div class="stat-label">Data Points</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">11</div>
+          <div class="stat-label">Categories</div>
+        </div>
+        <div class="stat">
           <div class="stat-number">2</div>
           <div class="stat-label">Live Products</div>
         </div>
         <div class="stat">
+          <div class="stat-number">8</div>
+          <div class="stat-label">Data Sources</div>
+        </div>
+        <div class="stat">
           <div class="stat-number">24/7</div>
-          <div class="stat-label">Always Available</div>
+          <div class="stat-label">Availability</div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Live Demo Section -->
+    <section class="section demo-section" id="demo">
+      <div class="section-header">
+        <div class="section-label">Live Demo</div>
+        <h2 class="section-title">Try Lipalo Now</h2>
+        <p class="section-desc">Ask a question about Lesotho statistics and see AI in action</p>
+      </div>
+      
+      <div class="demo-container">
+        <div class="demo-widget">
+          <div class="demo-header">
+            <div class="demo-header-icon">📊</div>
+            <div class="demo-header-text">
+              <h3>Lipalo</h3>
+              <span>Lesotho Statistics Assistant</span>
+            </div>
+          </div>
+          
+          <div class="demo-chat" id="demoChat">
+            <div class="demo-message assistant">
+              👋 Welcome! I'm Lipalo, your AI assistant for Lesotho statistics. Select a question below to see me in action!
+            </div>
+          </div>
+          
+          <div class="demo-input">
+            <select id="demoQuestion">
+              <option value="">Select a question...</option>
+              <option value="What is the population of Lesotho?">What is the population of Lesotho?</option>
+              <option value="What is the unemployment rate in Lesotho?">What is the unemployment rate?</option>
+              <option value="What is the literacy rate in Lesotho?">What is the literacy rate?</option>
+              <option value="What are the main crops grown in Lesotho?">What crops are grown in Lesotho?</option>
+              <option value="What is Lesotho's GDP?">What is Lesotho's GDP?</option>
+            </select>
+            <button onclick="askDemo()" id="demoBtn">Ask →</button>
+          </div>
+          
+          <div class="demo-footer">
+            <a href="https://lipalo.4dcs.co.za" target="_blank">Want more? Try the full Lipalo experience →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- How It Works -->
+    <section class="section section-dark">
+      <div class="section-header">
+        <div class="section-label">How It Works</div>
+        <h2 class="section-title">AI-Powered Insights in 3 Steps</h2>
+        <p class="section-desc">From raw data to actionable intelligence</p>
+      </div>
+      
+      <div class="how-it-works">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-icon">📚</div>
+          <h3>Data Ingestion</h3>
+          <p>We collect and process official reports from BOS, World Bank, WHO, and other trusted sources</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-icon">🧠</div>
+          <h3>AI Processing</h3>
+          <p>Advanced AI extracts, indexes, and understands the data for natural language queries</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-icon">💡</div>
+          <h3>Instant Insights</h3>
+          <p>Ask questions in plain English and get accurate, cited answers in seconds</p>
         </div>
       </div>
     </section>
     
     <!-- Products Section -->
-    <section class="products" id="products">
+    <section class="section" id="products">
       <div class="section-header">
         <div class="section-label">Our Products</div>
         <h2 class="section-title">AI Tools for Real-World Impact</h2>
@@ -935,44 +1441,213 @@
       </div>
     </section>
     
+    <!-- Use Cases -->
+    <section class="section section-dark">
+      <div class="section-header">
+        <div class="section-label">Who Benefits</div>
+        <h2 class="section-title">Built For Impact Makers</h2>
+        <p class="section-desc">Our tools serve those working to improve lives</p>
+      </div>
+      
+      <div class="use-cases-grid">
+        <div class="use-case">
+          <div class="use-case-icon">🏛️</div>
+          <h4>Government</h4>
+          <p>Data-driven policy decisions</p>
+        </div>
+        <div class="use-case">
+          <div class="use-case-icon">🌍</div>
+          <h4>NGOs</h4>
+          <p>Program planning & reporting</p>
+        </div>
+        <div class="use-case">
+          <div class="use-case-icon">🔬</div>
+          <h4>Researchers</h4>
+          <p>Quick access to statistics</p>
+        </div>
+        <div class="use-case">
+          <div class="use-case-icon">💼</div>
+          <h4>Development Orgs</h4>
+          <p>Impact assessment & M&E</p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Data Sources -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-label">Trusted Data</div>
+        <h2 class="section-title">Powered by Official Sources</h2>
+        <p class="section-desc">We only use verified, authoritative data</p>
+      </div>
+      
+      <div class="data-sources">
+        <div class="data-source">
+          <span style="font-size: 2rem;">🇱🇸</span>
+          <span>Bureau of Statistics</span>
+        </div>
+        <div class="data-source">
+          <span style="font-size: 2rem;">🏦</span>
+          <span>World Bank</span>
+        </div>
+        <div class="data-source">
+          <span style="font-size: 2rem;">🏥</span>
+          <span>WHO</span>
+        </div>
+        <div class="data-source">
+          <span style="font-size: 2rem;">👶</span>
+          <span>UNICEF</span>
+        </div>
+        <div class="data-source">
+          <span style="font-size: 2rem;">🌾</span>
+          <span>FAO</span>
+        </div>
+        <div class="data-source">
+          <span style="font-size: 2rem;">👷</span>
+          <span>ILO</span>
+        </div>
+        <div class="data-source">
+          <span style="font-size: 2rem;">🍽️</span>
+          <span>WFP</span>
+        </div>
+        <div class="data-source">
+          <span style="font-size: 2rem;">📊</span>
+          <span>HDX</span>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Case Study -->
+    <section class="section section-dark">
+      <div class="section-header">
+        <div class="section-label">Case Study</div>
+        <h2 class="section-title">Lipalo: AI for Lesotho Statistics</h2>
+      </div>
+      
+      <div class="case-study">
+        <div class="case-study-content">
+          <h3>Transforming Data Access</h3>
+          <p>Before Lipalo, accessing Lesotho's official statistics meant downloading multiple PDF reports and searching through hundreds of pages. Now, anyone can get instant, accurate answers with full citations.</p>
+          <p>From food security to education, health to employment — Lipalo covers 11 categories of national statistics, all accessible through natural conversation.</p>
+          <a href="https://lipalo.4dcs.co.za" class="btn btn-primary" target="_blank">
+            Try Lipalo Free →
+          </a>
+        </div>
+        <div class="case-study-stats">
+          <div class="case-stat">
+            <div class="case-stat-number">50+</div>
+            <div class="case-stat-label">Reports Processed</div>
+          </div>
+          <div class="case-stat">
+            <div class="case-stat-number">11</div>
+            <div class="case-stat-label">Data Categories</div>
+          </div>
+          <div class="case-stat">
+            <div class="case-stat-number">1250+</div>
+            <div class="case-stat-label">Data Points</div>
+          </div>
+          <div class="case-stat">
+            <div class="case-stat-number">&lt;5s</div>
+            <div class="case-stat-label">Response Time</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
     <!-- About Section -->
-    <section class="about" id="about">
-      <div class="about-content">
-        <div class="about-text">
-          <h2>Built by 4D Climate Solutions</h2>
-          <p>
-            4D AI Labs is the innovation arm of 4D Climate Solutions, a climate and development consultancy based in Lesotho with operations across Southern Africa.
+    <section class="section" id="about">
+      <div class="section-header">
+        <div class="section-label">About Us</div>
+        <h2 class="section-title">Built by 4D Climate Solutions</h2>
+        <p class="section-desc">Combining development expertise with cutting-edge AI</p>
+      </div>
+      
+      <div class="case-study" style="background: rgba(255,255,255,0.02); border-color: rgba(255,255,255,0.1);">
+        <div class="case-study-content">
+          <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">
+            4D AI Labs is the innovation arm of <strong>4D Climate Solutions</strong>, a climate and development consultancy based in Lesotho with operations across Southern Africa since 2018.
           </p>
           <p>
-            We combine deep domain expertise in development with cutting-edge AI technology to build tools that make a real difference. Our solutions are designed for the African context — working offline, in multiple languages, and with locally relevant data.
+            We combine deep domain expertise in development with cutting-edge AI technology to build tools that make a real difference. Our solutions are designed for the African context — working with local data, addressing local challenges.
           </p>
-          <p style="margin-top: 1.5rem;">
+          <div style="margin-top: 2rem;">
             <a href="https://4dcs.co.za" class="btn btn-secondary" target="_blank">
               Learn More About 4DCS →
             </a>
-          </p>
+          </div>
         </div>
-        <div class="about-visual">
-          <div class="section-label" style="text-align: left;">Powered By</div>
-          <div class="tech-stack">
-            <div class="tech-badge">
-              <span>🤖</span> Claude AI
-            </div>
-            <div class="tech-badge">
-              <span>⚡</span> Render
-            </div>
-            <div class="tech-badge">
-              <span>🗄️</span> Supabase
-            </div>
-            <div class="tech-badge">
-              <span>📊</span> BOS Data
-            </div>
-            <div class="tech-badge">
-              <span>🌍</span> World Bank
-            </div>
-            <div class="tech-badge">
-              <span>🏥</span> WHO
-            </div>
+        <div class="case-study-stats">
+          <div class="case-stat">
+            <div class="case-stat-number">7+</div>
+            <div class="case-stat-label">Years Experience</div>
+          </div>
+          <div class="case-stat">
+            <div class="case-stat-number">8</div>
+            <div class="case-stat-label">Districts Covered</div>
+          </div>
+          <div class="case-stat">
+            <div class="case-stat-number">10</div>
+            <div class="case-stat-label">Team Members</div>
+          </div>
+          <div class="case-stat">
+            <div class="case-stat-number">5+</div>
+            <div class="case-stat-label">Major Partners</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- FAQ -->
+    <section class="section section-dark">
+      <div class="section-header">
+        <div class="section-label">FAQ</div>
+        <h2 class="section-title">Common Questions</h2>
+      </div>
+      
+      <div class="faq-grid">
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>Is Lipalo free to use?</span>
+            <div class="faq-toggle">▼</div>
+          </div>
+          <div class="faq-answer">
+            <p>Yes! Lipalo is currently free to use. We believe in making data accessible to everyone working on development in Lesotho.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>How accurate is the data?</span>
+            <div class="faq-toggle">▼</div>
+          </div>
+          <div class="faq-answer">
+            <p>We only use official sources like the Bureau of Statistics, World Bank, and UN agencies. Every response includes citations so you can verify the source.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>Can I use this for official reports?</span>
+            <div class="faq-toggle">▼</div>
+          </div>
+          <div class="faq-answer">
+            <p>Lipalo is great for research and quick reference. For official reports, we recommend verifying with original sources using the citations provided.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>Do you offer custom AI solutions?</span>
+            <div class="faq-toggle">▼</div>
+          </div>
+          <div class="faq-answer">
+            <p>Yes! We build custom AI solutions for development organizations, governments, and NGOs. Contact us to discuss your needs.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>What data categories are covered?</span>
+            <div class="faq-toggle">▼</div>
+          </div>
+          <div class="faq-answer">
+            <p>Health, Demographics, Economy, Employment, Education, Agriculture, Food Security, Energy, Environment, Justice, and Gender statistics.</p>
           </div>
         </div>
       </div>
@@ -993,8 +1668,7 @@
   <footer>
     <div class="footer-content">
       <div class="footer-brand">
-        <img src="https://4dcs.co.za/images/logo.jpg" alt="4D Climate Solutions">
-        <span>A product of 4D Climate Solutions</span>
+        <span>A product of <strong>4D Climate Solutions</strong></span>
       </div>
       <div class="footer-links">
         <a href="https://4dcs.co.za" target="_blank">Main Website</a>
@@ -1008,7 +1682,87 @@
   </footer>
   
   <script>
-    // Smooth scroll for navigation links
+    // Demo answers (pre-defined for reliability)
+    const demoAnswers = {
+      "What is the population of Lesotho?": {
+        answer: "According to the Bureau of Statistics, Lesotho's population is approximately **2.3 million** people (2023 estimate). The country has seen steady growth, with about 25% living in urban areas and 75% in rural areas. The capital Maseru is home to around 330,000 residents.",
+        source: "Bureau of Statistics Lesotho, Population Projections 2016-2036"
+      },
+      "What is the unemployment rate in Lesotho?": {
+        answer: "Lesotho's unemployment rate stands at approximately **24.6%** according to the 2024 Labour Force Survey. Youth unemployment (15-24 years) is significantly higher at around 38%. The textile and apparel sector remains the largest employer in the formal economy.",
+        source: "Labour Force Survey Report 2024, Bureau of Statistics"
+      },
+      "What is the literacy rate in Lesotho?": {
+        answer: "Lesotho has one of the highest literacy rates in Africa at approximately **79%** for adults (15+ years). Female literacy (88%) is notably higher than male literacy (70%), which is unusual in the region. Primary school enrollment is nearly universal at 98%.",
+        source: "Education Statistics Report 2023, Bureau of Statistics"
+      },
+      "What are the main crops grown in Lesotho?": {
+        answer: "The main crops grown in Lesotho are **maize** (the staple food), **sorghum**, **wheat**, and **beans**. Agriculture employs about 70% of the rural population but contributes only 5% to GDP. Only about 10% of land is arable due to mountainous terrain.",
+        source: "Agricultural Census 2019-2020, Bureau of Statistics"
+      },
+      "What is Lesotho's GDP?": {
+        answer: "Lesotho's GDP is approximately **$2.5 billion USD** (2023), with a GDP per capita of around $1,100. The economy grew by 2.1% in 2023. Key sectors include manufacturing (textiles), agriculture, and remittances from South African mines.",
+        source: "Annual National Accounts 2023, Bureau of Statistics"
+      }
+    };
+    
+    let isAsking = false;
+    
+    async function askDemo() {
+      const select = document.getElementById('demoQuestion');
+      const question = select.value;
+      const btn = document.getElementById('demoBtn');
+      const chat = document.getElementById('demoChat');
+      
+      if (!question || isAsking) return;
+      
+      isAsking = true;
+      btn.disabled = true;
+      btn.textContent = 'Asking...';
+      
+      // Add user message
+      chat.innerHTML += `<div class="demo-message user">${question}</div>`;
+      
+      // Add typing indicator
+      chat.innerHTML += `<div class="demo-typing" id="typing"><span></span><span></span><span></span></div>`;
+      chat.scrollTop = chat.scrollHeight;
+      
+      // Simulate AI thinking
+      await new Promise(r => setTimeout(r, 1500 + Math.random() * 1000));
+      
+      // Remove typing indicator
+      document.getElementById('typing')?.remove();
+      
+      // Get answer
+      const answerData = demoAnswers[question];
+      if (answerData) {
+        const formattedAnswer = answerData.answer.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        chat.innerHTML += `
+          <div class="demo-message assistant">
+            ${formattedAnswer}
+            <div style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.8rem; color: var(--gray-400);">
+              📚 Source: ${answerData.source}
+            </div>
+          </div>
+        `;
+      }
+      
+      chat.scrollTop = chat.scrollHeight;
+      
+      // Reset
+      select.value = '';
+      btn.disabled = false;
+      btn.textContent = 'Ask →';
+      isAsking = false;
+    }
+    
+    // FAQ toggle
+    function toggleFaq(element) {
+      const item = element.parentElement;
+      item.classList.toggle('active');
+    }
+    
+    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -1029,17 +1783,14 @@
       }
     });
     
-    // Mobile menu toggle (basic)
+    // Mobile menu
     function toggleMenu() {
       const nav = document.querySelector('nav');
       nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
     }
     
-    // Animate stats on scroll
-    const observerOptions = {
-      threshold: 0.5
-    };
-    
+    // Animate on scroll
+    const observerOptions = { threshold: 0.1 };
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -1049,7 +1800,7 @@
       });
     }, observerOptions);
     
-    document.querySelectorAll('.stat, .product-card').forEach(el => {
+    document.querySelectorAll('.stat, .product-card, .step, .use-case, .faq-item').forEach(el => {
       el.style.opacity = '0';
       el.style.transform = 'translateY(20px)';
       el.style.transition = 'all 0.6s ease';
