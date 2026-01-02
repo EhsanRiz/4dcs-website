@@ -827,9 +827,10 @@
     .data-sources {
       display: flex;
       justify-content: center;
+      align-items: center;
       flex-wrap: wrap;
-      gap: 3rem;
-      max-width: 1100px;
+      gap: 2.5rem;
+      max-width: 1200px;
       margin: 0 auto;
     }
     
@@ -837,7 +838,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 1rem;
       transition: all 0.3s ease;
     }
     
@@ -846,9 +846,9 @@
     }
     
     .data-source-logo {
-      height: 50px;
+      height: 40px;
       width: auto;
-      max-width: 140px;
+      max-width: 120px;
       object-fit: contain;
       filter: brightness(0) invert(1);
       opacity: 0.7;
@@ -859,37 +859,31 @@
       opacity: 1;
     }
     
-    .data-source-text {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--white);
-      opacity: 0.7;
-      transition: all 0.3s ease;
-      letter-spacing: -0.5px;
-    }
-    
-    .data-source:hover .data-source-text {
-      opacity: 1;
-    }
-    
     .data-source-flag {
-      height: 40px;
+      height: 35px;
       width: auto;
       border-radius: 4px;
-      opacity: 0.8;
+      opacity: 0.9;
       transition: all 0.3s ease;
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }
     
     .data-source:hover .data-source-flag {
       opacity: 1;
-      transform: scale(1.05);
     }
     
-    .ilo-logo, .wfp-logo {
-      filter: brightness(0) invert(1) !important;
-      height: 45px;
+    .logo-text-badge {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--white);
+      opacity: 0.7;
+      transition: all 0.3s ease;
+      letter-spacing: 1px;
+    }
+    
+    .data-source:hover .logo-text-badge {
+      opacity: 1;
     }
     
     /* Partners */
@@ -1498,7 +1492,7 @@
     </section>
     
     <!-- Data Sources -->
-    <section class="section">
+    <section class="section" style="padding: 4rem 2rem;">
       <div class="section-header">
         <div class="section-label">Trusted Data</div>
         <h2 class="section-title">Powered by Official Sources</h2>
@@ -1507,25 +1501,25 @@
       
       <div class="data-sources">
         <div class="data-source">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Flag_of_Lesotho.svg" alt="Bureau of Statistics Lesotho" class="data-source-flag">
+          <img src="https://flagcdn.com/h60/ls.png" alt="Bureau of Statistics Lesotho" class="data-source-flag">
         </div>
         <div class="data-source">
           <img src="https://www.worldbank.org/content/dam/wbr-redesign/logos/logo-wb-header-en.svg" alt="World Bank" class="data-source-logo">
         </div>
         <div class="data-source">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/WHO_logo.svg" alt="WHO" class="data-source-logo">
+          <img src="https://cdn.who.int/media/images/default-source/infographics/who-emblem.png" alt="WHO" class="data-source-logo">
         </div>
         <div class="data-source">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Logo_of_UNICEF.svg" alt="UNICEF" class="data-source-logo">
+          <img src="https://www.unicef.org/sites/default/files/styles/logo/public/English_9.png.webp" alt="UNICEF" class="data-source-logo">
         </div>
         <div class="data-source">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/d/db/FAO_logo.svg" alt="FAO" class="data-source-logo">
+          <img src="https://www.fao.org/images/corporatelibraries/fao-logo/fao-logo-en.svg" alt="FAO" class="data-source-logo">
         </div>
         <div class="data-source">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/5/58/Flag_of_the_International_Labour_Organization.svg" alt="ILO" class="data-source-logo ilo-logo">
+          <span class="logo-text-badge">ILO</span>
         </div>
         <div class="data-source">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/WFP-Logo-Horizontal-Blue.svg" alt="WFP" class="data-source-logo wfp-logo">
+          <span class="logo-text-badge">WFP</span>
         </div>
         <div class="data-source">
           <img src="https://centre.humdata.org/wp-content/uploads/hdx_new_logo_accronym2.png" alt="HDX" class="data-source-logo">
