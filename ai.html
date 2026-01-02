@@ -779,11 +779,11 @@
     
     /* Use Cases */
     .use-cases-grid {
-      max-width: 1000px;
+      max-width: 1100px;
       margin: 0 auto;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
+      gap: 1.25rem;
     }
     
     .use-case {
@@ -1054,6 +1054,116 @@
       font-size: 1.1rem;
     }
     
+    /* Demo Request Section */
+    .demo-request-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      text-align: left;
+    }
+    
+    .demo-request-content h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    
+    .demo-request-content h2 .typing-text {
+      color: var(--green-light);
+      border-right: 3px solid var(--green-light);
+      padding-right: 5px;
+      animation: blink 1s infinite;
+    }
+    
+    @keyframes blink {
+      0%, 50% { border-color: var(--green-light); }
+      51%, 100% { border-color: transparent; }
+    }
+    
+    .demo-request-content p {
+      color: var(--gray-300);
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .demo-benefits {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    
+    .demo-benefit {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--gray-300);
+    }
+    
+    .demo-benefit span {
+      color: var(--green-light);
+      font-weight: 700;
+    }
+    
+    .demo-request-form {
+      background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 24px;
+      padding: 2.5rem;
+    }
+    
+    .demo-request-form .form-group {
+      margin-bottom: 1rem;
+    }
+    
+    .demo-request-form input,
+    .demo-request-form select,
+    .demo-request-form textarea {
+      width: 100%;
+      padding: 1rem 1.25rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.05);
+      color: var(--white);
+      font-size: 1rem;
+      font-family: inherit;
+      transition: all 0.3s ease;
+    }
+    
+    .demo-request-form input::placeholder,
+    .demo-request-form textarea::placeholder {
+      color: var(--gray-400);
+    }
+    
+    .demo-request-form input:focus,
+    .demo-request-form select:focus,
+    .demo-request-form textarea:focus {
+      outline: none;
+      border-color: var(--green-light);
+      background: rgba(0, 168, 89, 0.05);
+    }
+    
+    .demo-request-form select option {
+      background: var(--gray-800);
+      color: var(--white);
+    }
+    
+    .btn-full {
+      width: 100%;
+      justify-content: center;
+    }
+    
+    .form-note {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: var(--gray-400);
+    }
+    
     /* Footer */
     footer {
       padding: 3rem 2rem;
@@ -1199,6 +1309,24 @@
         padding: 2rem;
       }
       
+      .demo-request-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+      }
+      
+      .demo-request-content h2 {
+        font-size: 1.75rem;
+      }
+      
+      .demo-benefits {
+        align-items: center;
+      }
+      
+      .demo-request-form {
+        padding: 1.5rem;
+      }
+      
       .footer-content {
         flex-direction: column;
         text-align: center;
@@ -1290,28 +1418,28 @@
     <section class="stats">
       <div class="stats-grid">
         <div class="stat">
-          <div class="stat-number">50+</div>
-          <div class="stat-label">Reports Indexed</div>
+          <div class="stat-number">10+</div>
+          <div class="stat-label">AI Products</div>
         </div>
         <div class="stat">
-          <div class="stat-number">1250+</div>
-          <div class="stat-label">Data Points</div>
-        </div>
-        <div class="stat">
-          <div class="stat-number">11</div>
-          <div class="stat-label">Categories</div>
-        </div>
-        <div class="stat">
-          <div class="stat-number">2</div>
-          <div class="stat-label">Live Products</div>
-        </div>
-        <div class="stat">
-          <div class="stat-number">8</div>
+          <div class="stat-number">15+</div>
           <div class="stat-label">Data Sources</div>
         </div>
         <div class="stat">
-          <div class="stat-number">24/7</div>
-          <div class="stat-label">Availability</div>
+          <div class="stat-number">10K+</div>
+          <div class="stat-label">Monthly Queries</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">99.9%</div>
+          <div class="stat-label">Uptime</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">&lt;3s</div>
+          <div class="stat-label">Avg Response</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">5+</div>
+          <div class="stat-label">Industries</div>
         </div>
       </div>
     </section>
@@ -1363,28 +1491,28 @@
     <section class="section section-dark">
       <div class="section-header">
         <div class="section-label">How It Works</div>
-        <h2 class="section-title">AI-Powered Insights in 3 Steps</h2>
-        <p class="section-desc">From raw data to actionable intelligence</p>
+        <h2 class="section-title">Our AI Pipeline</h2>
+        <p class="section-desc">From your data to actionable intelligence</p>
       </div>
       
       <div class="how-it-works">
         <div class="step">
           <div class="step-number">1</div>
-          <div class="step-icon">📚</div>
-          <h3>Data Ingestion</h3>
-          <p>We collect and process official reports from BOS, World Bank, WHO, and other trusted sources</p>
+          <div class="step-icon">🔗</div>
+          <h3>Connect</h3>
+          <p>Link your data sources — documents, cameras, sensors, databases, APIs, or live feeds</p>
         </div>
         <div class="step">
           <div class="step-number">2</div>
           <div class="step-icon">🧠</div>
-          <h3>AI Processing</h3>
-          <p>Advanced AI extracts, indexes, and understands the data for natural language queries</p>
+          <h3>Analyze</h3>
+          <p>AI extracts insights, detects patterns, predicts outcomes, and understands context</p>
         </div>
         <div class="step">
           <div class="step-number">3</div>
-          <div class="step-icon">💡</div>
-          <h3>Instant Insights</h3>
-          <p>Ask questions in plain English and get accurate, cited answers in seconds</p>
+          <div class="step-icon">⚡</div>
+          <h3>Act</h3>
+          <p>Automate decisions, trigger alerts, generate reports, or power real-time dashboards</p>
         </div>
       </div>
     </section>
@@ -1462,31 +1590,51 @@
     <!-- Use Cases -->
     <section class="section section-dark">
       <div class="section-header">
-        <div class="section-label">Who Benefits</div>
-        <h2 class="section-title">Built For Impact Makers</h2>
-        <p class="section-desc">Our tools serve those working to improve lives</p>
+        <div class="section-label">AI Use Cases</div>
+        <h2 class="section-title">Built For Every Challenge</h2>
+        <p class="section-desc">Intelligent solutions across industries</p>
       </div>
       
       <div class="use-cases-grid">
         <div class="use-case">
           <div class="use-case-icon">🏛️</div>
           <h4>Government</h4>
-          <p>Data-driven policy decisions</p>
+          <p>Policy analytics & citizen services</p>
         </div>
         <div class="use-case">
           <div class="use-case-icon">🌍</div>
           <h4>NGOs</h4>
-          <p>Program planning & reporting</p>
+          <p>Impact measurement & M&E</p>
         </div>
         <div class="use-case">
-          <div class="use-case-icon">🔬</div>
-          <h4>Researchers</h4>
-          <p>Quick access to statistics</p>
+          <div class="use-case-icon">🏢</div>
+          <h4>Enterprise</h4>
+          <p>Process optimization & automation</p>
         </div>
         <div class="use-case">
-          <div class="use-case-icon">💼</div>
-          <h4>Development Orgs</h4>
-          <p>Impact assessment & M&E</p>
+          <div class="use-case-icon">🚗</div>
+          <h4>Transport</h4>
+          <p>Real-time monitoring & logistics</p>
+        </div>
+        <div class="use-case">
+          <div class="use-case-icon">🌾</div>
+          <h4>Agriculture</h4>
+          <p>Crop monitoring & market intelligence</p>
+        </div>
+        <div class="use-case">
+          <div class="use-case-icon">🏥</div>
+          <h4>Healthcare</h4>
+          <p>Data analysis & resource planning</p>
+        </div>
+        <div class="use-case">
+          <div class="use-case-icon">💬</div>
+          <h4>Customer Service</h4>
+          <p>AI chatbots & automated support</p>
+        </div>
+        <div class="use-case">
+          <div class="use-case-icon">⚙️</div>
+          <h4>Operations</h4>
+          <p>Real-time problem solving</p>
         </div>
       </div>
     </section>
@@ -1663,14 +1811,59 @@
       </div>
     </section>
     
-    <!-- CTA Section -->
+    <!-- Request Demo Section -->
     <section class="cta" id="contact">
-      <div class="cta-box">
-        <h2>Have a Data Challenge?</h2>
-        <p>We build custom AI solutions for development organizations, governments, and NGOs. Let's discuss how AI can help your mission.</p>
-        <a href="mailto:info@4dcs.co.za?subject=4D AI Inquiry" class="btn btn-primary">
-          <span>✉️</span> Contact Us
-        </a>
+      <div class="demo-request-container">
+        <div class="demo-request-content">
+          <div class="section-label">Ready to Transform?</div>
+          <h2>See AI in Action for <span class="typing-text"></span></h2>
+          <p>Book a personalized demo and discover how 4D AI can solve your specific challenges — whether it's data analysis, process automation, or real-time monitoring.</p>
+          
+          <div class="demo-benefits">
+            <div class="demo-benefit">
+              <span>✓</span> 30-minute personalized session
+            </div>
+            <div class="demo-benefit">
+              <span>✓</span> See solutions for your use case
+            </div>
+            <div class="demo-benefit">
+              <span>✓</span> Get a custom implementation plan
+            </div>
+          </div>
+        </div>
+        
+        <div class="demo-request-form">
+          <form id="demoRequestForm" action="https://formspree.io/f/mzznvrog" method="POST">
+            <input type="hidden" name="_subject" value="4D AI Demo Request">
+            <div class="form-group">
+              <input type="text" name="name" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+              <input type="email" name="email" placeholder="Work Email" required>
+            </div>
+            <div class="form-group">
+              <input type="text" name="organization" placeholder="Organization">
+            </div>
+            <div class="form-group">
+              <select name="interest" required>
+                <option value="">What interests you?</option>
+                <option value="Data Analytics">Data Analytics & Insights</option>
+                <option value="Process Automation">Process Automation</option>
+                <option value="Customer Service AI">Customer Service AI</option>
+                <option value="Real-time Monitoring">Real-time Monitoring</option>
+                <option value="Custom Solution">Custom AI Solution</option>
+                <option value="General Inquiry">General Inquiry</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <textarea name="message" placeholder="Tell us about your challenge (optional)" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">
+              <span>🚀</span> Request Demo
+            </button>
+            <p class="form-note">We'll respond within 24 hours</p>
+          </form>
+        </div>
       </div>
     </section>
   </main>
@@ -1771,6 +1964,43 @@
       const item = element.parentElement;
       item.classList.toggle('active');
     }
+    
+    // Typing animation for demo request
+    const typingTexts = ['Your Business', 'Government', 'Healthcare', 'Agriculture', 'Transport', 'Customer Service', 'Your Challenge'];
+    let textIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const typingElement = document.querySelector('.typing-text');
+    
+    function typeText() {
+      if (!typingElement) return;
+      
+      const currentText = typingTexts[textIndex];
+      
+      if (isDeleting) {
+        typingElement.textContent = currentText.substring(0, charIndex - 1);
+        charIndex--;
+      } else {
+        typingElement.textContent = currentText.substring(0, charIndex + 1);
+        charIndex++;
+      }
+      
+      let delay = isDeleting ? 50 : 100;
+      
+      if (!isDeleting && charIndex === currentText.length) {
+        delay = 2000; // Pause at end
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        textIndex = (textIndex + 1) % typingTexts.length;
+        delay = 500; // Pause before next word
+      }
+      
+      setTimeout(typeText, delay);
+    }
+    
+    // Start typing animation
+    setTimeout(typeText, 1000);
     
     // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
