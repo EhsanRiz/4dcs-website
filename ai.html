@@ -851,15 +851,17 @@
     }
     
     .data-source-logo {
-      height: 40px;
+      height: 45px;
       width: auto;
-      filter: grayscale(100%) brightness(2);
+      max-width: 120px;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
       opacity: 0.7;
       transition: all 0.3s ease;
     }
     
     .data-source:hover .data-source-logo {
-      filter: grayscale(0%) brightness(1);
+      filter: brightness(0) invert(1);
       opacity: 1;
     }
     
@@ -1483,35 +1485,35 @@
       
       <div class="data-sources">
         <div class="data-source">
-          <span style="font-size: 2rem;">🇱🇸</span>
+          <img src="https://www.bos.gov.ls/Images/BOSLogo.png" alt="Bureau of Statistics Lesotho" class="data-source-logo" onerror="this.src='https://flagcdn.com/w80/ls.png'">
           <span>Bureau of Statistics</span>
         </div>
         <div class="data-source">
-          <span style="font-size: 2rem;">🏦</span>
+          <img src="https://www.worldbank.org/content/dam/wbr-redesign/logos/logo-wb-header-en.svg" alt="World Bank" class="data-source-logo">
           <span>World Bank</span>
         </div>
         <div class="data-source">
-          <span style="font-size: 2rem;">🏥</span>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/WHO_logo.svg/200px-WHO_logo.svg.png" alt="WHO" class="data-source-logo">
           <span>WHO</span>
         </div>
         <div class="data-source">
-          <span style="font-size: 2rem;">👶</span>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Logo_of_UNICEF.svg/200px-Logo_of_UNICEF.svg.png" alt="UNICEF" class="data-source-logo">
           <span>UNICEF</span>
         </div>
         <div class="data-source">
-          <span style="font-size: 2rem;">🌾</span>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/FAO_logo.svg/200px-FAO_logo.svg.png" alt="FAO" class="data-source-logo">
           <span>FAO</span>
         </div>
         <div class="data-source">
-          <span style="font-size: 2rem;">👷</span>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/ILO_logo.svg/200px-ILO_logo.svg.png" alt="ILO" class="data-source-logo">
           <span>ILO</span>
         </div>
         <div class="data-source">
-          <span style="font-size: 2rem;">🍽️</span>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/World_Food_Programme_Logo_Simple.svg/200px-World_Food_Programme_Logo_Simple.svg.png" alt="WFP" class="data-source-logo">
           <span>WFP</span>
         </div>
         <div class="data-source">
-          <span style="font-size: 2rem;">📊</span>
+          <img src="https://centre.humdata.org/wp-content/uploads/hdx_new_logo_accronym2.png" alt="HDX" class="data-source-logo">
           <span>HDX</span>
         </div>
       </div>
