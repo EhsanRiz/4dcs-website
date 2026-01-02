@@ -828,8 +828,8 @@
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 2rem;
-      max-width: 1000px;
+      gap: 3rem;
+      max-width: 1100px;
       margin: 0 auto;
     }
     
@@ -837,32 +837,59 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 1.5rem 2rem;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.05);
-      border-radius: 12px;
+      padding: 1rem;
       transition: all 0.3s ease;
-      min-width: 140px;
     }
     
     .data-source:hover {
-      background: rgba(255,255,255,0.05);
-      transform: translateY(-3px);
+      transform: translateY(-5px);
     }
     
     .data-source-logo {
       height: 50px;
       width: auto;
-      max-width: 130px;
+      max-width: 140px;
       object-fit: contain;
       filter: brightness(0) invert(1);
-      opacity: 0.8;
+      opacity: 0.7;
       transition: all 0.3s ease;
     }
     
     .data-source:hover .data-source-logo {
-      filter: brightness(0) invert(1);
       opacity: 1;
+    }
+    
+    .data-source-text {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--white);
+      opacity: 0.7;
+      transition: all 0.3s ease;
+      letter-spacing: -0.5px;
+    }
+    
+    .data-source:hover .data-source-text {
+      opacity: 1;
+    }
+    
+    .data-source-flag {
+      height: 40px;
+      width: auto;
+      border-radius: 4px;
+      opacity: 0.8;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+    
+    .data-source:hover .data-source-flag {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+    
+    .ilo-logo, .wfp-logo {
+      filter: brightness(0) invert(1) !important;
+      height: 45px;
     }
     
     /* Partners */
@@ -1480,28 +1507,28 @@
       
       <div class="data-sources">
         <div class="data-source">
-          <img src="images/lesotho-flag.png" alt="Bureau of Statistics Lesotho" class="data-source-logo" style="filter: none; border-radius: 4px;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Flag_of_Lesotho.svg" alt="Bureau of Statistics Lesotho" class="data-source-flag">
         </div>
         <div class="data-source">
           <img src="https://www.worldbank.org/content/dam/wbr-redesign/logos/logo-wb-header-en.svg" alt="World Bank" class="data-source-logo">
         </div>
         <div class="data-source">
-          <img src="images/who-logo.png" alt="WHO" class="data-source-logo">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/WHO_logo.svg" alt="WHO" class="data-source-logo">
         </div>
         <div class="data-source">
-          <img src="images/unicef-logo.png" alt="UNICEF" class="data-source-logo">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Logo_of_UNICEF.svg" alt="UNICEF" class="data-source-logo">
         </div>
         <div class="data-source">
-          <img src="images/fao-logo.png" alt="FAO" class="data-source-logo">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/d/db/FAO_logo.svg" alt="FAO" class="data-source-logo">
         </div>
         <div class="data-source">
-          <img src="images/ilo-logo.png" alt="ILO" class="data-source-logo">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/58/Flag_of_the_International_Labour_Organization.svg" alt="ILO" class="data-source-logo ilo-logo">
         </div>
         <div class="data-source">
-          <img src="images/wfp-logo.png" alt="WFP" class="data-source-logo">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/WFP-Logo-Horizontal-Blue.svg" alt="WFP" class="data-source-logo wfp-logo">
         </div>
         <div class="data-source">
-          <img src="images/hdx-logo.png" alt="HDX" class="data-source-logo">
+          <img src="https://centre.humdata.org/wp-content/uploads/hdx_new_logo_accronym2.png" alt="HDX" class="data-source-logo">
         </div>
       </div>
     </section>
