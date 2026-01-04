@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You | 4D Climate Solutions</title>
+  <meta name="description" content="Thank you for contacting 4D Climate Solutions. We'll be in touch soon.">
+  <link rel="icon" href="https://4dcs.co.za/images/logo.jpg" type="image/jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green-primary: #006838;
+      --green-light: #00a859;
+      --blue-primary: #1a365d;
+      --white: #ffffff;
+      --gray-300: #cbd5e1;
+      --gray-400: #94a3b8;
+      --gray-900: #0f172a;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--gray-900);
+      color: var(--white);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* Animated Background */
+    .bg-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: 
+        radial-gradient(ellipse at 20% 20%, rgba(0, 104, 56, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(26, 54, 93, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(0, 168, 89, 0.05) 0%, transparent 70%),
+        var(--gray-900);
+    }
+    
+    .container {
+      max-width: 600px;
+      text-align: center;
+      animation: fadeInUp 0.8s ease forwards;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .success-icon {
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(135deg, var(--green-primary) 0%, var(--green-light) 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 2rem;
+      animation: scaleIn 0.5s ease 0.3s forwards, pulse 2s ease-in-out 1s infinite;
+      opacity: 0;
+      transform: scale(0);
+    }
+    
+    @keyframes scaleIn {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(0, 168, 89, 0.4); }
+      50% { box-shadow: 0 0 0 20px rgba(0, 168, 89, 0); }
+    }
+    
+    .success-icon svg {
+      width: 50px;
+      height: 50px;
+      stroke: white;
+      stroke-width: 3;
+      fill: none;
+    }
+    
+    .checkmark {
+      stroke-dasharray: 50;
+      stroke-dashoffset: 50;
+      animation: draw 0.5s ease 0.6s forwards;
+    }
+    
+    @keyframes draw {
+      to { stroke-dashoffset: 0; }
+    }
+    
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--white) 0%, var(--gray-300) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .subtitle {
+      font-size: 1.25rem;
+      color: var(--green-light);
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+    }
+    
+    p {
+      color: var(--gray-300);
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+    
+    .info-box {
+      background: rgba(0, 168, 89, 0.1);
+      border: 1px solid rgba(0, 168, 89, 0.2);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .info-box p {
+      margin-bottom: 0;
+      font-size: 1rem;
+    }
+    
+    .info-box strong {
+      color: var(--green-light);
+    }
+    
+    .buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, var(--green-primary) 0%, var(--green-light) 100%);
+      color: var(--white);
+      box-shadow: 0 4px 20px rgba(0, 104, 56, 0.4);
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0, 104, 56, 0.5);
+    }
+    
+    .btn-secondary {
+      background: rgba(255,255,255,0.05);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.2);
+    }
+    
+    .logo {
+      margin-top: 3rem;
+      opacity: 0.7;
+    }
+    
+    .logo img {
+      height: 40px;
+      border-radius: 8px;
+    }
+    
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.75rem;
+      }
+      
+      .subtitle {
+        font-size: 1rem;
+      }
+      
+      p {
+        font-size: 1rem;
+      }
+      
+      .buttons {
+        flex-direction: column;
+      }
+      
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-animation"></div>
+  
+  <div class="container">
+    <div class="success-icon">
+      <svg viewBox="0 0 24 24">
+        <polyline class="checkmark" points="20 6 9 17 4 12"></polyline>
+      </svg>
+    </div>
+    
+    <h1>Message Received!</h1>
+    <p class="subtitle">Thank you for reaching out</p>
+    
+    <p>We've received your submission and our team is already on it. We value your interest and will get back to you as soon as possible.</p>
+    
+    <div class="info-box">
+      <p>📧 <strong>Expected response time:</strong> Within 24 hours</p>
+    </div>
+    
+    <div class="buttons">
+      <a href="https://4dcs.co.za" class="btn btn-primary">
+        <span>🏠</span> Visit Our Website
+      </a>
+      <a href="https://ai.4dcs.co.za" class="btn btn-secondary">
+        <span>🤖</span> Explore 4D AI
+      </a>
+    </div>
+    
+    <div class="logo">
+      <a href="https://4dcs.co.za">
+        <img src="https://4dcs.co.za/images/logo.jpg" alt="4D Climate Solutions">
+      </a>
+    </div>
+  </div>
+</body>
+</html>
