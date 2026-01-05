@@ -1,2062 +1,475 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>4D AI Labs | Intelligence for Development</title>
-  <meta name="description" content="AI-powered solutions for Africa's development challenges. From statistics to traffic monitoring, 4D AI Labs builds intelligent tools for real-world impact.">
-  <link rel="icon" href="https://4dcs.co.za/images/logo.jpg" type="image/jpeg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --green-primary: #006838;
-      --green-light: #00a859;
-      --green-dark: #004d2a;
-      --blue-primary: #1a365d;
-      --blue-light: #2c5282;
-      --blue-dark: #0f2440;
-      --white: #ffffff;
-      --gray-50: #f8fafc;
-      --gray-100: #f1f5f9;
-      --gray-200: #e2e8f0;
-      --gray-300: #cbd5e1;
-      --gray-400: #94a3b8;
-      --gray-600: #475569;
-      --gray-800: #1e293b;
-      --gray-900: #0f172a;
-    }
-    
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    html {
-      scroll-behavior: smooth;
-    }
-    
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--gray-900);
-      color: var(--white);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-    
-    /* Animated Background */
-    .bg-animation {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background: 
-        radial-gradient(ellipse at 20% 20%, rgba(0, 104, 56, 0.15) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 80%, rgba(26, 54, 93, 0.15) 0%, transparent 50%),
-        radial-gradient(ellipse at 50% 50%, rgba(0, 168, 89, 0.05) 0%, transparent 70%),
-        var(--gray-900);
-    }
-    
-    .grid-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background-image: 
-        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-      background-size: 60px 60px;
-      mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
-    }
-    
-    /* Header */
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      padding: 1rem 2rem;
-      background: rgba(15, 23, 42, 0.8);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      transition: all 0.3s ease;
-    }
-    
-    .header-content {
-      max-width: 1400px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: var(--white);
-    }
-    
-    .logo-icon {
-      height: 45px;
-      border-radius: 8px;
-    }
-    
-    .logo-text {
-      display: flex;
-      flex-direction: column;
-    }
-    
-    .logo-main {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.4rem;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      background: linear-gradient(135deg, var(--white) 0%, var(--gray-300) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    
-    .logo-sub {
-      font-size: 0.6rem;
-      color: var(--green-light);
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      font-weight: 500;
-    }
-    
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-    }
-    
-    nav a {
-      color: var(--gray-300);
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      position: relative;
-    }
-    
-    nav a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--green-light);
-      transition: width 0.3s ease;
-    }
-    
-    nav a:hover {
-      color: var(--white);
-    }
-    
-    nav a:hover::after {
-      width: 100%;
-    }
-    
-    .nav-cta {
-      background: linear-gradient(135deg, var(--green-primary) 0%, var(--green-light) 100%);
-      padding: 0.6rem 1.5rem;
-      border-radius: 8px;
-      color: var(--white) !important;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(0, 104, 56, 0.3);
-    }
-    
-    .nav-cta::after {
-      display: none;
-    }
-    
-    .nav-cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 25px rgba(0, 104, 56, 0.4);
-    }
-    
-    /* Hero Section */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 8rem 2rem 4rem;
-      position: relative;
-    }
-    
-    .hero-content {
-      max-width: 900px;
-      text-align: center;
-    }
-    
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(0, 168, 89, 0.1);
-      border: 1px solid rgba(0, 168, 89, 0.3);
-      padding: 0.5rem 1rem;
-      border-radius: 50px;
-      font-size: 0.8rem;
-      color: var(--green-light);
-      margin-bottom: 2rem;
-      animation: fadeInUp 0.8s ease forwards;
-    }
-    
-    .hero-badge .pulse {
-      width: 8px;
-      height: 8px;
-      background: var(--green-light);
-      border-radius: 50%;
-      animation: pulse 2s infinite;
-    }
-    
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(1.2); }
-    }
-    
-    .hero h1 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2.5rem, 8vw, 5rem);
-      font-weight: 700;
-      line-height: 1.1;
-      margin-bottom: 1.5rem;
-      letter-spacing: -2px;
-      animation: fadeInUp 0.8s ease 0.1s forwards;
-      opacity: 0;
-    }
-    
-    .hero h1 .gradient {
-      background: linear-gradient(135deg, var(--green-light) 0%, var(--green-primary) 50%, var(--blue-light) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    
-    .hero p {
-      font-size: 1.25rem;
-      color: var(--gray-300);
-      max-width: 600px;
-      margin: 0 auto 2.5rem;
-      animation: fadeInUp 0.8s ease 0.2s forwards;
-      opacity: 0;
-    }
-    
-    .hero-buttons {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      animation: fadeInUp 0.8s ease 0.3s forwards;
-      opacity: 0;
-    }
-    
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 1rem 2rem;
-      border-radius: 12px;
-      font-size: 1rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      border: none;
-    }
-    
-    .btn-primary {
-      background: linear-gradient(135deg, var(--green-primary) 0%, var(--green-light) 100%);
-      color: var(--white);
-      box-shadow: 0 4px 20px rgba(0, 104, 56, 0.4);
-    }
-    
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 30px rgba(0, 104, 56, 0.5);
-    }
-    
-    .btn-secondary {
-      background: rgba(255,255,255,0.05);
-      color: var(--white);
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-    
-    .btn-secondary:hover {
-      background: rgba(255,255,255,0.1);
-      border-color: rgba(255,255,255,0.2);
-    }
-    
-    .btn-white {
-      background: var(--white);
-      color: var(--gray-900);
-    }
-    
-    .btn-white:hover {
-      background: var(--gray-100);
-      transform: translateY(-2px);
-    }
-    
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    /* Stats Section */
-    .stats {
-      padding: 4rem 2rem;
-      background: rgba(0, 104, 56, 0.05);
-      border-top: 1px solid rgba(255,255,255,0.05);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-    
-    .stats-grid {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 1.5rem;
-    }
-    
-    .stat {
-      text-align: center;
-      padding: 1.5rem 1rem;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.05);
-      border-radius: 16px;
-      transition: all 0.3s ease;
-    }
-    
-    .stat:hover {
-      background: rgba(255,255,255,0.05);
-      transform: translateY(-5px);
-      border-color: rgba(0, 168, 89, 0.3);
-    }
-    
-    .stat-number {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--green-light);
-      margin-bottom: 0.25rem;
-    }
-    
-    .stat-label {
-      font-size: 0.8rem;
-      color: var(--gray-300);
-    }
-    
-    /* Section Styles */
-    .section {
-      padding: 6rem 2rem;
-      position: relative;
-    }
-    
-    .section-dark {
-      background: rgba(0,0,0,0.2);
-    }
-    
-    .section-header {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
-    
-    .section-label {
-      font-size: 0.8rem;
-      color: var(--green-light);
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      font-weight: 600;
-      margin-bottom: 1rem;
-    }
-    
-    .section-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 700;
-      letter-spacing: -1px;
-      margin-bottom: 1rem;
-    }
-    
-    .section-desc {
-      font-size: 1.1rem;
-      color: var(--gray-300);
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    
-    /* Live Demo Section */
-    .demo-section {
-      background: linear-gradient(180deg, rgba(0, 104, 56, 0.1) 0%, transparent 100%);
-    }
-    
-    .demo-container {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    
-    .demo-widget {
-      background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 24px;
-      overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-    }
-    
-    .demo-header {
-      background: linear-gradient(135deg, var(--green-primary) 0%, var(--green-light) 100%);
-      padding: 1.25rem 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    
-    .demo-header-icon {
-      width: 40px;
-      height: 40px;
-      background: rgba(255,255,255,0.2);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.25rem;
-    }
-    
-    .demo-header-text h3 {
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 2px;
-    }
-    
-    .demo-header-text span {
-      font-size: 0.75rem;
-      opacity: 0.8;
-    }
-    
-    .demo-chat {
-      padding: 1.5rem;
-      min-height: 300px;
-      max-height: 400px;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    
-    .demo-message {
-      max-width: 85%;
-      padding: 1rem 1.25rem;
-      border-radius: 16px;
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-    
-    .demo-message.assistant {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      align-self: flex-start;
-      border-bottom-left-radius: 4px;
-    }
-    
-    .demo-message.user {
-      background: linear-gradient(135deg, var(--blue-primary) 0%, var(--blue-light) 100%);
-      align-self: flex-end;
-      border-bottom-right-radius: 4px;
-    }
-    
-    .demo-typing {
-      display: flex;
-      gap: 4px;
-      padding: 1rem;
-      align-self: flex-start;
-    }
-    
-    .demo-typing span {
-      width: 8px;
-      height: 8px;
-      background: var(--green-light);
-      border-radius: 50%;
-      animation: typing 1.4s infinite;
-    }
-    
-    .demo-typing span:nth-child(2) { animation-delay: 0.2s; }
-    .demo-typing span:nth-child(3) { animation-delay: 0.4s; }
-    
-    @keyframes typing {
-      0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
-      30% { transform: translateY(-10px); opacity: 1; }
-    }
-    
-    .demo-input {
-      display: flex;
-      gap: 0.75rem;
-      padding: 1rem 1.5rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      background: rgba(0,0,0,0.2);
-    }
-    
-    .demo-input select {
-      flex: 1;
-      padding: 0.875rem 1rem;
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 12px;
-      background: rgba(255,255,255,0.05);
-      color: var(--white);
-      font-size: 0.9rem;
-      cursor: pointer;
-    }
-    
-    .demo-input select option {
-      background: var(--gray-800);
-      color: var(--white);
-    }
-    
-    .demo-input button {
-      padding: 0.875rem 1.5rem;
-      background: linear-gradient(135deg, var(--green-primary) 0%, var(--green-light) 100%);
-      border: none;
-      border-radius: 12px;
-      color: white;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    
-    .demo-input button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 15px rgba(0, 104, 56, 0.4);
-    }
-    
-    .demo-input button:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-      transform: none;
-    }
-    
-    .demo-footer {
-      text-align: center;
-      padding: 1rem;
-      background: rgba(0,0,0,0.2);
-      border-top: 1px solid rgba(255,255,255,0.05);
-    }
-    
-    .demo-footer a {
-      color: var(--green-light);
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 0.9rem;
-    }
-    
-    .demo-footer a:hover {
-      text-decoration: underline;
-    }
-    
-    /* How It Works */
-    .how-it-works {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    
-    .step {
-      text-align: center;
-      padding: 2rem;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.05);
-      border-radius: 20px;
-      position: relative;
-      transition: all 0.3s ease;
-    }
-    
-    .step:hover {
-      background: rgba(255,255,255,0.05);
-      transform: translateY(-5px);
-    }
-    
-    .step-number {
-      position: absolute;
-      top: -15px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 30px;
-      height: 30px;
-      background: linear-gradient(135deg, var(--green-primary), var(--green-light));
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 0.9rem;
-    }
-    
-    .step-icon {
-      width: 60px;
-      height: 60px;
-      margin: 0 auto 1rem;
-      background: rgba(0, 168, 89, 0.1);
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.75rem;
-    }
-    
-    .step h3 {
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
-    }
-    
-    .step p {
-      font-size: 0.9rem;
-      color: var(--gray-400);
-    }
-    
-    /* Products Section */
-    .products-grid {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 2rem;
-    }
-    
-    .product-card {
-      background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 24px;
-      padding: 2.5rem;
-      transition: all 0.4s ease;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .product-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--green-primary), var(--green-light), var(--blue-light));
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    
-    .product-card:hover {
-      transform: translateY(-8px);
-      border-color: rgba(0, 168, 89, 0.3);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    }
-    
-    .product-card:hover::before {
-      opacity: 1;
-    }
-    
-    .product-icon {
-      width: 70px;
-      height: 70px;
-      border-radius: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-    }
-    
-    .product-icon.lipalo {
-      background: linear-gradient(135deg, var(--green-primary) 0%, var(--green-light) 100%);
-    }
-    
-    .product-icon.traffic {
-      background: linear-gradient(135deg, var(--blue-primary) 0%, var(--blue-light) 100%);
-    }
-    
-    .product-icon.coming {
-      background: linear-gradient(135deg, var(--gray-600) 0%, var(--gray-800) 100%);
-    }
-    
-    .product-status {
-      display: inline-block;
-      padding: 0.25rem 0.75rem;
-      border-radius: 20px;
-      font-size: 0.7rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 1rem;
-    }
-    
-    .status-live {
-      background: rgba(0, 168, 89, 0.15);
-      color: var(--green-light);
-    }
-    
-    .status-beta {
-      background: rgba(59, 130, 246, 0.15);
-      color: #60a5fa;
-    }
-    
-    .status-soon {
-      background: rgba(255,255,255,0.1);
-      color: var(--gray-300);
-    }
-    
-    .product-card h3 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 0.75rem;
-    }
-    
-    .product-card p {
-      color: var(--gray-300);
-      font-size: 0.95rem;
-      margin-bottom: 1.5rem;
-      line-height: 1.7;
-    }
-    
-    .product-features {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1.5rem;
-    }
-    
-    .feature-tag {
-      background: rgba(255,255,255,0.05);
-      padding: 0.35rem 0.75rem;
-      border-radius: 6px;
-      font-size: 0.75rem;
-      color: var(--gray-300);
-    }
-    
-    .product-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--green-light);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.9rem;
-      transition: all 0.3s ease;
-    }
-    
-    .product-link:hover {
-      gap: 12px;
-    }
-    
-    .product-link svg {
-      width: 18px;
-      height: 18px;
-      transition: transform 0.3s ease;
-    }
-    
-    .product-link:hover svg {
-      transform: translateX(4px);
-    }
-    
-    /* Use Cases */
-    .use-cases-grid {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.25rem;
-    }
-    
-    .use-case {
-      text-align: center;
-      padding: 2rem 1.5rem;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.05);
-      border-radius: 16px;
-      transition: all 0.3s ease;
-    }
-    
-    .use-case:hover {
-      background: rgba(255,255,255,0.05);
-      transform: translateY(-5px);
-      border-color: rgba(0, 168, 89, 0.3);
-    }
-    
-    .use-case-icon {
-      width: 60px;
-      height: 60px;
-      margin: 0 auto 1rem;
-      background: rgba(0, 168, 89, 0.1);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-    }
-    
-    .use-case h4 {
-      font-size: 1rem;
-      margin-bottom: 0.5rem;
-    }
-    
-    .use-case p {
-      font-size: 0.8rem;
-      color: var(--gray-400);
-    }
-    
-    /* Data Sources */
-    .data-sources {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 2.5rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    
-    .data-source {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-    }
-    
-    .data-source:hover {
-      transform: translateY(-5px);
-    }
-    
-    .data-source-logo {
-      height: 40px;
-      width: auto;
-      max-width: 120px;
-      object-fit: contain;
-      filter: brightness(0) invert(1);
-      opacity: 0.7;
-      transition: all 0.3s ease;
-    }
-    
-    .data-source:hover .data-source-logo {
-      opacity: 1;
-    }
-    
-    .data-source-flag {
-      height: 35px;
-      width: auto;
-      border-radius: 4px;
-      opacity: 0.9;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    }
-    
-    .data-source:hover .data-source-flag {
-      opacity: 1;
-    }
-    
-    .logo-text-badge {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--white);
-      opacity: 0.7;
-      transition: all 0.3s ease;
-      letter-spacing: 1px;
-    }
-    
-    .data-source:hover .logo-text-badge {
-      opacity: 1;
-    }
-    
-    /* Partners */
-    .partners-grid {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 3rem;
-      max-width: 1000px;
-      margin: 0 auto;
-      align-items: center;
-    }
-    
-    .partner-logo {
-      height: 50px;
-      width: auto;
-      filter: grayscale(100%) brightness(2);
-      opacity: 0.5;
-      transition: all 0.3s ease;
-    }
-    
-    .partner-logo:hover {
-      filter: grayscale(0%) brightness(1);
-      opacity: 1;
-    }
-    
-    /* Case Study */
-    .case-study {
-      max-width: 900px;
-      margin: 0 auto;
-      background: linear-gradient(135deg, rgba(0, 104, 56, 0.1) 0%, rgba(26, 54, 93, 0.1) 100%);
-      border: 1px solid rgba(0, 168, 89, 0.2);
-      border-radius: 24px;
-      padding: 3rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
-    }
-    
-    .case-study-content h3 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.75rem;
-      margin-bottom: 1rem;
-    }
-    
-    .case-study-content p {
-      color: var(--gray-300);
-      margin-bottom: 1.5rem;
-    }
-    
-    .case-study-stats {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
-    }
-    
-    .case-stat {
-      text-align: center;
-      padding: 1.5rem;
-      background: rgba(255,255,255,0.05);
-      border-radius: 16px;
-    }
-    
-    .case-stat-number {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--green-light);
-    }
-    
-    .case-stat-label {
-      font-size: 0.85rem;
-      color: var(--gray-400);
-    }
-    
-    /* FAQ */
-    .faq-grid {
-      max-width: 800px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    
-    .faq-item {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.05);
-      border-radius: 12px;
-      overflow: hidden;
-      transition: all 0.3s ease;
-    }
-    
-    .faq-item:hover {
-      border-color: rgba(0, 168, 89, 0.3);
-    }
-    
-    .faq-question {
-      padding: 1.25rem 1.5rem;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-weight: 500;
-    }
-    
-    .faq-question:hover {
-      background: rgba(255,255,255,0.02);
-    }
-    
-    .faq-toggle {
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      background: rgba(0, 168, 89, 0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--green-light);
-      transition: transform 0.3s ease;
-    }
-    
-    .faq-item.active .faq-toggle {
-      transform: rotate(180deg);
-    }
-    
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease;
-    }
-    
-    .faq-item.active .faq-answer {
-      max-height: 200px;
-    }
-    
-    .faq-answer p {
-      padding: 0 1.5rem 1.25rem;
-      color: var(--gray-400);
-      font-size: 0.95rem;
-    }
-    
-    /* CTA Section */
-    .cta {
-      padding: 6rem 2rem;
-      text-align: center;
-    }
-    
-    .cta-box {
-      max-width: 700px;
-      margin: 0 auto;
-      background: linear-gradient(135deg, rgba(0, 104, 56, 0.2) 0%, rgba(26, 54, 93, 0.2) 100%);
-      border: 1px solid rgba(0, 168, 89, 0.2);
-      border-radius: 24px;
-      padding: 4rem;
-    }
-    
-    .cta h2 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
-    
-    .cta p {
-      color: var(--gray-300);
-      margin-bottom: 2rem;
-      font-size: 1.1rem;
-    }
-    
-    /* Demo Request Section */
-    .demo-request-container {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-      text-align: left;
-    }
-    
-    .demo-request-content h2 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      line-height: 1.2;
-    }
-    
-    .demo-request-content h2 .typing-text {
-      color: var(--green-light);
-      border-right: 3px solid var(--green-light);
-      padding-right: 5px;
-      animation: blink 1s infinite;
-    }
-    
-    @keyframes blink {
-      0%, 50% { border-color: var(--green-light); }
-      51%, 100% { border-color: transparent; }
-    }
-    
-    .demo-request-content p {
-      color: var(--gray-300);
-      font-size: 1.1rem;
-      margin-bottom: 2rem;
-    }
-    
-    .demo-benefits {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-    
-    .demo-benefit {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      color: var(--gray-300);
-    }
-    
-    .demo-benefit span {
-      color: var(--green-light);
-      font-weight: 700;
-    }
-    
-    .demo-request-form {
-      background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 24px;
-      padding: 2.5rem;
-    }
-    
-    .demo-request-form .form-group {
-      margin-bottom: 1rem;
-    }
-    
-    .demo-request-form input,
-    .demo-request-form select,
-    .demo-request-form textarea {
-      width: 100%;
-      padding: 1rem 1.25rem;
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 12px;
-      background: rgba(255,255,255,0.05);
-      color: var(--white);
-      font-size: 1rem;
-      font-family: inherit;
-      transition: all 0.3s ease;
-    }
-    
-    .demo-request-form input::placeholder,
-    .demo-request-form textarea::placeholder {
-      color: var(--gray-400);
-    }
-    
-    .demo-request-form input:focus,
-    .demo-request-form select:focus,
-    .demo-request-form textarea:focus {
-      outline: none;
-      border-color: var(--green-light);
-      background: rgba(0, 168, 89, 0.05);
-    }
-    
-    .demo-request-form select option {
-      background: var(--gray-800);
-      color: var(--white);
-    }
-    
-    .btn-full {
-      width: 100%;
-      justify-content: center;
-    }
-    
-    .form-note {
-      text-align: center;
-      margin-top: 1rem;
-      font-size: 0.85rem;
-      color: var(--gray-400);
-    }
-    
-    /* Footer */
-    footer {
-      padding: 3rem 2rem;
-      border-top: 1px solid rgba(255,255,255,0.05);
-    }
-    
-    .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 2rem;
-    }
-    
-    .footer-brand {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    
-    .footer-brand span {
-      color: var(--gray-300);
-      font-size: 0.9rem;
-    }
-    
-    .footer-links {
-      display: flex;
-      gap: 2rem;
-    }
-    
-    .footer-links a {
-      color: var(--gray-300);
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: color 0.3s ease;
-    }
-    
-    .footer-links a:hover {
-      color: var(--green-light);
-    }
-    
-    .footer-copy {
-      color: var(--gray-600);
-      font-size: 0.8rem;
-    }
-    
-    /* Mobile Menu */
-    .mobile-menu-btn {
-      display: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0.5rem;
-    }
-    
-    .mobile-menu-btn span {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: var(--white);
-      margin: 5px 0;
-      transition: all 0.3s ease;
-    }
-    
-    /* Responsive */
-    @media (max-width: 1024px) {
-      .stats-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-      
-      .use-cases-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      
-      .case-study {
-        grid-template-columns: 1fr;
-      }
-    }
-    
-    @media (max-width: 768px) {
-      header {
-        padding: 1rem;
-      }
-      
-      nav {
-        display: none;
-      }
-      
-      .mobile-menu-btn {
-        display: block;
-      }
-      
-      .hero {
-        padding: 7rem 1.5rem 3rem;
-      }
-      
-      .hero h1 {
-        font-size: 2.5rem;
-        letter-spacing: -1px;
-      }
-      
-      .hero p {
-        font-size: 1rem;
-      }
-      
-      .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-      }
-      
-      .stat {
-        padding: 1rem;
-      }
-      
-      .stat-number {
-        font-size: 1.5rem;
-      }
-      
-      .how-it-works {
-        grid-template-columns: 1fr;
-      }
-      
-      .products-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .product-card {
-        padding: 2rem;
-      }
-      
-      .use-cases-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
-      }
-      
-      .use-case {
-        padding: 1.5rem 1rem;
-      }
-      
-      .cta-box {
-        padding: 2rem;
-      }
-      
-      .demo-request-container {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-        text-align: center;
-      }
-      
-      .demo-request-content h2 {
-        font-size: 1.75rem;
-      }
-      
-      .demo-benefits {
-        align-items: center;
-      }
-      
-      .demo-request-form {
-        padding: 1.5rem;
-      }
-      
-      .footer-content {
-        flex-direction: column;
-        text-align: center;
-      }
-      
-      .footer-links {
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-      
-      .case-study {
-        padding: 2rem;
-      }
-      
-      .case-study-stats {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-    
-    @media (max-width: 480px) {
-      .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      
-      .use-cases-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4D AI Labs | Practical AI for Lesotho & Southern Africa</title>
+    <meta name="description" content="We build practical AI tools for governments, NGOs and businesses in Lesotho and South Africa. Offline-first, Sesotho support, local pricing.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #006838;
+            --primary-dark: #004d29;
+            --accent: #00D98B;
+            --accent-dim: rgba(0, 217, 139, 0.1);
+            --dark: #0F172A;
+            --dark-surface: #1E293B;
+            --gray: #64748B;
+            --light-gray: #94A3B8;
+            --white: #FFFFFF;
+            --border: #334155;
+            --whatsapp: #25D366;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif; color: var(--white); line-height: 1.6; background: var(--dark); font-size: 17px; }
+        .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+        .section { padding: 4rem 0; }
+        .section-border { border-top: 1px solid var(--border); }
+        
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 0.9rem 1.5rem; background: rgba(15, 23, 42, 0.97); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+        .nav-container { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .nav-logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+        .nav-logo img { height: 44px; }
+        .nav-brand { font-weight: 700; font-size: 1.2rem; color: var(--white); }
+        .nav-brand span { color: var(--accent); }
+        .nav-cta { background: var(--whatsapp); color: var(--white); padding: 0.55rem 1.1rem; border-radius: 6px; font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: all 0.2s; display: flex; align-items: center; gap: 0.4rem; }
+        .nav-cta:hover { opacity: 0.9; }
+        .nav-cta svg { width: 18px; height: 18px; fill: currentColor; }
+
+        .hero { padding: 6.5rem 0 3.5rem; background: linear-gradient(180deg, var(--dark) 0%, var(--dark-surface) 100%); }
+        .hero h1 { font-size: 2.3rem; font-weight: 700; line-height: 1.2; margin-bottom: 1rem; }
+        .hero-statement { font-size: 1.1rem; color: var(--light-gray); margin-bottom: 0.5rem; max-width: 580px; }
+        .hero-location { font-size: 0.95rem; color: var(--gray); margin-bottom: 1.75rem; }
+        .hero-location strong { color: var(--accent); }
+        .hero-buttons { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2.5rem; }
+        
+        .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 1.4rem; border-radius: 8px; font-weight: 600; font-size: 1rem; text-decoration: none; transition: all 0.2s; border: none; cursor: pointer; }
+        .btn-whatsapp { background: var(--whatsapp); color: var(--white); }
+        .btn-whatsapp:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3); }
+        .btn-secondary { background: var(--dark-surface); color: var(--white); border: 1px solid var(--border); }
+        .btn-secondary:hover { border-color: var(--accent); }
+        .btn-accent { background: var(--accent); color: var(--dark); }
+        .btn-accent:hover { opacity: 0.9; }
+        .btn svg { width: 20px; height: 20px; fill: currentColor; }
+
+        .stats-bar { display: flex; flex-wrap: wrap; gap: 1.5rem; padding: 1.25rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .stat-item { display: flex; align-items: baseline; gap: 0.4rem; }
+        .stat-number { font-size: 1.5rem; font-weight: 700; color: var(--accent); }
+        .stat-label { font-size: 0.9rem; color: var(--light-gray); }
+
+        .trust-bar { padding: 2rem 0; text-align: center; }
+        .trust-label { font-size: 0.8rem; color: var(--gray); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; }
+        .trust-logos { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
+        .trust-logo { background: var(--dark-surface); border: 1px solid var(--border); padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.85rem; color: var(--light-gray); font-weight: 500; }
+
+        .section-header { margin-bottom: 1.75rem; }
+        .section-label { font-size: 0.8rem; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.4rem; }
+        .section-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.4rem; }
+        .section-desc { color: var(--light-gray); font-size: 1rem; }
+
+        .products-grid { display: grid; gap: 1rem; }
+        .product-card { background: var(--dark-surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: all 0.2s; }
+        .product-card:hover { border-color: rgba(0, 217, 139, 0.3); }
+        .product-main { padding: 1.25rem 1.5rem; }
+        .product-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.6rem; }
+        .product-icon { font-size: 1.4rem; }
+        .product-title { font-size: 1.1rem; font-weight: 600; margin: 0; }
+        .product-badge { display: inline-block; background: var(--accent); color: var(--dark); padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; margin-left: 0.5rem; }
+        .product-badge.soon { background: #F59E0B; }
+        .product-desc { color: var(--light-gray); font-size: 0.95rem; line-height: 1.5; margin-bottom: 0.75rem; }
+        .product-stats { display: flex; gap: 1.25rem; margin-bottom: 0.75rem; }
+        .product-stat { font-size: 0.85rem; color: var(--gray); }
+        .product-stat strong { color: var(--white); font-weight: 600; }
+        .product-link { display: inline-flex; align-items: center; gap: 0.3rem; color: var(--accent); font-weight: 600; font-size: 0.9rem; text-decoration: none; }
+        .product-link:hover { text-decoration: underline; }
+        
+        .product-demo { background: #0B1120; border-top: 1px solid var(--border); padding: 1rem 1.5rem; }
+        .demo-label { font-size: 0.7rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem; }
+        .demo-conversation { font-size: 0.9rem; }
+        .demo-q { color: var(--light-gray); margin-bottom: 0.4rem; }
+        .demo-q::before { content: "Q: "; color: var(--accent); font-weight: 600; }
+        .demo-a { color: var(--white); background: rgba(0, 217, 139, 0.1); padding: 0.5rem 0.75rem; border-radius: 6px; border-left: 3px solid var(--accent); }
+        .demo-a::before { content: "→ "; color: var(--accent); }
+
+        .difference-block { background: var(--dark-surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-top: 1.5rem; }
+        .difference-header { padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); font-weight: 600; }
+        .difference-content { display: grid; grid-template-columns: 1fr 1fr; }
+        .difference-side { padding: 1.25rem 1.5rem; }
+        .difference-side.before { background: rgba(239, 68, 68, 0.05); border-right: 1px solid var(--border); }
+        .difference-side.after { background: rgba(0, 217, 139, 0.05); }
+        .difference-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem; font-weight: 600; }
+        .difference-side.before .difference-label { color: #EF4444; }
+        .difference-side.after .difference-label { color: var(--accent); }
+        .difference-side p { font-size: 0.95rem; color: var(--light-gray); }
+        .difference-side.after p { color: var(--white); }
+
+        .simple-list { list-style: none; }
+        .simple-list li { padding: 0.7rem 0; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.95rem; }
+        .simple-list li:last-child { border-bottom: none; }
+        .simple-list .icon { font-size: 1.1rem; flex-shrink: 0; }
+        .simple-list strong { color: var(--white); }
+        .simple-list span { color: var(--light-gray); }
+
+        .sectors-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+        .sector-card { background: var(--dark-surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem; transition: all 0.2s; }
+        .sector-card:hover { border-color: rgba(0, 217, 139, 0.3); background: rgba(0, 217, 139, 0.03); }
+        .sector-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .sector-card h4 { font-size: 1rem; font-weight: 600; margin-bottom: 0.3rem; }
+        .sector-card p { font-size: 0.85rem; color: var(--light-gray); line-height: 1.4; }
+
+        .proof-grid { display: grid; gap: 1rem; }
+        .proof-item { background: var(--dark-surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem 1.5rem; }
+        .proof-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.4rem; }
+        .proof-type { font-size: 0.7rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px; background: var(--accent-dim); padding: 0.2rem 0.5rem; border-radius: 4px; }
+        .proof-item h4 { font-weight: 600; margin-bottom: 0.3rem; }
+        .proof-item p { color: var(--light-gray); font-size: 0.9rem; line-height: 1.5; }
+        .proof-metric { margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border); font-size: 0.85rem; }
+        .proof-metric strong { color: var(--accent); font-weight: 700; }
+
+        .cta-block { background: linear-gradient(135deg, var(--primary-dark) 0%, var(--dark-surface) 100%); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; text-align: center; margin-top: 2rem; }
+        .cta-block h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .cta-block p { margin-bottom: 1.25rem; color: var(--light-gray); font-size: 0.95rem; }
+
+        .contact-section { background: var(--dark-surface); }
+        .contact-grid { display: grid; gap: 2rem; }
+        .contact-primary { background: var(--dark); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; text-align: center; }
+        .contact-primary h3 { font-size: 1.3rem; margin-bottom: 0.75rem; }
+        .contact-primary p { color: var(--light-gray); margin-bottom: 1.5rem; font-size: 0.95rem; }
+        .contact-primary .btn { width: 100%; max-width: 300px; justify-content: center; font-size: 1.05rem; padding: 1rem 1.5rem; }
+        .contact-alternative { text-align: center; padding-top: 1.5rem; border-top: 1px solid var(--border); margin-top: 1.5rem; }
+        .contact-alternative p { color: var(--gray); font-size: 0.9rem; margin-bottom: 1rem; }
+        .contact-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; }
+        .contact-link { color: var(--light-gray); text-decoration: none; font-size: 0.95rem; display: flex; align-items: center; gap: 0.4rem; }
+        .contact-link:hover { color: var(--accent); }
+        
+        .contact-form { background: var(--dark); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; }
+        .contact-form h3 { font-size: 1.1rem; margin-bottom: 1rem; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+        .form-group { margin-bottom: 0.75rem; }
+        .form-group.full { grid-column: span 2; }
+        .form-group label { display: block; font-size: 0.85rem; font-weight: 500; margin-bottom: 0.3rem; color: var(--light-gray); }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.7rem 0.9rem; background: var(--dark-surface); border: 1px solid var(--border); border-radius: 6px; color: var(--white); font-size: 0.95rem; font-family: inherit; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--accent); }
+        .form-group textarea { resize: vertical; min-height: 80px; }
+        .form-group select { cursor: pointer; }
+
+        .footer { padding: 2rem 0; border-top: 1px solid var(--border); text-align: center; }
+        .footer p { color: var(--gray); font-size: 0.85rem; }
+        .footer a { color: var(--accent); text-decoration: none; }
+        .footer-tagline { color: var(--accent); margin-top: 0.3rem; font-size: 0.8rem; }
+
+        .sticky-cta { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: rgba(15, 23, 42, 0.97); backdrop-filter: blur(10px); border-top: 1px solid var(--border); padding: 0.75rem 1rem; z-index: 999; }
+        .sticky-cta .btn { width: 100%; justify-content: center; }
+
+        .whatsapp-float { position: fixed; bottom: 24px; right: 24px; width: 56px; height: 56px; background: var(--whatsapp); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); z-index: 998; text-decoration: none; transition: transform 0.2s; }
+        .whatsapp-float:hover { transform: scale(1.05); }
+        .whatsapp-float svg { width: 28px; height: 28px; fill: white; }
+
+        @media (min-width: 640px) {
+            .proof-grid { grid-template-columns: repeat(2, 1fr); }
+            .contact-grid { grid-template-columns: 1fr 1fr; }
+            .sectors-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 639px) {
+            body { font-size: 16px; }
+            .hero { padding: 6rem 0 3rem; }
+            .hero h1 { font-size: 1.9rem; }
+            .section { padding: 3rem 0; }
+            .section-title { font-size: 1.35rem; }
+            .hero-buttons { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
+            .stats-bar { gap: 1rem; }
+            .stat-item { flex: 1 1 45%; }
+            .difference-content { grid-template-columns: 1fr; }
+            .difference-side.before { border-right: none; border-bottom: 1px solid var(--border); }
+            .sectors-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .form-group.full { grid-column: span 1; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .sticky-cta { display: block; }
+            .whatsapp-float { display: none; }
+            .footer { padding-bottom: 5rem; }
+        }
+    </style>
 </head>
 <body>
-  <div class="bg-animation"></div>
-  <div class="grid-overlay"></div>
-  
-  <header>
-    <div class="header-content">
-      <a href="/" class="logo">
-        <img src="https://4dcs.co.za/images/logo.jpg" alt="4D Climate Solutions" class="logo-icon">
-        <div class="logo-text">
-          <span class="logo-main">4D AI Labs</span>
-          <span class="logo-sub">Intelligence for Development</span>
-        </div>
-      </a>
-      
-      <nav>
-        <a href="#demo">Try Demo</a>
-        <a href="#products">Products</a>
-        <a href="#about">About</a>
-        <a href="https://4dcs.co.za" target="_blank">4D Climate Solutions</a>
-        <a href="#contact" class="nav-cta">Get in Touch</a>
-      </nav>
-      
-      <button class="mobile-menu-btn" onclick="toggleMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </div>
-  </header>
-  
-  <main>
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="hero-content">
-        <div class="hero-badge">
-          <span class="pulse"></span>
-          Building AI for Africa
-        </div>
-        <h1>
-          <span class="gradient">Intelligence</span><br>
-          for Development
-        </h1>
-        <p>
-          AI-powered solutions tackling Africa's development challenges. 
-          From national statistics to real-time monitoring, we build tools that create impact.
-        </p>
-        <div class="hero-buttons">
-          <a href="#demo" class="btn btn-primary">
-            <span>🤖</span> Try Live Demo
-          </a>
-          <a href="#products" class="btn btn-secondary">
-            <span>↓</span> Explore Products
-          </a>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Stats Section -->
-    <section class="stats">
-      <div class="stats-grid">
-        <div class="stat">
-          <div class="stat-number">10+</div>
-          <div class="stat-label">AI Products</div>
-        </div>
-        <div class="stat">
-          <div class="stat-number">15+</div>
-          <div class="stat-label">Data Sources</div>
-        </div>
-        <div class="stat">
-          <div class="stat-number">10K+</div>
-          <div class="stat-label">Monthly Queries</div>
-        </div>
-        <div class="stat">
-          <div class="stat-number">99.9%</div>
-          <div class="stat-label">Uptime</div>
-        </div>
-        <div class="stat">
-          <div class="stat-number">&lt;3s</div>
-          <div class="stat-label">Avg Response</div>
-        </div>
-        <div class="stat">
-          <div class="stat-number">5+</div>
-          <div class="stat-label">Industries</div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Live Demo Section -->
-    <section class="section demo-section" id="demo">
-      <div class="section-header">
-        <div class="section-label">Live Demo</div>
-        <h2 class="section-title">Try Lipalo Now</h2>
-        <p class="section-desc">Ask a question about Lesotho statistics and see AI in action</p>
-      </div>
-      
-      <div class="demo-container">
-        <div class="demo-widget">
-          <div class="demo-header">
-            <div class="demo-header-icon">📊</div>
-            <div class="demo-header-text">
-              <h3>Lipalo</h3>
-              <span>Lesotho Statistics Assistant</span>
-            </div>
-          </div>
-          
-          <div class="demo-chat" id="demoChat">
-            <div class="demo-message assistant">
-              👋 Welcome! I'm Lipalo, your AI assistant for Lesotho statistics. Select a question below to see me in action!
-            </div>
-          </div>
-          
-          <div class="demo-input">
-            <select id="demoQuestion">
-              <option value="">Select a question...</option>
-              <option value="What is the population of Lesotho?">What is the population of Lesotho?</option>
-              <option value="What is the unemployment rate in Lesotho?">What is the unemployment rate?</option>
-              <option value="What is the literacy rate in Lesotho?">What is the literacy rate?</option>
-              <option value="What are the main crops grown in Lesotho?">What crops are grown in Lesotho?</option>
-              <option value="What is Lesotho's GDP?">What is Lesotho's GDP?</option>
-            </select>
-            <button onclick="askDemo()" id="demoBtn">Ask →</button>
-          </div>
-          
-          <div class="demo-footer">
-            <a href="https://lipalo.4dcs.co.za" target="_blank">Want more? Try the full Lipalo experience →</a>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- How It Works -->
-    <section class="section section-dark">
-      <div class="section-header">
-        <div class="section-label">How It Works</div>
-        <h2 class="section-title">Our AI Pipeline</h2>
-        <p class="section-desc">From your data to actionable intelligence</p>
-      </div>
-      
-      <div class="how-it-works">
-        <div class="step">
-          <div class="step-number">1</div>
-          <div class="step-icon">🔗</div>
-          <h3>Connect</h3>
-          <p>Link your data sources — documents, cameras, sensors, databases, APIs, or live feeds</p>
-        </div>
-        <div class="step">
-          <div class="step-number">2</div>
-          <div class="step-icon">🧠</div>
-          <h3>Analyze</h3>
-          <p>AI extracts insights, detects patterns, predicts outcomes, and understands context</p>
-        </div>
-        <div class="step">
-          <div class="step-number">3</div>
-          <div class="step-icon">⚡</div>
-          <h3>Act</h3>
-          <p>Automate decisions, trigger alerts, generate reports, or power real-time dashboards</p>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Products Section -->
-    <section class="section" id="products">
-      <div class="section-header">
-        <div class="section-label">Our Products</div>
-        <h2 class="section-title">AI Tools for Real-World Impact</h2>
-        <p class="section-desc">Purpose-built AI solutions addressing specific challenges in Southern Africa</p>
-      </div>
-      
-      <div class="products-grid">
-        <!-- Lipalo -->
-        <div class="product-card">
-          <div class="product-icon lipalo">📊</div>
-          <span class="product-status status-live">Live</span>
-          <h3>Lipalo</h3>
-          <p>AI-powered statistics assistant for Lesotho. Access food security data, health metrics, economic indicators, and demographic information through natural conversation.</p>
-          <div class="product-features">
-            <span class="feature-tag">50+ BOS Reports</span>
-            <span class="feature-tag">Natural Language</span>
-            <span class="feature-tag">Citations</span>
-            <span class="feature-tag">PDF Export</span>
-          </div>
-          <a href="https://lipalo.4dcs.co.za" class="product-link" target="_blank">
-            Launch Lipalo
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </a>
-        </div>
-        
-        <!-- Traffic Bot -->
-        <div class="product-card">
-          <div class="product-icon traffic">🚗</div>
-          <span class="product-status status-beta">Beta</span>
-          <h3>Maseru Bridge Traffic</h3>
-          <p>Real-time traffic monitoring at the Maseru Bridge border crossing. AI-powered analysis of traffic conditions to help plan your crossing.</p>
-          <div class="product-features">
-            <span class="feature-tag">Live Camera Feed</span>
-            <span class="feature-tag">AI Analysis</span>
-            <span class="feature-tag">Traffic Alerts</span>
-            <span class="feature-tag">WhatsApp Bot</span>
-          </div>
-          <a href="https://traffic.4dcs.co.za" class="product-link" target="_blank">
-            Check Traffic
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </a>
-        </div>
-        
-        <!-- Coming Soon -->
-        <div class="product-card">
-          <div class="product-icon coming">🚀</div>
-          <span class="product-status status-soon">Coming Soon</span>
-          <h3>More Products</h3>
-          <p>We're building more AI tools for development. Agriculture monitoring, health data assistants, and climate intelligence solutions are in the works.</p>
-          <div class="product-features">
-            <span class="feature-tag">AgriBot</span>
-            <span class="feature-tag">HealthAI</span>
-            <span class="feature-tag">ClimateWatch</span>
-          </div>
-          <a href="#contact" class="product-link">
-            Get Notified
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Use Cases -->
-    <section class="section section-dark">
-      <div class="section-header">
-        <div class="section-label">AI Use Cases</div>
-        <h2 class="section-title">Built For Every Challenge</h2>
-        <p class="section-desc">Intelligent solutions across industries</p>
-      </div>
-      
-      <div class="use-cases-grid">
-        <div class="use-case">
-          <div class="use-case-icon">🏛️</div>
-          <h4>Government</h4>
-          <p>Policy analytics & citizen services</p>
-        </div>
-        <div class="use-case">
-          <div class="use-case-icon">🌍</div>
-          <h4>NGOs</h4>
-          <p>Impact measurement & M&E</p>
-        </div>
-        <div class="use-case">
-          <div class="use-case-icon">🏢</div>
-          <h4>Enterprise</h4>
-          <p>Process optimization & automation</p>
-        </div>
-        <div class="use-case">
-          <div class="use-case-icon">🚗</div>
-          <h4>Transport</h4>
-          <p>Real-time monitoring & logistics</p>
-        </div>
-        <div class="use-case">
-          <div class="use-case-icon">🌾</div>
-          <h4>Agriculture</h4>
-          <p>Crop monitoring & market intelligence</p>
-        </div>
-        <div class="use-case">
-          <div class="use-case-icon">🏥</div>
-          <h4>Healthcare</h4>
-          <p>Data analysis & resource planning</p>
-        </div>
-        <div class="use-case">
-          <div class="use-case-icon">💬</div>
-          <h4>Customer Service</h4>
-          <p>AI chatbots & automated support</p>
-        </div>
-        <div class="use-case">
-          <div class="use-case-icon">⚙️</div>
-          <h4>Operations</h4>
-          <p>Real-time problem solving</p>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Data Sources -->
-    <section class="section" style="padding: 4rem 2rem;">
-      <div class="section-header">
-        <div class="section-label">Trusted Data</div>
-        <h2 class="section-title">Powered by Official Sources</h2>
-        <p class="section-desc">We only use verified, authoritative data</p>
-      </div>
-      
-      <div class="data-sources">
-        <div class="data-source">
-          <img src="https://flagcdn.com/h60/ls.png" alt="Bureau of Statistics Lesotho" class="data-source-flag">
-        </div>
-        <div class="data-source">
-          <img src="https://www.worldbank.org/content/dam/wbr-redesign/logos/logo-wb-header-en.svg" alt="World Bank" class="data-source-logo">
-        </div>
-        <div class="data-source">
-          <img src="https://cdn.who.int/media/images/default-source/infographics/who-emblem.png" alt="WHO" class="data-source-logo">
-        </div>
-        <div class="data-source">
-          <img src="https://www.unicef.org/sites/default/files/styles/logo/public/English_9.png.webp" alt="UNICEF" class="data-source-logo">
-        </div>
-        <div class="data-source">
-          <img src="https://www.fao.org/images/corporatelibraries/fao-logo/fao-logo-en.svg" alt="FAO" class="data-source-logo">
-        </div>
-        <div class="data-source">
-          <span class="logo-text-badge">ILO</span>
-        </div>
-        <div class="data-source">
-          <span class="logo-text-badge">WFP</span>
-        </div>
-        <div class="data-source">
-          <img src="https://centre.humdata.org/wp-content/uploads/hdx_new_logo_accronym2.png" alt="HDX" class="data-source-logo">
-        </div>
-      </div>
-    </section>
-    
-    <!-- Case Study -->
-    <section class="section section-dark">
-      <div class="section-header">
-        <div class="section-label">Case Study</div>
-        <h2 class="section-title">Lipalo: AI for Lesotho Statistics</h2>
-      </div>
-      
-      <div class="case-study">
-        <div class="case-study-content">
-          <h3>Transforming Data Access</h3>
-          <p>Before Lipalo, accessing Lesotho's official statistics meant downloading multiple PDF reports and searching through hundreds of pages. Now, anyone can get instant, accurate answers with full citations.</p>
-          <p>From food security to education, health to employment — Lipalo covers 11 categories of national statistics, all accessible through natural conversation.</p>
-          <a href="https://lipalo.4dcs.co.za" class="btn btn-primary" target="_blank">
-            Try Lipalo Free →
-          </a>
-        </div>
-        <div class="case-study-stats">
-          <div class="case-stat">
-            <div class="case-stat-number">50+</div>
-            <div class="case-stat-label">Reports Processed</div>
-          </div>
-          <div class="case-stat">
-            <div class="case-stat-number">11</div>
-            <div class="case-stat-label">Data Categories</div>
-          </div>
-          <div class="case-stat">
-            <div class="case-stat-number">1250+</div>
-            <div class="case-stat-label">Data Points</div>
-          </div>
-          <div class="case-stat">
-            <div class="case-stat-number">&lt;5s</div>
-            <div class="case-stat-label">Response Time</div>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- About Section -->
-    <section class="section" id="about">
-      <div class="section-header">
-        <div class="section-label">About Us</div>
-        <h2 class="section-title">Built by 4D Climate Solutions</h2>
-        <p class="section-desc">Combining development expertise with cutting-edge AI</p>
-      </div>
-      
-      <div class="case-study" style="background: rgba(255,255,255,0.02); border-color: rgba(255,255,255,0.1);">
-        <div class="case-study-content">
-          <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">
-            4D AI Labs is the innovation arm of <strong>4D Climate Solutions</strong>, a climate and development consultancy based in Lesotho with operations across Southern Africa since 2018.
-          </p>
-          <p>
-            We combine deep domain expertise in development with cutting-edge AI technology to build tools that make a real difference. Our solutions are designed for the African context — working with local data, addressing local challenges.
-          </p>
-          <div style="margin-top: 2rem;">
-            <a href="https://4dcs.co.za" class="btn btn-secondary" target="_blank">
-              Learn More About 4DCS →
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="https://4dcs.co.za" class="nav-logo">
+                <img src="https://4dcs.co.za/images/logo.jpg" alt="4D Climate Solutions">
+                <span class="nav-brand">4D <span>AI Labs</span></span>
             </a>
-          </div>
+            <a href="https://wa.me/27761080024?text=Hi%204D%20AI%2C%20I%27d%20like%20to%20discuss%20a%20project." class="nav-cta">
+                <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                Chat
+            </a>
         </div>
-        <div class="case-study-stats">
-          <div class="case-stat">
-            <div class="case-stat-number">7+</div>
-            <div class="case-stat-label">Years Experience</div>
-          </div>
-          <div class="case-stat">
-            <div class="case-stat-number">8</div>
-            <div class="case-stat-label">Districts Covered</div>
-          </div>
-          <div class="case-stat">
-            <div class="case-stat-number">10</div>
-            <div class="case-stat-label">Team Members</div>
-          </div>
-          <div class="case-stat">
-            <div class="case-stat-number">5+</div>
-            <div class="case-stat-label">Major Partners</div>
-          </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Practical AI for Lesotho & Southern Africa</h1>
+            <p class="hero-statement">We build AI tools for governments, NGOs, and businesses—designed for low-bandwidth, local languages, and African realities.</p>
+            <p class="hero-location">Based in <strong>Maseru & Bloemfontein</strong>, serving SADC clients with local context and global-grade AI.</p>
+            <div class="hero-buttons">
+                <a href="https://wa.me/27761080024?text=Hi%204D%20AI%2C%20I%27d%20like%20to%20discuss%20a%20project." class="btn btn-whatsapp">
+                    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    Discuss Your Project
+                </a>
+                <a href="#products" class="btn btn-secondary">See Live Products</a>
+            </div>
+            <div class="stats-bar">
+                <div class="stat-item"><span class="stat-number">3</span><span class="stat-label">Live Products</span></div>
+                <div class="stat-item"><span class="stat-number">50K+</span><span class="stat-label">AI Queries Processed</span></div>
+                <div class="stat-item"><span class="stat-number">8</span><span class="stat-label">Districts Served</span></div>
+                <div class="stat-item"><span class="stat-number">5+</span><span class="stat-label">Years in Lesotho</span></div>
+            </div>
         </div>
-      </div>
     </section>
-    
-    <!-- FAQ -->
-    <section class="section section-dark">
-      <div class="section-header">
-        <div class="section-label">FAQ</div>
-        <h2 class="section-title">Common Questions</h2>
-      </div>
-      
-      <div class="faq-grid">
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
-            <span>What AI technologies do you use?</span>
-            <div class="faq-toggle">▼</div>
-          </div>
-          <div class="faq-answer">
-            <p>We leverage cutting-edge LLMs (GPT-4, Claude), computer vision, RAG pipelines, and custom ML models. Our stack includes vector databases for semantic search, real-time streaming for live data, and edge computing for low-latency applications.</p>
-          </div>
+
+    <section class="trust-bar">
+        <div class="container">
+            <div class="trust-label">Trusted by</div>
+            <div class="trust-logos">
+                <span class="trust-logo">World Bank / IFC</span>
+                <span class="trust-logo">Government of Lesotho</span>
+                <span class="trust-logo">LHDA</span>
+                <span class="trust-logo">University of Virginia</span>
+                <span class="trust-logo">National University of Lesotho</span>
+            </div>
         </div>
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
-            <span>How long does it take to build a custom AI solution?</span>
-            <div class="faq-toggle">▼</div>
-          </div>
-          <div class="faq-answer">
-            <p>Simple chatbots and data assistants: 2-4 weeks. Complex integrations with multiple data sources: 4-8 weeks. Enterprise-grade solutions with custom models: 8-12 weeks. We follow agile methodology with weekly demos so you see progress immediately.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
-            <span>Can you integrate with our existing systems?</span>
-            <div class="faq-toggle">▼</div>
-          </div>
-          <div class="faq-answer">
-            <p>Absolutely. We've integrated with ERPs, CRMs, databases (SQL/NoSQL), REST APIs, WhatsApp, Slack, Teams, and custom legacy systems. If it has an API or data export, we can connect it.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
-            <span>Is my data secure?</span>
-            <div class="faq-toggle">▼</div>
-          </div>
-          <div class="faq-answer">
-            <p>Security is paramount. We offer on-premise deployment for sensitive data, end-to-end encryption, SOC2-compliant cloud infrastructure, and strict data retention policies. Your data is never used to train external models.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
-            <span>What makes 4D AI different from other AI vendors?</span>
-            <div class="faq-toggle">▼</div>
-          </div>
-          <div class="faq-answer">
-            <p>We're not just technologists — we understand development, government, and African markets. Our solutions are built for real-world constraints: low bandwidth, multilingual users, offline capability, and local context. Plus, we're based in the region, not a distant timezone.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
-            <span>Do you provide ongoing support?</span>
-            <div class="faq-toggle">▼</div>
-          </div>
-          <div class="faq-answer">
-            <p>Yes. All solutions include 3 months of support. We offer SLA-backed maintenance plans with 24/7 monitoring, automatic updates, performance optimization, and dedicated account management for enterprise clients.</p>
-          </div>
-        </div>
-      </div>
     </section>
-    
-    <!-- Request Demo Section -->
-    <section class="cta" id="contact">
-      <div class="demo-request-container">
-        <div class="demo-request-content">
-          <div class="section-label">Ready to Transform?</div>
-          <h2>See AI in Action for <span class="typing-text"></span></h2>
-          <p>Book a personalized demo and discover how 4D AI can solve your specific challenges — whether it's data analysis, process automation, or real-time monitoring.</p>
-          
-          <div class="demo-benefits">
-            <div class="demo-benefit">
-              <span>✓</span> 30-minute personalized session
+
+    <section class="section section-border" id="products">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Live Products</div>
+                <h2 class="section-title">AI Tools You Can Try Today</h2>
             </div>
-            <div class="demo-benefit">
-              <span>✓</span> See solutions for your use case
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-main">
+                        <div class="product-header">
+                            <div class="product-icon">📊</div>
+                            <h3 class="product-title">Lipalo <span class="product-badge">Live</span></h3>
+                        </div>
+                        <p class="product-desc">Lesotho data assistant. Ask questions about population, economy, agriculture—get instant answers with citations from official sources.</p>
+                        <div class="product-stats">
+                            <span class="product-stat"><strong>15,000+</strong> queries answered</span>
+                            <span class="product-stat"><strong>10+</strong> govt departments using</span>
+                        </div>
+                        <a href="https://lipalo.4dcs.co.za" target="_blank" class="product-link">Try Lipalo Free →</a>
+                    </div>
+                    <div class="product-demo">
+                        <div class="demo-label">Example Query</div>
+                        <div class="demo-conversation">
+                            <div class="demo-q">What was maize production in Leribe district last year?</div>
+                            <div class="demo-a">Leribe produced 12,450 metric tons of maize in 2023, representing 18% of national production. <em>Source: Bureau of Statistics</em></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-main">
+                        <div class="product-header">
+                            <div class="product-icon">🚗</div>
+                            <h3 class="product-title">Traffic Monitor <span class="product-badge">Live</span></h3>
+                        </div>
+                        <p class="product-desc">Real-time AI analysis of Maseru Bridge border crossing. Know before you go—avoid peak congestion at Lesotho busiest checkpoint.</p>
+                        <div class="product-stats">
+                            <span class="product-stat"><strong>500+</strong> daily analyses</span>
+                            <span class="product-stat"><strong>35,000+</strong> monthly insights</span>
+                        </div>
+                        <a href="https://traffic.4dcs.co.za" target="_blank" class="product-link">Check Live Traffic →</a>
+                    </div>
+                    <div class="product-demo">
+                        <div class="demo-label">What You See</div>
+                        <div class="demo-conversation">
+                            <div class="demo-a">🟢 Light traffic • ~5 min wait • Best time to cross: Now or after 6pm</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="demo-benefit">
-              <span>✓</span> Get a custom implementation plan
+            <div class="section-header" style="margin-top: 2.5rem;">
+                <div class="section-label">Coming Soon</div>
+                <h2 class="section-title">Solutions in Development</h2>
             </div>
-          </div>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-main">
+                        <div class="product-header">
+                            <div class="product-icon">🌾</div>
+                            <h3 class="product-title">Agri Advisory <span class="product-badge soon">In Dev</span></h3>
+                        </div>
+                        <p class="product-desc">Smart farming advice via SMS and WhatsApp. Pest ID, weather alerts, planting calendars—works on any phone, in Sesotho.</p>
+                        <span class="product-stat" style="color: var(--gray);">Pilot launching Q2 2025</span>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-main">
+                        <div class="product-header">
+                            <div class="product-icon">💳</div>
+                            <h3 class="product-title">Credit Scoring <span class="product-badge soon">In Dev</span></h3>
+                        </div>
+                        <p class="product-desc">Alternative credit models for underbanked populations. Uses mobile and utility data where traditional metrics dont exist.</p>
+                        <span class="product-stat" style="color: var(--gray);">API available for partners</span>
+                    </div>
+                </div>
+            </div>
+            <div class="difference-block">
+                <div class="difference-header">See the Difference</div>
+                <div class="difference-content">
+                    <div class="difference-side before">
+                        <div class="difference-label">Without AI</div>
+                        <p>Hours searching spreadsheets, calling departments, waiting for reports. Data is scattered, outdated, or inaccessible.</p>
+                    </div>
+                    <div class="difference-side after">
+                        <div class="difference-label">With 4D AI</div>
+                        <p>Ask in plain English, get cited answers in seconds. Real-time data, always available, works offline.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="cta-block">
+                <h3>Need something custom?</h3>
+                <p>We build bespoke AI solutions for your specific challenges.</p>
+                <a href="https://wa.me/27761080024?text=Hi%2C%20I%20need%20a%20custom%20AI%20solution." class="btn btn-whatsapp">
+                    <svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    Discuss Custom Solution
+                </a>
+            </div>
         </div>
-        
-        <div class="demo-request-form">
-          <form id="demoRequestForm" action="https://formsubmit.co/info@4dcs.co.za" method="POST">
-            <input type="hidden" name="_subject" value="4D AI Demo Request">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_next" value="https://4dcs.co.za/thank-you.html">
-            <div class="form-group">
-              <input type="text" name="name" placeholder="Your Name" required>
-            </div>
-            <div class="form-group">
-              <input type="email" name="email" placeholder="Work Email" required>
-            </div>
-            <div class="form-group">
-              <input type="text" name="organization" placeholder="Organization">
-            </div>
-            <div class="form-group">
-              <select name="interest" required>
-                <option value="">What interests you?</option>
-                <option value="Data Analytics">Data Analytics & Insights</option>
-                <option value="Process Automation">Process Automation</option>
-                <option value="Customer Service AI">Customer Service AI</option>
-                <option value="Real-time Monitoring">Real-time Monitoring</option>
-                <option value="Custom Solution">Custom AI Solution</option>
-                <option value="General Inquiry">General Inquiry</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <textarea name="message" placeholder="Tell us about your challenge (optional)" rows="3"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary btn-full">
-              <span>🚀</span> Request Demo
-            </button>
-            <p class="form-note">We'll respond within 24 hours</p>
-          </form>
-        </div>
-      </div>
     </section>
-  </main>
-  
-  <footer>
-    <div class="footer-content">
-      <div class="footer-brand">
-        <span>A product of <strong>4D Climate Solutions</strong></span>
-      </div>
-      <div class="footer-links">
-        <a href="https://4dcs.co.za" target="_blank">Main Website</a>
-        <a href="https://4dcs.co.za/contact.html" target="_blank">Contact</a>
-        <a href="https://4dcs.co.za/privacy.html" target="_blank">Privacy</a>
-      </div>
-      <div class="footer-copy">
-        © 2025 4D Climate Solutions (Pty) Ltd. All rights reserved.
-      </div>
+
+    <section class="section section-border" id="sectors">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Who We Serve</div>
+                <h2 class="section-title">Solutions for Your Sector</h2>
+            </div>
+            <div class="sectors-grid">
+                <div class="sector-card"><div class="sector-icon">🏛️</div><h4>Government</h4><p>Data dashboards, citizen portals, M&E systems for ministries.</p></div>
+                <div class="sector-card"><div class="sector-icon">🌍</div><h4>NGOs & Development</h4><p>Field data collection, impact tracking, beneficiary management.</p></div>
+                <div class="sector-card"><div class="sector-icon">🏦</div><h4>Financial Services</h4><p>Credit scoring, fraud detection, customer analytics.</p></div>
+                <div class="sector-card"><div class="sector-icon">🌾</div><h4>Agriculture</h4><p>Farm management, supply chain, extension services.</p></div>
+                <div class="sector-card"><div class="sector-icon">🏢</div><h4>Local Business</h4><p>Process automation, chatbots, inventory optimization.</p></div>
+                <div class="sector-card"><div class="sector-icon">🎓</div><h4>Education & Research</h4><p>Data analysis, research tools, student management.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-border" id="why">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Built for Southern Africa</div>
+                <h2 class="section-title">Why It Works Here</h2>
+            </div>
+            <ul class="simple-list">
+                <li><span class="icon">📶</span><div><strong>2G/3G Optimized</strong> — <span>Light pages, compressed data, works on slow connections</span></div></li>
+                <li><span class="icon">📴</span><div><strong>Offline-First</strong> — <span>Apps work without internet, sync when connected</span></div></li>
+                <li><span class="icon">🗣️</span><div><strong>Local Languages</strong> — <span>Sesotho and Zulu interfaces, voice support coming</span></div></li>
+                <li><span class="icon">💵</span><div><strong>Regional Pricing</strong> — <span>Southern Africa rates, not Silicon Valley invoices</span></div></li>
+                <li><span class="icon">🧪</span><div><strong>Field-Tested</strong> — <span>Every solution tested in real rural conditions</span></div></li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="section section-border" id="work">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Track Record</div>
+                <h2 class="section-title">Projects & Results</h2>
+            </div>
+            <div class="proof-grid">
+                <div class="proof-item">
+                    <div class="proof-header"><h4>LLWDP II Water Project</h4><span class="proof-type">World Bank</span></div>
+                    <p>Mobile data collection for community mobilization across Lesotho water sector.</p>
+                    <div class="proof-metric"><strong>4 zones</strong> • <strong>50+ field agents</strong> • <strong>10,000+ households</strong></div>
+                </div>
+                <div class="proof-item">
+                    <div class="proof-header"><h4>SADP II Agriculture</h4><span class="proof-type">Government</span></div>
+                    <p>Service provider management and M&E platform for smallholder agriculture.</p>
+                    <div class="proof-metric"><strong>8 districts</strong> • <strong>200+ service providers</strong></div>
+                </div>
+                <div class="proof-item">
+                    <div class="proof-header"><h4>AI Extension Research</h4><span class="proof-type">University of Virginia</span></div>
+                    <p>Voice-based farming advisories for low-literacy users via basic phones.</p>
+                    <div class="proof-metric"><strong>Research collaboration</strong> • Voice AI in Sesotho</div>
+                </div>
+                <div class="proof-item">
+                    <div class="proof-header"><h4>Maseru Bridge Traffic</h4><span class="proof-type">Public Tool</span></div>
+                    <p>Real-time border crossing analysis helping travelers reduce wait times.</p>
+                    <div class="proof-metric"><strong>500+ daily</strong> • <strong>35,000+ monthly</strong> insights</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section contact-section" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Get Started</div>
+                <h2 class="section-title">Let's Build Something</h2>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-primary">
+                    <h3>Start with a Conversation</h3>
+                    <p>Most projects begin with a 15-minute WhatsApp chat. Tell us your challenge, we share ideas—no commitment.</p>
+                    <a href="https://wa.me/27761080024?text=Hi%204D%20AI%2C%20I%27d%20like%20to%20discuss%20a%20project." class="btn btn-whatsapp">
+                        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        Chat on WhatsApp
+                    </a>
+                    <div class="contact-alternative">
+                        <p>Or reach us directly:</p>
+                        <div class="contact-links">
+                            <a href="mailto:ai@4dcs.co.za" class="contact-link">✉️ ai@4dcs.co.za</a>
+                            <a href="tel:+27761080024" class="contact-link">📞 +27 76 108 0024</a>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form" action="https://formsubmit.co/info@4dcs.co.za" method="POST">
+                    <h3>Or send a message</h3>
+                    <input type="hidden" name="_subject" value="4D AI Labs - New Inquiry">
+                    <input type="hidden" name="_captcha" value="false">
+                    <div class="form-row">
+                        <div class="form-group"><label for="name">Name</label><input type="text" id="name" name="name" required></div>
+                        <div class="form-group"><label for="org">Organization</label><input type="text" id="org" name="organization"></div>
+                    </div>
+                    <div class="form-group"><label for="contact">Email or WhatsApp</label><input type="text" id="contact" name="contact" required></div>
+                    <div class="form-group"><label for="interest">What do you need?</label>
+                        <select id="interest" name="interest">
+                            <option value="">Select...</option>
+                            <option value="data-assistant">Data Assistant (like Lipalo)</option>
+                            <option value="analytics">Analytics / Monitoring</option>
+                            <option value="agriculture">Agriculture Solution</option>
+                            <option value="financial">Credit / Financial</option>
+                            <option value="custom">Custom AI Solution</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label for="message">Brief description (optional)</label><textarea id="message" name="message" placeholder="Tell us about your challenge..."></textarea></div>
+                    <button type="submit" class="btn btn-accent" style="width: 100%;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2025 <a href="https://4dcs.co.za">4D Climate Solutions (Pty) Ltd</a></p>
+            <p class="footer-tagline">creative • innovative • green • sustainable</p>
+        </div>
+    </footer>
+
+    <div class="sticky-cta">
+        <a href="https://wa.me/27761080024?text=Hi%204D%20AI%2C%20I%27d%20like%20to%20discuss%20a%20project." class="btn btn-whatsapp">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Discuss Your Project
+        </a>
     </div>
-  </footer>
-  
-  <script>
-    // Demo answers (pre-defined for reliability)
-    const demoAnswers = {
-      "What is the population of Lesotho?": {
-        answer: "According to the Bureau of Statistics, Lesotho's population is approximately **2.3 million** people (2023 estimate). The country has seen steady growth, with about 25% living in urban areas and 75% in rural areas. The capital Maseru is home to around 330,000 residents.",
-        source: "Bureau of Statistics Lesotho, Population Projections 2016-2036"
-      },
-      "What is the unemployment rate in Lesotho?": {
-        answer: "Lesotho's unemployment rate stands at approximately **24.6%** according to the 2024 Labour Force Survey. Youth unemployment (15-24 years) is significantly higher at around 38%. The textile and apparel sector remains the largest employer in the formal economy.",
-        source: "Labour Force Survey Report 2024, Bureau of Statistics"
-      },
-      "What is the literacy rate in Lesotho?": {
-        answer: "Lesotho has one of the highest literacy rates in Africa at approximately **79%** for adults (15+ years). Female literacy (88%) is notably higher than male literacy (70%), which is unusual in the region. Primary school enrollment is nearly universal at 98%.",
-        source: "Education Statistics Report 2023, Bureau of Statistics"
-      },
-      "What are the main crops grown in Lesotho?": {
-        answer: "The main crops grown in Lesotho are **maize** (the staple food), **sorghum**, **wheat**, and **beans**. Agriculture employs about 70% of the rural population but contributes only 5% to GDP. Only about 10% of land is arable due to mountainous terrain.",
-        source: "Agricultural Census 2019-2020, Bureau of Statistics"
-      },
-      "What is Lesotho's GDP?": {
-        answer: "Lesotho's GDP is approximately **$2.5 billion USD** (2023), with a GDP per capita of around $1,100. The economy grew by 2.1% in 2023. Key sectors include manufacturing (textiles), agriculture, and remittances from South African mines.",
-        source: "Annual National Accounts 2023, Bureau of Statistics"
-      }
-    };
-    
-    let isAsking = false;
-    
-    async function askDemo() {
-      const select = document.getElementById('demoQuestion');
-      const question = select.value;
-      const btn = document.getElementById('demoBtn');
-      const chat = document.getElementById('demoChat');
-      
-      if (!question || isAsking) return;
-      
-      isAsking = true;
-      btn.disabled = true;
-      btn.textContent = 'Asking...';
-      
-      // Add user message
-      chat.innerHTML += `<div class="demo-message user">${question}</div>`;
-      
-      // Add typing indicator
-      chat.innerHTML += `<div class="demo-typing" id="typing"><span></span><span></span><span></span></div>`;
-      chat.scrollTop = chat.scrollHeight;
-      
-      // Simulate AI thinking
-      await new Promise(r => setTimeout(r, 1500 + Math.random() * 1000));
-      
-      // Remove typing indicator
-      document.getElementById('typing')?.remove();
-      
-      // Get answer
-      const answerData = demoAnswers[question];
-      if (answerData) {
-        const formattedAnswer = answerData.answer.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-        chat.innerHTML += `
-          <div class="demo-message assistant">
-            ${formattedAnswer}
-            <div style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.8rem; color: var(--gray-400);">
-              📚 Source: ${answerData.source}
-            </div>
-          </div>
-        `;
-      }
-      
-      chat.scrollTop = chat.scrollHeight;
-      
-      // Reset
-      select.value = '';
-      btn.disabled = false;
-      btn.textContent = 'Ask →';
-      isAsking = false;
-    }
-    
-    // FAQ toggle
-    function toggleFaq(element) {
-      const item = element.parentElement;
-      item.classList.toggle('active');
-    }
-    
-    // Typing animation for demo request
-    const typingTexts = ['Your Business', 'Government', 'Healthcare', 'Agriculture', 'Transport', 'Customer Service', 'Your Challenge'];
-    let textIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    const typingElement = document.querySelector('.typing-text');
-    
-    function typeText() {
-      if (!typingElement) return;
-      
-      const currentText = typingTexts[textIndex];
-      
-      if (isDeleting) {
-        typingElement.textContent = currentText.substring(0, charIndex - 1);
-        charIndex--;
-      } else {
-        typingElement.textContent = currentText.substring(0, charIndex + 1);
-        charIndex++;
-      }
-      
-      let delay = isDeleting ? 50 : 100;
-      
-      if (!isDeleting && charIndex === currentText.length) {
-        delay = 2000; // Pause at end
-        isDeleting = true;
-      } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        textIndex = (textIndex + 1) % typingTexts.length;
-        delay = 500; // Pause before next word
-      }
-      
-      setTimeout(typeText, delay);
-    }
-    
-    // Start typing animation
-    setTimeout(typeText, 1000);
-    
-    // Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
-    
-    // Header background on scroll
-    window.addEventListener('scroll', () => {
-      const header = document.querySelector('header');
-      if (window.scrollY > 50) {
-        header.style.background = 'rgba(15, 23, 42, 0.95)';
-      } else {
-        header.style.background = 'rgba(15, 23, 42, 0.8)';
-      }
-    });
-    
-    // Mobile menu
-    function toggleMenu() {
-      const nav = document.querySelector('nav');
-      nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
-    }
-    
-    // Animate on scroll
-    const observerOptions = { threshold: 0.1 };
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }
-      });
-    }, observerOptions);
-    
-    document.querySelectorAll('.stat, .product-card, .step, .use-case, .faq-item').forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(20px)';
-      el.style.transition = 'all 0.6s ease';
-      observer.observe(el);
-    });
-  </script>
+
+    <a href="https://wa.me/27761080024?text=Hi%204D%20AI%2C%20I%27d%20like%20to%20discuss%20a%20project." class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
 </body>
 </html>
