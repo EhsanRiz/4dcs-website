@@ -188,12 +188,14 @@
         .roster-hero-card h4 {
             font-size: 1.1rem;
             margin-bottom: 8px;
+            color: #ffffff;
         }
 
         .roster-hero-card p {
             font-size: 0.95rem;
-            opacity: 0.8;
+            color: rgba(255, 255, 255, 0.85);
             margin-bottom: 0;
+            line-height: 1.5;
         }
 
         /* Benefits Section */
@@ -374,12 +376,16 @@
         .process-step {
             text-align: center;
             position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .step-number {
             width: 70px;
             height: 70px;
-            background: #e8b923;
+            min-height: 70px;
+            background: #e8b923 !important;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -387,21 +393,26 @@
             font-family: 'Poppins', sans-serif;
             font-size: 1.8rem;
             font-weight: 700;
-            color: #1a5d3a;
-            margin: 0 auto 25px;
+            color: #1a5d3a !important;
+            margin-bottom: 25px !important;
+            position: relative;
+            z-index: 1;
         }
 
         .process-step h4 {
             font-size: 1.1rem;
             margin-bottom: 12px;
-            color: white;
+            color: #ffffff !important;
+            position: relative;
+            z-index: 2;
         }
 
         .process-step p {
             font-size: 0.9rem;
-            opacity: 0.85;
-            color: white;
+            color: rgba(255, 255, 255, 0.85) !important;
             line-height: 1.5;
+            position: relative;
+            z-index: 2;
         }
 
         /* CTA Section */
