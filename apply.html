@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply to Expert Roster | 4D Climate Solutions</title>
+    <meta name="description" content="Apply to join 4D Climate Solutions' Expert Roster. Submit your qualifications and expertise to be considered for project opportunities.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="images/logo.jpg">
+    
+    <!-- Fonts - Match main site -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- Main site styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Application form specific styles -->
+    <style>
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #0d3d24 0%, #1a5d3a 50%, #2d8f5c 100%);
+            padding: 140px 20px 60px;
+            color: white;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Form Section */
+        .form-section {
+            padding: 60px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Progress Steps */
+        .form-progress {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .form-progress::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 10%;
+            right: 10%;
+            height: 3px;
+            background: #e9ecef;
+        }
+
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-circle {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #6c757d;
+            margin-bottom: 10px;
+            transition: all 0.3s;
+        }
+
+        .progress-step.active .step-circle,
+        .progress-step.completed .step-circle {
+            background: linear-gradient(135deg, #1a5d3a, #0d3d24);
+            color: white;
+        }
+
+        .progress-step.completed .step-circle {
+            background: #28a745;
+        }
+
+        .step-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #6c757d;
+        }
+
+        .progress-step.active .step-label,
+        .progress-step.completed .step-label {
+            color: #1a1a2e;
+        }
+
+        /* Form Card */
+        .form-card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .form-step {
+            display: none;
+        }
+
+        .form-step.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-step-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            color: #1a1a2e;
+            margin-bottom: 8px;
+        }
+
+        .form-step-subtitle {
+            color: #6c757d;
+            margin-bottom: 30px;
+        }
+
+        /* Form Elements */
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1a1a2e;
+        }
+
+        .form-group .required {
+            color: #dc3545;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #1a5d3a;
+            box-shadow: 0 0 0 4px rgba(26, 93, 58, 0.1);
+        }
+
+        .form-group input.error {
+            border-color: #dc3545;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-group small {
+            display: block;
+            margin-top: 6px;
+            color: #6c757d;
+            font-size: 0.85rem;
+        }
+
+        /* Checkbox Group */
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid #e9ecef;
+        }
+
+        .checkbox-item:hover {
+            background: rgba(26, 93, 58, 0.05);
+            border-color: #1a5d3a;
+        }
+
+        .checkbox-item.selected {
+            background: rgba(26, 93, 58, 0.08);
+            border-color: #1a5d3a;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            -webkit-appearance: checkbox;
+            appearance: checkbox;
+            width: 16px;
+            height: 16px;
+            margin: 0;
+            cursor: pointer;
+            accent-color: #1a5d3a;
+        }
+
+        .checkbox-item span {
+            font-size: 0.85rem;
+            line-height: 1.3;
+            color: #333;
+        }
+
+        /* File Upload */
+        .file-upload {
+            border: 2px dashed #e9ecef;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .file-upload:hover {
+            border-color: #1a5d3a;
+            background: rgba(26, 93, 58, 0.02);
+        }
+
+        .file-upload input {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .file-upload-icon {
+            width: 60px;
+            height: 60px;
+            background: #e9ecef;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 1.5rem;
+            color: #6c757d;
+        }
+
+        .file-upload h4 {
+            margin-bottom: 5px;
+            color: #1a1a2e;
+        }
+
+        .file-upload p {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        .file-list {
+            margin-top: 15px;
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 14px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+
+        .file-item-name {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .file-item-name i {
+            color: #1a5d3a;
+        }
+
+        .file-item button {
+            background: none;
+            border: none;
+            color: #dc3545;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        /* Form Navigation */
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .btn-form {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-back {
+            background: #f8f9fa;
+            color: #1a1a2e;
+        }
+
+        .btn-back:hover {
+            background: #e9ecef;
+        }
+
+        .btn-next {
+            background: linear-gradient(135deg, #1a5d3a, #0d3d24);
+            color: white;
+        }
+
+        .btn-next:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(26, 93, 58, 0.3);
+        }
+
+        .btn-next:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Success State */
+        .success-state {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            background: #28a745;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            margin: 0 auto 30px;
+            animation: scaleIn 0.5s ease;
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+
+        .success-state h2 {
+            font-family: 'Poppins', sans-serif;
+            color: #1a1a2e;
+            margin-bottom: 15px;
+        }
+
+        .success-state p {
+            color: #6c757d;
+            margin-bottom: 10px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .reference-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a5d3a;
+            background: rgba(26, 93, 58, 0.1);
+            padding: 15px 30px;
+            border-radius: 8px;
+            display: inline-block;
+            margin: 20px 0;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 15px 25px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+            z-index: 9999;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .toast.success {
+            background: #28a745;
+        }
+
+        .toast.error {
+            background: #dc3545;
+        }
+
+        /* Spinner */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+
+            .form-card {
+                padding: 25px;
+            }
+
+            .form-progress {
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+
+            .step-label {
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation - Matches main site -->
+    <nav class="navbar" aria-label="Main navigation">
+        <a href="index.html" class="logo">
+            <img src="images/logo.jpg" alt="4D Climate Solutions">
+        </a>
+        <ul class="nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="roster.html" class="active">Expert Roster</a></li>
+            <li><a href="ai.html" class="nav-ai">4D AI <span class="nav-badge">NEW</span></a></li>
+            <li><a href="apps.html">Apps</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+        </ul>
+        <div class="mobile-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Page Header -->
+        <section class="page-header">
+            <h1>Apply to Expert Roster</h1>
+            <p>Complete the form below to join our network of professionals.</p>
+        </section>
+
+        <!-- Application Form -->
+        <section class="form-section">
+            <!-- Progress Steps -->
+            <div class="form-progress">
+                <div class="progress-step active" data-step="1">
+                    <div class="step-circle">1</div>
+                    <span class="step-label">Personal Info</span>
+                </div>
+                <div class="progress-step" data-step="2">
+                    <div class="step-circle">2</div>
+                    <span class="step-label">Expertise</span>
+                </div>
+                <div class="progress-step" data-step="3">
+                    <div class="step-circle">3</div>
+                    <span class="step-label">Experience</span>
+                </div>
+                <div class="progress-step" data-step="4">
+                    <div class="step-circle">4</div>
+                    <span class="step-label">Documents</span>
+                </div>
+            </div>
+
+            <!-- Form Card -->
+            <div class="form-card">
+                <form id="rosterForm">
+                    <!-- Step 1: Personal Information -->
+                    <div class="form-step active" data-step="1">
+                        <h3 class="form-step-title">Personal Information</h3>
+                        <p class="form-step-subtitle">Tell us about yourself.</p>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>First Name <span class="required">*</span></label>
+                                <input type="text" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name <span class="required">*</span></label>
+                                <input type="text" name="lastName" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Email Address <span class="required">*</span></label>
+                                <input type="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Number <span class="required">*</span></label>
+                                <input type="tel" name="phone" placeholder="+266 or +27" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Nationality</label>
+                                <input type="text" name="nationality" placeholder="e.g., Mosotho, South African">
+                            </div>
+                            <div class="form-group">
+                                <label>Country of Residence <span class="required">*</span></label>
+                                <select name="country" required>
+                                    <option value="">Select country</option>
+                                    <option value="Lesotho">Lesotho</option>
+                                    <option value="South Africa">South Africa</option>
+                                    <option value="Botswana">Botswana</option>
+                                    <option value="Eswatini">Eswatini</option>
+                                    <option value="Namibia">Namibia</option>
+                                    <option value="Zimbabwe">Zimbabwe</option>
+                                    <option value="Mozambique">Mozambique</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>City/Town <span class="required">*</span></label>
+                                <input type="text" name="city" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Gender</label>
+                                <select name="gender">
+                                    <option value="">Prefer not to say</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-navigation">
+                            <div></div>
+                            <button type="button" class="btn-form btn-next" onclick="nextStep()">
+                                Next Step <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Areas of Expertise -->
+                    <div class="form-step" data-step="2">
+                        <h3 class="form-step-title">Areas of Expertise</h3>
+                        <p class="form-step-subtitle">Select all categories that match your professional skills.</p>
+                        
+                        <div class="form-group">
+                            <label>Primary Expertise Areas <span class="required">*</span></label>
+                            <small>Select at least one area</small>
+                            <div class="checkbox-group">
+                                <label class="checkbox-item"><input type="checkbox" name="expertise" value="Environmental Impact Assessment (EIA)"><span>Environmental Impact Assessment (EIA)</span></label>
+                                <label class="checkbox-item"><input type="checkbox" name="expertise" value="Carbon Auditing & GHG"><span>Carbon Auditing & GHG</span></label>
+                                <label class="checkbox-item"><input type="checkbox" name="expertise" value="Climate Change & Adaptation"><span>Climate Change & Adaptation</span></label>
+                                <label class="checkbox-item"><input type="checkbox" name="expertise" value="Environmental & Social Safeguards"><span>Environmental & Social Safeguards</span></label>
+                                <label class="checkbox-item"><input type="checkbox" name="expertise" value="Environmental Health"><span>Environmental Health</span></label>
+                                <label class="checkbox-item"><input type="checkbox" name="expertise" value="Water Resources Engineering"><span>Water Resources Engineering</span></label>
+                                <label class="checkbox-item"><input type="checkbox" name="expertise" value="WASH Specialist"><span>WASH Specialist</span></label>
+                                <label class="checkbox-item"><input type="checkbox" name="expertise" value="Groundwater & Hydrology"><span>Groundwater & Hydrology</span></label>
+                                <label class="checkbox-item"><input type="checkbox" name="expertise" value="Cadastral Surveying"><span>Cadastral Surveying</span></label>
+                                <label class="checkbox-item"><input type="checkbox" name="expertise" value="Property Valuation"><span>Property Valuation</span></label>
+                                <label class="checkbox-item"><input type="checkbox" name="expertise" value="Land Administration & RAP"><span>Land Administration & RAP</span></label>
+                                <label class="checkbox-item"><input type="checkbox" name="expertise" value="GIS & Remote Sensing"><span>GIS & Remote Sensing</span></label>
+                                <label class="checkbox-item"><input type="checkbox" name="expertise" value="Social Development"><span>Social Development</span></label>
+                                <label class="checkbox-item"><input type="checkbox" name="expertise" value="Community Mobilization"><span>Community Mobilization</span></label>
+                                <label class="checkbox-item"><input type="checkbox" name="expertise" value="Gender & Social Inclusion"><span>Gender & Social Inclusion</span></label>
+                                <label class="checkbox-item"><input type="checkbox" name="expertise" value="Agricultural Extension"><span>Agricultural Extension</span></label>
+                                <label class="checkbox-item"><input type="checkbox" name="expertise" value="Climate-Smart Agriculture"><span>Climate-Smart Agriculture</span></label>
+                                <label class="checkbox-item"><input type="checkbox" name="expertise" value="Monitoring & Evaluation"><span>Monitoring & Evaluation</span></label>
+                                <label class="checkbox-item"><input type="checkbox" name="expertise" value="Data Analysis & Statistics"><span>Data Analysis & Statistics</span></label>
+                                <label class="checkbox-item"><input type="checkbox" name="expertise" value="Communications & Knowledge Mgmt"><span>Communications & Knowledge Mgmt</span></label>
+                                <label class="checkbox-item"><input type="checkbox" name="expertise" value="AI & Technology Integration"><span>AI & Technology Integration</span></label>
+                                <label class="checkbox-item"><input type="checkbox" name="expertise" value="Other"><span>Other (specify below)</span></label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Other Expertise</label>
+                            <input type="text" name="otherExpertise" placeholder="Specify any other expertise areas">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Languages <span class="required">*</span></label>
+                                <input type="text" name="languages" placeholder="e.g., English, Sesotho, Afrikaans" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Availability</label>
+                                <select name="availability">
+                                    <option value="Full-time">Full-time availability</option>
+                                    <option value="Part-time">Part-time / Consultancy</option>
+                                    <option value="Project-based">Project-based only</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-navigation">
+                            <button type="button" class="btn-form btn-back" onclick="prevStep()">
+                                <i class="fas fa-arrow-left"></i> Back
+                            </button>
+                            <button type="button" class="btn-form btn-next" onclick="nextStep()">
+                                Next Step <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Experience & Qualifications -->
+                    <div class="form-step" data-step="3">
+                        <h3 class="form-step-title">Experience & Qualifications</h3>
+                        <p class="form-step-subtitle">Tell us about your professional background.</p>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Years of Experience <span class="required">*</span></label>
+                                <select name="yearsExperience" required>
+                                    <option value="">Select</option>
+                                    <option value="0-2">0-2 years</option>
+                                    <option value="3-5">3-5 years</option>
+                                    <option value="6-10">6-10 years</option>
+                                    <option value="11-15">11-15 years</option>
+                                    <option value="15+">15+ years</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Highest Qualification <span class="required">*</span></label>
+                                <select name="highestQualification" required>
+                                    <option value="">Select</option>
+                                    <option value="Diploma">Diploma</option>
+                                    <option value="Bachelor's">Bachelor's Degree</option>
+                                    <option value="Honours">Honours Degree</option>
+                                    <option value="Master's">Master's Degree</option>
+                                    <option value="PhD">PhD / Doctorate</option>
+                                    <option value="Professional">Professional Certification</option>
+                                </select>
+                            </div>
+                            <div class="form-group full-width">
+                                <label>Field of Study <span class="required">*</span></label>
+                                <input type="text" name="fieldOfStudy" placeholder="e.g., Environmental Science, Civil Engineering" required>
+                            </div>
+                            <div class="form-group full-width">
+                                <label>Professional Registration</label>
+                                <input type="text" name="professionalRegistration" placeholder="e.g., Registered Surveyor (LSC), SACNASP, ECSA">
+                                <small>Include registration body and number if applicable</small>
+                            </div>
+                            <div class="form-group">
+                                <label>Current Employer</label>
+                                <input type="text" name="currentEmployer" placeholder="Organization name">
+                            </div>
+                            <div class="form-group">
+                                <label>Current Role/Title</label>
+                                <input type="text" name="currentRole" placeholder="e.g., Senior Environmental Consultant">
+                            </div>
+                            <div class="form-group full-width">
+                                <label>Brief Professional Bio <span class="required">*</span></label>
+                                <textarea name="briefBio" placeholder="Describe your professional background, key skills, and experience (200-500 words)" required></textarea>
+                            </div>
+                            <div class="form-group full-width">
+                                <label>Relevant Projects</label>
+                                <textarea name="relevantProjects" placeholder="List 2-3 relevant projects you've worked on, including client and your role"></textarea>
+                            </div>
+                        </div>
+                        
+                        <h4 style="margin: 30px 0 15px; color: #1a1a2e;">Professional References</h4>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Reference 1 Name <span class="required">*</span></label>
+                                <input type="text" name="reference1Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Reference 1 Contact <span class="required">*</span></label>
+                                <input type="text" name="reference1Contact" placeholder="Email or phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Reference 2 Name <span class="required">*</span></label>
+                                <input type="text" name="reference2Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Reference 2 Contact <span class="required">*</span></label>
+                                <input type="text" name="reference2Contact" placeholder="Email or phone" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-navigation">
+                            <button type="button" class="btn-form btn-back" onclick="prevStep()">
+                                <i class="fas fa-arrow-left"></i> Back
+                            </button>
+                            <button type="button" class="btn-form btn-next" onclick="nextStep()">
+                                Next Step <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Documents -->
+                    <div class="form-step" data-step="4">
+                        <h3 class="form-step-title">Documents & Submission</h3>
+                        <p class="form-step-subtitle">Upload your CV and complete your application.</p>
+                        
+                        <div class="form-group">
+                            <label>Upload CV <span class="required">*</span></label>
+                            <div class="file-upload" id="cvUpload">
+                                <input type="file" id="cvFile" accept=".pdf,.doc,.docx" onchange="handleCvUpload(event)">
+                                <div class="file-upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                                <h4>Drop your CV here or click to browse</h4>
+                                <p>PDF, DOC, or DOCX (max 5MB)</p>
+                            </div>
+                            <div class="file-list" id="cvFileList"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Supporting Documents (Optional)</label>
+                            <div class="file-upload" id="docsUpload">
+                                <input type="file" id="docsFile" accept=".pdf,.doc,.docx,.jpg,.png" multiple onchange="handleDocsUpload(event)">
+                                <div class="file-upload-icon"><i class="fas fa-folder-plus"></i></div>
+                                <h4>Upload certificates or other documents</h4>
+                                <p>PDF, DOC, DOCX, JPG, PNG (max 5MB each)</p>
+                            </div>
+                            <div class="file-list" id="docsFileList"></div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group full-width">
+                                <label>LinkedIn Profile (Optional)</label>
+                                <input type="url" name="linkedIn" placeholder="https://linkedin.com/in/yourprofile">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="checkbox-item" style="background: transparent; border: none; padding: 0;">
+                                <input type="checkbox" name="consent" required>
+                                <span>I confirm that the information provided is accurate and I consent to 4D Climate Solutions processing my data for roster management purposes. <span class="required">*</span></span>
+                            </label>
+                        </div>
+                        
+                        <div class="form-navigation">
+                            <button type="button" class="btn-form btn-back" onclick="prevStep()">
+                                <i class="fas fa-arrow-left"></i> Back
+                            </button>
+                            <button type="submit" class="btn-form btn-next" id="submitBtn">
+                                <i class="fas fa-paper-plane"></i> Submit Application
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Success State -->
+                    <div class="form-step" data-step="success">
+                        <div class="success-state">
+                            <div class="success-icon"><i class="fas fa-check"></i></div>
+                            <h2>Application Submitted!</h2>
+                            <p>Thank you for applying to join our Expert Roster. We've received your application and will review it shortly.</p>
+                            <div class="reference-number" id="applicationRef">-</div>
+                            <p>Please save this reference number for your records.</p>
+                            <p style="margin-top: 20px;">You will receive a confirmation email with further details.</p>
+                            <a href="roster.html" class="btn-form btn-next" style="margin-top: 20px; text-decoration: none;">
+                                <i class="fas fa-arrow-left"></i> Back to Roster
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer - Matches main site -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <span class="footer-logo-icon">4D</span>
+                    <span class="footer-logo-text">Climate Solutions</span>
+                </div>
+                <p>Empowering communities to build climate resilience and create sustainable futures across Southern Africa.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="roster.html">Expert Roster</a></li>
+                    <li><a href="ai.html">4D AI</a></li>
+                    <li><a href="apps.html">Apps</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="services.html">AI & Smart Data</a></li>
+                    <li><a href="services.html">Capacity Building</a></li>
+                    <li><a href="services.html">Climate Solutions</a></li>
+                    <li><a href="services.html">Partnerships</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:info@4dcs.co.za">info@4dcs.co.za</a></li>
+                    <li><a href="tel:+27761080024">+27 (0) 76 108 0024</a></li>
+                    <li><a href="tel:+26622323442">+266 2232 3442</a></li>
+                    <li>Maseru Roller Mills</li>
+                    <li>Maseru, Lesotho</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2025 4D Climate Solutions (Pty) Ltd. All rights reserved.</span>
+            <a href="privacy.html">Privacy Policy</a>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Main site scripts -->
+    <script src="scripts.js"></script>
+
+    <!-- Form Scripts -->
+    <script>
+        // Supabase Configuration
+        const SUPABASE_URL = 'https://kgoprnbxdzwehzkxedch.supabase.co';
+        const SUPABASE_ANON_KEY = 'sb_publishable_ndQHws_XSRFhq7uSr2cYmw_HhuMXC-c';
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        let currentStep = 1;
+        let uploadedFiles = { cv: null, docs: [] };
+
+        // Checkbox selection styling
+        document.querySelectorAll('.checkbox-item input[type="checkbox"]').forEach(cb => {
+            cb.addEventListener('change', function() {
+                this.closest('.checkbox-item').classList.toggle('selected', this.checked);
+            });
+        });
+
+        function showStep(step) {
+            document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.progress-step').forEach(s => {
+                s.classList.remove('active', 'completed');
+                const stepNum = parseInt(s.dataset.step);
+                if (stepNum < step) s.classList.add('completed');
+                if (stepNum === step) s.classList.add('active');
+            });
+            
+            if (step === 'success') {
+                document.querySelector('.form-step[data-step="success"]').classList.add('active');
+            } else {
+                document.querySelector(`.form-step[data-step="${step}"]`).classList.add('active');
+                currentStep = step;
+            }
+            window.scrollTo({ top: 300, behavior: 'smooth' });
+        }
+
+        function validateStep(step) {
+            const stepEl = document.querySelector(`.form-step[data-step="${step}"]`);
+            const required = stepEl.querySelectorAll('[required]');
+            let valid = true;
+            
+            required.forEach(field => {
+                if (!field.value.trim()) {
+                    field.classList.add('error');
+                    valid = false;
+                } else {
+                    field.classList.remove('error');
+                }
+            });
+
+            if (step === 2) {
+                const checked = document.querySelectorAll('input[name="expertise"]:checked');
+                if (checked.length === 0) {
+                    showToast('Please select at least one expertise area', 'error');
+                    valid = false;
+                }
+            }
+
+            if (step === 4 && !uploadedFiles.cv) {
+                showToast('Please upload your CV', 'error');
+                valid = false;
+            }
+
+            if (!valid) showToast('Please fill in all required fields', 'error');
+            return valid;
+        }
+
+        function nextStep() {
+            if (validateStep(currentStep)) {
+                showStep(currentStep + 1);
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 1) showStep(currentStep - 1);
+        }
+
+        function handleCvUpload(e) {
+            const file = e.target.files[0];
+            if (file && file.size <= 5 * 1024 * 1024) {
+                uploadedFiles.cv = file;
+                document.getElementById('cvFileList').innerHTML = `
+                    <div class="file-item">
+                        <div class="file-item-name"><i class="fas fa-file-pdf"></i> ${file.name}</div>
+                        <button type="button" onclick="removeCv()"><i class="fas fa-times"></i></button>
+                    </div>
+                `;
+            } else {
+                showToast('File too large. Max 5MB allowed.', 'error');
+            }
+        }
+
+        function removeCv() {
+            uploadedFiles.cv = null;
+            document.getElementById('cvFileList').innerHTML = '';
+            document.getElementById('cvFile').value = '';
+        }
+
+        function handleDocsUpload(e) {
+            const files = Array.from(e.target.files);
+            files.forEach(file => {
+                if (file.size <= 5 * 1024 * 1024) {
+                    uploadedFiles.docs.push(file);
+                }
+            });
+            renderDocsList();
+        }
+
+        function renderDocsList() {
+            document.getElementById('docsFileList').innerHTML = uploadedFiles.docs.map((f, i) => `
+                <div class="file-item">
+                    <div class="file-item-name"><i class="fas fa-file"></i> ${f.name}</div>
+                    <button type="button" onclick="removeDoc(${i})"><i class="fas fa-times"></i></button>
+                </div>
+            `).join('');
+        }
+
+        function removeDoc(index) {
+            uploadedFiles.docs.splice(index, 1);
+            renderDocsList();
+        }
+
+        // Form submission
+        document.getElementById('rosterForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            if (!validateStep(4)) return;
+            
+            const btn = document.getElementById('submitBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner"></span> Submitting...';
+
+            try {
+                const formData = new FormData(this);
+                const data = {
+                    first_name: formData.get('firstName'),
+                    last_name: formData.get('lastName'),
+                    email: formData.get('email'),
+                    phone: formData.get('phone'),
+                    nationality: formData.get('nationality'),
+                    country: formData.get('country'),
+                    city: formData.get('city'),
+                    gender: formData.get('gender'),
+                    expertise: Array.from(document.querySelectorAll('input[name="expertise"]:checked')).map(cb => cb.value),
+                    other_expertise: formData.get('otherExpertise'),
+                    languages: formData.get('languages'),
+                    availability: formData.get('availability'),
+                    years_experience: formData.get('yearsExperience'),
+                    highest_qualification: formData.get('highestQualification'),
+                    field_of_study: formData.get('fieldOfStudy'),
+                    professional_registration: formData.get('professionalRegistration'),
+                    current_employer: formData.get('currentEmployer'),
+                    job_title: formData.get('currentRole'),
+                    brief_bio: formData.get('briefBio'),
+                    relevant_projects: formData.get('relevantProjects'),
+                    reference1_name: formData.get('reference1Name'),
+                    reference1_contact: formData.get('reference1Contact'),
+                    reference2_name: formData.get('reference2Name'),
+                    reference2_contact: formData.get('reference2Contact'),
+                    linkedin: formData.get('linkedIn'),
+                    submitted_at: new Date().toISOString(),
+                    status: 'pending'
+                };
+
+                const refNum = 'R' + Date.now().toString(36).toUpperCase();
+                data.reference_number = refNum;
+                
+                // Upload CV to Supabase Storage
+                if (uploadedFiles.cv) {
+                    const cvPath = `roster/${refNum}/${uploadedFiles.cv.name}`;
+                    const { data: cvData, error: cvError } = await supabaseClient.storage.from('documents').upload(cvPath, uploadedFiles.cv);
+                    if (cvError) {
+                        console.error('CV upload error:', cvError);
+                    } else {
+                        data.cv_path = cvPath;
+                    }
+                }
+                
+                // Upload supporting documents
+                if (uploadedFiles.docs.length > 0) {
+                    const docPaths = [];
+                    for (const doc of uploadedFiles.docs) {
+                        const docPath = `roster/${refNum}/${doc.name}`;
+                        const { data: docData, error: docError } = await supabaseClient.storage.from('documents').upload(docPath, doc);
+                        if (!docError) {
+                            docPaths.push(docPath);
+                        }
+                    }
+                    if (docPaths.length > 0) {
+                        data.supporting_docs = docPaths;
+                    }
+                }
+                
+                // Insert record into database
+                const { data: insertData, error: insertError } = await supabaseClient
+                    .from('expert_roster')
+                    .insert([data]);
+
+                if (insertError) {
+                    console.error('Database error:', insertError);
+                    throw new Error('Failed to submit application. Please try again.');
+                }
+                
+                // Email is sent automatically via database trigger
+                
+                document.getElementById('applicationRef').textContent = refNum;
+                showStep('success');
+                showToast('Application submitted! Check your email for confirmation.', 'success');
+            } catch (error) {
+                console.error(error);
+                showToast('Error submitting. Please try again.', 'error');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Application';
+            }
+        });
+
+        function showToast(msg, type = 'info') {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.className = `toast ${type} show`;
+            setTimeout(() => toast.classList.remove('show'), 4000);
+        }
+
+        document.querySelectorAll('input, select, textarea').forEach(f => f.addEventListener('input', () => f.classList.remove('error')));
+    </script>
+</body>
+</html>
