@@ -34,21 +34,30 @@
     <style>
         .hub-hero {
             background: linear-gradient(135deg, #006838 0%, #00a651 100%);
-            color: #fff;
+            color: #ffffff;
             padding: 120px 20px 80px;
             text-align: center;
         }
-        .hub-hero .breadcrumb { color: rgba(255,255,255,0.85); }
-        .hub-hero .breadcrumb a { color: #fff; }
-        .hub-hero h1 { font-size: 2.75rem; margin: 0.5rem 0; }
-        .hub-hero .project-full { font-size: 1.15rem; opacity: 0.95; max-width: 760px; margin: 0 auto; }
+        .hub-hero * { color: #ffffff; }
+        .hub-hero .breadcrumb { color: rgba(255,255,255,0.9); font-size: 0.9rem; }
+        .hub-hero .breadcrumb a { color: #ffffff; text-decoration: none; }
+        .hub-hero .breadcrumb a:hover { text-decoration: underline; }
+        .hub-hero h1 { font-size: 2.75rem; margin: 0.5rem 0; color: #ffffff; font-weight: 700; }
+        .hub-hero .project-full {
+            font-size: 1.2rem;
+            color: #ffffff;
+            max-width: 760px;
+            margin: 0 auto;
+            font-weight: 500;
+        }
         .hub-hero .project-meta {
             display: inline-flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center;
-            margin-top: 1.75rem; padding: 0.75rem 1.5rem;
-            background: rgba(255,255,255,0.12); border-radius: 8px;
+            margin-top: 1.75rem; padding: 0.85rem 1.75rem;
+            background: rgba(0,0,0,0.18); border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.2);
         }
-        .hub-hero .project-meta span { font-size: 0.95rem; }
-        .hub-hero .project-meta strong { color: #ffeb3b; }
+        .hub-hero .project-meta span { font-size: 0.95rem; color: #ffffff; }
+        .hub-hero .project-meta strong { color: #ffd54f; font-weight: 700; }
 
         .tools-grid {
             display: grid;
